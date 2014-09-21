@@ -1,0 +1,43 @@
+#!/bin/sh -e
+
+usage() {
+    cat <<EOF
+Usage: $0 URL FILENAME MD5
+EOF
+
+    exit $1
+}
+
+if test $# -ne 3; then
+    usage 1
+fi
+
+URL="$1"
+FILE="$2"
+MD5="$3"
+
+# echo "URL = $URL"
+# echo "FILE = $FILE"
+# echo "MD5 = $MD5"
+#echo "Fetching $FILE..."
+
+while : ; do
+    if [ ! -e $FILE ] ; then
+        curl -O $URL
+    fi;
+    COMPUTED_MD5=`/usr/bin/openssl md5 $FILE`
+    case $COMPUTED_MD5 in
+       *$MD5* )
+           echo "   valid MD5 checksum"
+           break
+           ;;
+       *)  echo "  invalid MD5 checksum, retrying"
+           rm -f $FILE
+           sleep 3
+           ;;
+    esac
+done;
+
+exit 0
+
+
