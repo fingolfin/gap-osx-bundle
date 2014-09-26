@@ -1,9 +1,10 @@
 #!/bin/sh -ev
 
-#make install
+DEST=$PREFIX/lib/gap
+cd $DEST
 
-echo TODO: manually copy everything, then adjust some file?
-
-exit 1
+echo TODO: adjust bin/gap.sh; install into $PREFIX/bin; 
 
 echo "TODO: fix install_name"
+
+exit 1
