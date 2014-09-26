@@ -3,7 +3,7 @@ INSTALL_PROGRAM = $(INSTALL)
 INSTALL_DATA = $(INSTALL) -m 644
 
 
-export PREFIX="$(PWD)/dst"
+export PREFIX=$(PWD)/dst
 
 PACKAGES = \
 	autoconf \
@@ -12,10 +12,9 @@ PACKAGES = \
 	
 
 
-FIXME: must have installed autoconf before starting to build automake / libtool ?
-
-FIXME: 
-
+# FIXME:
+# - must have installed autoconf before starting to build automake / libtool
+# - so, provide a way to specify those dependencies
 
 #
 # Generic code follows, no need to edit

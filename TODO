@@ -1,0 +1,18 @@
+* Download source files to central dir "src", for easier cleanup
+
+* extra sources to central dir "build", for easier cleanup
+
+* make sure to disable CPU specific optimization, e.g. in GMP
+
+* GAP: after running its outer (and inner?) configure script,
+  overwrite the GAParch value with something that works across OS X
+  versions
+
+* look at Max' N.s "bob" and see if we can learn from it
+  https://github.com/neunhoef/bob
+  https://github.com/neunhoef/bob/blob/master/bob.cc
+  https://github.com/neunhoef/bob/blob/master/gap.cc
+
+* look at "polybundle" by Silke and Andreas:
+  https://github.com/polymake/polybundle
+
