@@ -2,5 +2,5 @@
 
 ./configure --prefix=$PREFIX \
     --disable-static
-make
+make -j8
 make check

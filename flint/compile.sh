@@ -1,4 +1,6 @@
 #!/bin/sh -ev
 
-./configure --prefix=$PREFIX
-make
+./configure --prefix=$PREFIX \
+    --with-gmp=$PREFIX \
+    --with-mpfr=$PREFIX
+make -j8

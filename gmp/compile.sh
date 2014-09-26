@@ -11,6 +11,5 @@
     --disable-static \
     --enable-cxx \
     --with-pic
-make
-
+make -j8
 make check

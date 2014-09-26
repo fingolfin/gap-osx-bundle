@@ -48,7 +48,11 @@ extract-default: fetch
 	@mkdir -p $(PREFIX)
 	@mkdir -p $(BUILDDIR)
 	@rm -rf $(BUILDDIR)/$(DIRNAME)
-	@tar xvf $(SRCDIR)/$(ARCHIVE) -C $(BUILDDIR)
+	@if [[ $(ARCHIVE) =~ \.zip$$ ]] ; then \
+			unzip $(SRCDIR)/$(ARCHIVE) -d $(BUILDDIR) ; \
+		else \
+			tar xvf $(SRCDIR)/$(ARCHIVE) -C $(BUILDDIR) ; \
+		fi
 
 extract-extra:
 
