@@ -1,5 +1,10 @@
 * make sure to disable CPU specific optimization, e.g. in GMP
 
+* perhaps delete all *.la file (in the install.sh files)?
+  they have the build PATH baked in, which is bad for a reloctable
+  system.
+  When doing that, make sure nothing breaks
+
 * GAP: after running its outer (and inner?) configure script,
   overwrite the GAParch value with something that works across OS X
   versions
@@ -12,3 +17,21 @@
 * look at "polybundle" by Silke and Andreas:
   https://github.com/polymake/polybundle
 
+* make all libraries relocatable using 
+
+* prepare scripts that create a GAP.app bundle; perhaps also look at the
+  polybundle for that
+
+* prepare scripts that create a disk image from that, using
+    https://github.com/fingolfin/make-dmg
+
+* create a virtual machine with Mac OS X 10.6 or so, and create the
+  disk image there. Then test it on various machines
+
+* right now, GAP packages are all built as part of "GAP". It might be better
+  if each GAP package that requires compilation is covered by its
+  own "package".
+
+* add SingularInterface
+
+* add NormalizInterface
