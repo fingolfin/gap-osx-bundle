@@ -1,0 +1,9 @@
+#!/bin/sh
+
+dirtmp=$(cd "$(dirname "$0")"; pwd)
+dir=`echo $dirtmp | awk '{ print $1 }'`
+
+# TODO: allow user to choose iTerm2
+
+open -a Terminal $dir/gap.start
+exit 0

@@ -6,7 +6,7 @@
 
 .PHONY: all
 
-PREFIX ?= $(CURDIR)/../dst
+PREFIX ?= $(CURDIR)/../GAP.app/Contents/Resources
 SRCDIR ?= "$(CURDIR)/../src"
 BUILDDIR ?= "$(CURDIR)/../build"
 

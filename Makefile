@@ -2,8 +2,9 @@ INSTALL = /usr/bin/install
 INSTALL_PROGRAM = $(INSTALL)
 INSTALL_DATA = $(INSTALL) -m 644
 
+export BUNDLE=$(CURDIR)/GAP.app
+export PREFIX=$(BUNDLE)/Contents/Resources
 
-export PREFIX=$(PWD)/dst
 
 PACKAGES :=
 
@@ -11,17 +12,12 @@ include */pkg.mk
 
 .PHONY: $(PACKAGES)
 
-
-#
-# Generic code follows, no need to edit
-#
+all: $(PACKAGES)
 
 FETCHPACKAGES = $(PACKAGES:%=fetch-%)
 BUILDPACKAGES = $(PACKAGES:%=build-%)
 INSTALLPACKAGES = $(PACKAGES:%=install-%)
 CLEANPACKAGES = $(PACKAGES:%=clean-%)
-
-all: $(PACKAGES)
 
 $(PACKAGES):
 	$(MAKE) -C $@

@@ -1,0 +1,8 @@
+#!/bin/bash
+
+echo -ne "\033]0;gap\007"
+dir=$(cd "$(dirname "$0")"; pwd)
+ResourcesDir="$dir/../Resources/"
+
+# start GAP
+$ResourcesDir/bin/gap
