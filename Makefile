@@ -9,8 +9,22 @@ PACKAGES = \
 	autoconf \
 	automake \
 	libtool \
-	
+	gmp \
+	mpfr \
+	mpfi \
 
+
+cxsc:
+
+mpfr: gmp
+
+mpc: gmp mpfr
+
+mpfi: gmp mpfr
+
+gap: gmp readline
+
+flint: gmp mpfr
 
 # FIXME:
 # - must have installed autoconf before starting to build automake / libtool
