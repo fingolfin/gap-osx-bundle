@@ -1,4 +1,5 @@
 #!/bin/sh -ev
 
-./configure --prefix=$PREFIX
+./configure --prefix=$PREFIX \
+    --disable-static
 make
