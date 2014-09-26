@@ -6,22 +6,26 @@
 
 .PHONY: all
 
-PREFIX=$(PWD)/dst
-SRCDIR:="$(CURDIR)/../src"
-BUILDDIR:="$(CURDIR)/../build"
+PREFIX ?= $(CURDIR)/../dst
+SRCDIR ?= "$(CURDIR)/../src"
+BUILDDIR ?= "$(CURDIR)/../build"
+
+export PREFIX
 
 RUN:="$(CURDIR)/../run-script.sh"
 FETCH:="$(CURDIR)/../download"
 
 all: INSTALLED
 
-INSTALLED:
-	$(MAKE) fetch build install
-	touch $@
+BUILT:
+	$(MAKE) fetch build
+
+INSTALLED: BUILT
+	$(MAKE) install
 
 clean:
 	rm -rf $(BUILDDIR)/$(DIRNAME)
-	rm -f INSTALLED
+	rm -f BUILT INSTALLED
 
 clean-extra:
 
@@ -59,6 +63,7 @@ build-default: extract
 build-extra:
 
 build: build-default build-extra
+	touch BUILT
 
 install-default:
 	@echo "================================================="
@@ -69,3 +74,4 @@ install-default:
 install-extra:
 
 install: install-default install-extra
+	touch INSTALLED
