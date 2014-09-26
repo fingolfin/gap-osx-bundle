@@ -25,7 +25,7 @@ fetch-default:
 	@echo "================================================="
 	@echo "Fetching $(PACKAGE)-$(VERSION)"
 	@echo "================================================="
-	@../download $(URL) $(ARCHIVE) $(MD5)
+	@../download $(URL) $(MD5) $(ARCHIVE)
 
 fetch-extra:
 
@@ -37,7 +37,7 @@ extract-default: fetch
 	@echo "================================================="
 	@mkdir -p $(PREFIX)
 	@rm -rf $(DIRNAME)
-	@tar xvfz $(ARCHIVE)		# -C $(TMP)
+	@tar xvf $(ARCHIVE)		# -C $(TMP)
 
 extract-extra:
 
