@@ -38,7 +38,6 @@ FETCHPACKAGES = $(PACKAGES:%=fetch-%)
 BUILDPACKAGES = $(PACKAGES:%=build-%)
 INSTALLPACKAGES = $(PACKAGES:%=install-%)
 CLEANPACKAGES = $(PACKAGES:%=clean-%)
-DISTCLEANPACKAGES = $(PACKAGES:%=distclean-%)
 
 all: $(PACKAGES)
 
@@ -61,9 +60,9 @@ clean: $(CLEANPACKAGES)
 $(CLEANPACKAGES): 
 	$(MAKE) -C $(@:clean-%=%) clean
 
-distclean: $(DISTCLEANPACKAGES)
-$(DISTCLEANPACKAGES): 
-	$(MAKE) -C $(@:distclean-%=%) distclean
+distclean:
+	echo TODO
+	echo rm -rf src build dst
 
 
 .PHONY: subdirs $(PACKAGES)

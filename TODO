@@ -1,7 +1,3 @@
-* Download source files to central dir "src", for easier cleanup
-
-* extra sources to central dir "build", for easier cleanup
-
 * make sure to disable CPU specific optimization, e.g. in GMP
 
 * GAP: after running its outer (and inner?) configure script,

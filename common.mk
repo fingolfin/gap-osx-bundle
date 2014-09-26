@@ -4,28 +4,28 @@
 .PHONY: install install-default install-extra
 .PHONY: clean clean-default clean-extra
 
-.PHONY: all distclean
+.PHONY: all
 
+SRCDIR:="$(CURDIR)/../src"
+BUILDDIR:="$(CURDIR)/../build"
 
 RUN:="$(CURDIR)/../run-script.sh"
+FETCH:="$(CURDIR)/../download"
 
 all: fetch build install
 
 clean:
-	rm -rf $(DIRNAME)
+	rm -rf $(BUILDDIR)/$(DIRNAME)
 
 clean-extra:
 
 clean: clean-default clean-extra
 
-distclean: clean
-	rm -f $(ARCHIVE)
-
 fetch-default:
 	@echo "================================================="
 	@echo "Fetching $(PACKAGE)-$(VERSION)"
 	@echo "================================================="
-	@../download $(URL) $(MD5) $(ARCHIVE)
+	@( mkdir -p $(SRCDIR) && cd $(SRCDIR) && $(FETCH) $(URL) $(MD5) $(ARCHIVE) )
 
 fetch-extra:
 
@@ -36,8 +36,9 @@ extract-default: fetch
 	@echo "Extracting $(PACKAGE)-$(VERSION)"
 	@echo "================================================="
 	@mkdir -p $(PREFIX)
-	@rm -rf $(DIRNAME)
-	@tar xvf $(ARCHIVE)		# -C $(TMP)
+	@mkdir -p $(BUILDDIR)
+	@rm -rf $(BUILDDIR)/$(DIRNAME)
+	@tar xvf $(SRCDIR)/$(ARCHIVE) -C $(BUILDDIR)
 
 extract-extra:
 
@@ -47,7 +48,7 @@ build-default: extract
 	@echo "================================================="
 	@echo "Building $(PACKAGE)-$(VERSION)"
 	@echo "================================================="
-	@cd $(DIRNAME) && $(RUN) $(CURDIR)/compile.sh
+	@cd $(BUILDDIR)/$(DIRNAME) && $(RUN) $(CURDIR)/compile.sh
 
 build-extra:
 
@@ -57,7 +58,7 @@ install-default:
 	@echo "================================================="
 	@echo "Installing $(PACKAGE)-$(VERSION)"
 	@echo "================================================="
-	@cd $(DIRNAME) && $(RUN) $(CURDIR)/install.sh
+	@cd $(BUILDDIR)/$(DIRNAME) && $(RUN) $(CURDIR)/install.sh
 
 install-extra:
 
