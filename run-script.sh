@@ -10,6 +10,6 @@ fi
 env -i \
     PREFIX=$PREFIX \
     PATH="$PREFIX/bin:/usr/bin:/bin:/usr/sbin:/sbin" \
-    LDFLAGS="-L$PREFIX/lib" \
+    LDFLAGS="-L$PREFIX/lib -Wl,-rpath,$PREFIX/lib" \
     CPPFLAGS="-isystem $PREFIX/include" \
     $*

@@ -4,6 +4,6 @@
   --with-readline=$PREFIX \
   --with-gmp=$PREFIX \
   --graphic=none
-make gp
+make gp -j8
 #make doc
 make dobench
