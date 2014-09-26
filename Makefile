@@ -5,30 +5,12 @@ INSTALL_DATA = $(INSTALL) -m 644
 
 export PREFIX=$(PWD)/dst
 
-PACKAGES = \
-	autoconf \
-	automake \
-	libtool \
-	gmp \
-	mpfr \
-	mpfi \
+PACKAGES :=
 
+include */pkg.mk
 
-cxsc:
+.PHONY: $(PACKAGES)
 
-mpfr: gmp
-
-mpc: gmp mpfr
-
-mpfi: gmp mpfr
-
-gap: gmp readline
-
-flint: gmp mpfr
-
-# FIXME:
-# - must have installed autoconf before starting to build automake / libtool
-# - so, provide a way to specify those dependencies
 
 #
 # Generic code follows, no need to edit

@@ -1,0 +1,5 @@
+PACKAGES += automake
+
+automake: autoconf
+
+

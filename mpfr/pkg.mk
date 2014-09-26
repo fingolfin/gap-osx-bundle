@@ -1,0 +1,3 @@
+PACKAGES += mpfr
+
+mpfr: gmp

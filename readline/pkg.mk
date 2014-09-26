@@ -1,0 +1,3 @@
+PACKAGES += readline
+
+readline:
