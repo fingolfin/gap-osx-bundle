@@ -17,10 +17,10 @@ FETCH:="$(CURDIR)/../download"
 
 all: INSTALLED
 
-BUILT:
+BUILT: compile.sh Makefile
 	$(MAKE) fetch build
 
-INSTALLED: BUILT
+INSTALLED: BUILT install.sh Makefile
 	$(MAKE) install
 
 clean:
