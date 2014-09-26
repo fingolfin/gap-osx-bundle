@@ -6,6 +6,7 @@
 
 .PHONY: all
 
+PREFIX=$(PWD)/dst
 SRCDIR:="$(CURDIR)/../src"
 BUILDDIR:="$(CURDIR)/../build"
 
