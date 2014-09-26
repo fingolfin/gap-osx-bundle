@@ -12,10 +12,15 @@ BUILDDIR:="$(CURDIR)/../build"
 RUN:="$(CURDIR)/../run-script.sh"
 FETCH:="$(CURDIR)/../download"
 
-all: fetch build install
+all: INSTALLED
+
+INSTALLED:
+	$(MAKE) fetch build install
+	touch $@
 
 clean:
 	rm -rf $(BUILDDIR)/$(DIRNAME)
+	rm -f INSTALLED
 
 clean-extra:
 
