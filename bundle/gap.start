@@ -6,3 +6,7 @@ ResourcesDir="$dir/../Resources/"
 
 # start GAP
 $ResourcesDir/bin/gap
+
+# TODO: perhaps just start a shell, with PATH adjusted,
+# and print a helpful message to the user indicating that
+# they can use "gap", "Singular", "gp" (for Pari), ...
