@@ -1,4 +1,5 @@
 #!/bin/sh -ev
 
-./configure --prefix=$PREFIX
-make
+./configure --prefix=$PREFIX \
+    --disable-static
+make -j8
