@@ -5,14 +5,15 @@ INSTALL_DATA = $(INSTALL) -m 644
 export BUNDLE=$(CURDIR)/GAP.app
 export PREFIX=$(BUNDLE)/Contents/Resources
 
+all:
+	@echo Use 'make pkg', where pkg is one of
+	@for pkg in $(PACKAGES) ; do echo "  $$pkg" ; done
 
 PACKAGES :=
 
 include */pkg.mk
 
 .PHONY: $(PACKAGES)
-
-all: $(PACKAGES)
 
 FETCHPACKAGES = $(PACKAGES:%=fetch-%)
 BUILDPACKAGES = $(PACKAGES:%=build-%)
