@@ -3,4 +3,6 @@
 cd source
 
 make install
-echo "TODO: fix install_name"
+
+install_name_tool -rpath $PREFIX/lib "../Resources/lib" $PREFIX/lib/libnormaliz.dylib
+install_name_tool -rpath $PREFIX/lib "../Resources/lib" $PREFIX/bin/normaliz
