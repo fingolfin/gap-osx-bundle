@@ -35,3 +35,6 @@
 * add SingularInterface
 
 * add NormalizInterface
+
+* bug in GAP: if HOME or PATH env vars are not setup, GAP crashes
+  during startup with strange errors. THere should be a proper error check
