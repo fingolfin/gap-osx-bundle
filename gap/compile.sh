@@ -23,7 +23,7 @@ for pkg in ace Browse edim example Gauss grape guava*; do
     echo "==== Building $pkg"
     echo "================================================="
     cd $GAPROOT/pkg/$pkg
-    ./configure $GAPROOT
+    ./configure #$GAPROOT
     make
 done
 
@@ -36,26 +36,26 @@ for pkg in anupq* cvec* io* orb* float* nq*; do
     echo "==== Building $pkg"
     echo "================================================="
     cd $GAPROOT/pkg/$pkg
-    ./configure --with-gaproot=$GAPROOT
+    ./configure #--with-gaproot=$GAPROOT
     make
 done
 
 chmod 1777 $GAPROOT/pkg/atlasrep/datagens $GAPROOT/pkg/atlasrep/dataword
 
 cd $GAPROOT/pkg/cohomolo
-./configure $GAPROOT
+./configure #$GAPROOT
 make CC="gcc -fno-builtin "
 cd ..
 
 cd $GAPROOT/pkg/fplsa
 sed -i '' 's/malloc.h/string.h/' src/fplsa4.c
-./configure $GAPROOT
+./configure #$GAPROOT
 make CC="gcc -O2 "
 cd ..
 
 cd $GAPROOT/pkg/kbmag
 make clean
-./configure $GAPROOT
+./configure #$GAPROOT
 make COPTS="-O2 -g"
 cd ..
 
