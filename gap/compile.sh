@@ -11,6 +11,9 @@ cd $GAPROOT
 ./configure --target=x86_64-apple-darwin10.0.0 --with-gmp=system
 make -j8
 
+# build documentation
+make manuals
+
 # setup bin symlink
 (cd $GAPROOT/bin && ln -s ../lib/gap/bin/gap.sh)
 
