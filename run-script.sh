@@ -7,8 +7,16 @@ if [ x$PREFIX = x ] ; then
     exit 1
 fi
 
+if [ x$BASEDIR = x ] ; then
+    echo "ERROR: BASEDIR not set"
+    exit 1
+fi
+
 env -i \
+    BASEDIR=$BASEDIR \
     PREFIX=$PREFIX \
+    SRCDIR=$SRCDIR \
+    BUILDDIR=$BUILDDIR \
     PATH="$PREFIX/bin:/usr/bin:/bin:/usr/sbin:/sbin" \
     LDFLAGS="-L$PREFIX/lib -Wl,-rpath,$PREFIX/lib" \
     CPPFLAGS="-isystem $PREFIX/include" \

@@ -6,14 +6,13 @@
 
 .PHONY: all
 
-PREFIX ?= $(CURDIR)/../GAP.app/Contents/Resources
-SRCDIR ?= "$(CURDIR)/../src"
-BUILDDIR ?= "$(CURDIR)/../build"
+export BASEDIR  := $(abspath $(CURDIR)/..)
+export PREFIX   := $(BASEDIR)/GAP.app/Contents/Resources
+export SRCDIR   := "$(BASEDIR)/src"
+export BUILDDIR := "$(BASEDIR)/build"
 
-export PREFIX
-
-RUN:="$(CURDIR)/../run-script.sh"
-FETCH:="$(CURDIR)/../download"
+RUN:="$(BASEDIR)/run-script.sh"
+FETCH:="$(BASEDIR)/download"
 
 all: INSTALLED
 
