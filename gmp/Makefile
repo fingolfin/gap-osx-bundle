@@ -7,6 +7,3 @@ URL     := "http://ftp.gnu.org/gnu/$(PACKAGE)/$(ARCHIVE)"
 MD5     := "b7ff2d88cae7f8085bd5006096eed470"
 
 include ../common.mk
-
-extract-extra:
-	cd $(BUILDDIR)/$(DIRNAME) && patch -p1 < $(CURDIR)/patch

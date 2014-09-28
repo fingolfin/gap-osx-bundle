@@ -11,6 +11,3 @@ include ../common.mk
 
 HACK:
 	@cd $(BUILDDIR)/$(DIRNAME) && $(RUN) $(CURDIR)/compile.sh
-
-extract-extra:
-	cd $(BUILDDIR)/$(DIRNAME) && patch -p1 < $(CURDIR)/patch

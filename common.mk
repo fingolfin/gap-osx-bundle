@@ -49,10 +49,13 @@ extract-default: fetch
 	@mkdir -p $(BUILDDIR)
 	@rm -rf $(BUILDDIR)/$(DIRNAME)
 	@if [[ $(ARCHIVE) =~ \.zip$$ ]] ; then \
-			unzip $(SRCDIR)/$(ARCHIVE) -d $(BUILDDIR) ; \
-		else \
-			tar xvf $(SRCDIR)/$(ARCHIVE) -C $(BUILDDIR) ; \
-		fi
+	     unzip $(SRCDIR)/$(ARCHIVE) -d $(BUILDDIR) ; \
+	 else \
+	     tar xvf $(SRCDIR)/$(ARCHIVE) -C $(BUILDDIR) ; \
+	 fi
+	@if [ -f $(CURDIR)/patch ] ; then \
+		 cd $(BUILDDIR)/$(DIRNAME) && patch -p1 < $(CURDIR)/patch ; \
+	 fi
 
 extract-extra:
 

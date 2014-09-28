@@ -6,6 +6,3 @@ URL     := "http://www.flintlib.org/$(ARCHIVE)"
 MD5     := "b527fe3a49fd02a0367227fe8ec9cbe4"
 
 include ../common.mk
-
-extract-extra:
-	cd $(BUILDDIR)/$(DIRNAME) && patch -p1 < $(CURDIR)/patch
