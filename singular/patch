@@ -595,7 +595,7 @@ index 74de8b7..fb34df2 100644
  # AC_DEFINE_UNQUOTED([FLINT_LIBS],"$FLINT_LIBS",[FLINT_LIBS])
  
 diff --git a/libpolys/libpolys-config.in b/libpolys/libpolys-config.in
-index aeebd4d..85797d0 100755
+index aeebd4d..00c08ea 100755
 --- a/libpolys/libpolys-config.in
 +++ b/libpolys/libpolys-config.in
 @@ -24,16 +24,10 @@
@@ -619,8 +619,18 @@ index aeebd4d..85797d0 100755
  
  ECHO="echo"
  ECHOn="printf"
+@@ -88,8 +82,7 @@ while test $# -gt 0; do
+ 	;;
+ 
+     --cflags)
+-    #### @FACTORY_INCLUDES@ 
+-	${ECHOn} " -I${includedir} -I${includedir}/singular @SINGULAR_CFLAGS@ @NTL_CFLAGS@ @GMP_CFLAGS@ "
++	${ECHOn} " -I${includedir} -I${includedir}/singular "
+ 	;;
+ 
+     --libs)
 diff --git a/libsingular-config.in b/libsingular-config.in
-index 67f602d..ba6f81e 100755
+index 67f602d..4125407 100755
 --- a/libsingular-config.in
 +++ b/libsingular-config.in
 @@ -24,16 +24,10 @@
@@ -644,6 +654,16 @@ index 67f602d..ba6f81e 100755
  
  ECHO="echo"
  ECHOn="printf"
+@@ -88,8 +82,7 @@ while test $# -gt 0; do
+ 	;;
+ 
+     --cflags)
+-    #### @FACTORY_INCLUDES@ 
+-	${ECHOn} " -I${includedir} -I${includedir}/singular @SINGULAR_CFLAGS@ @FLINT_CFLAGS@ @NTL_CFLAGS@ @GMP_CFLAGS@ "
++	${ECHOn} " -I${includedir} -I${includedir}/singular "
+ 	;;
+ 
+     --libs)
 diff --git a/resources/_config.h.in b/resources/_config.h.in
 index 27c0db0..78c870b 100644
 --- a/resources/_config.h.in
