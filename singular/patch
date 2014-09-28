@@ -1,0 +1,943 @@
+diff --git a/Singular/misc_ip.cc b/Singular/misc_ip.cc
+index d86faac..9f14d60 100644
+--- a/Singular/misc_ip.cc
++++ b/Singular/misc_ip.cc
+@@ -894,6 +894,7 @@ char * versionString(/*const bool bShowDetails = false*/ )
+               StringAppendS("}\n");
+ #undef SI_SHOW_BUILTIN_MODULE
+ 
++#if 0
+               StringAppend("AC_CONFIGURE_ARGS = %s,\n"
+                            "CC = %s,FLAGS : %s,\n"
+                            "CXX = %s,FLAGS : %s,\n"
+@@ -903,6 +904,7 @@ char * versionString(/*const bool bShowDetails = false*/ )
+               "(ver: " __VERSION__ ")"
+ #endif
+               "\n",AC_CONFIGURE_ARGS, CC,CFLAGS, CXX,CXXFLAGS,  DEFS,CPPFLAGS,  LDFLAGS,LIBS);
++#endif
+               feStringAppendResources(0);
+               feStringAppendBrowsers(0);
+               StringAppendS("\n");
+diff --git a/_config.h.in b/_config.h.in
+index d0cafc2..eed6b4a 100644
+--- a/_config.h.in
++++ b/_config.h.in
+@@ -1,53 +1,8 @@
+ /* _config.h.in.  Generated from configure.ac by autoheader.  */
+ 
+-/* ac_configure_args */
+-#undef AC_CONFIGURE_ARGS
+-
+-/* bindir */
+-#undef BIN_DIR
+-
+-/* CC */
+-#undef CC
+-
+-/* CFLAGS */
+-#undef CFLAGS
+-
+-/* CPPFLAGS */
+-#undef CPPFLAGS
+-
+-/* CXX */
+-#undef CXX
+-
+-/* CXXFLAGS */
+-#undef CXXFLAGS
+-
+-/* datadir */
+-#undef DATA_DIR
+-
+-/* DEFS */
+-#undef DEFS
+-
+-/* docdir */
+-#undef DOC_DIR
+-
+ /* integrate python */
+ #undef EMBED_PYTHON
+ 
+-/* exec_prefix */
+-#undef EXEC_PREFIX
+-
+-/* FLINT_CFLAGS */
+-#undef FLINT_CFLAGS
+-
+-/* FLINT_LIBS */
+-#undef FLINT_LIBS
+-
+-/* GMP_CFLAGS */
+-#undef GMP_CFLAGS
+-
+-/* GMP_LIBS */
+-#undef GMP_LIBS
+-
+ /* Define if GMP is version 3.xxx */
+ #undef GMP_VERSION_3
+ 
+@@ -249,18 +204,6 @@
+ /* Define to 1 if you have the <unistd.h> header file. */
+ #undef HAVE_UNISTD_H
+ 
+-/* LDFLAGS */
+-#undef LDFLAGS
+-
+-/* libexecdir */
+-#undef LIBEXEC_DIR
+-
+-/* LIBS */
+-#undef LIBS
+-
+-/* libdir */
+-#undef LIB_DIR
+-
+ /* Define to the sub-directory in which libtool stores uninstalled libraries.
+    */
+ #undef LT_OBJDIR
+@@ -268,12 +211,6 @@
+ /* Define to 1 if your C compiler doesn't accept -c and -o together. */
+ #undef NO_MINUS_C_MINUS_O
+ 
+-/* NTL_CFLAGS */
+-#undef NTL_CFLAGS
+-
+-/* NTL_LIBS */
+-#undef NTL_LIBS
+-
+ /* "Disable OM Debug" */
+ #undef OM_NDEBUG
+ 
+@@ -298,9 +235,6 @@
+ /* Define to the version of this package. */
+ #undef PACKAGE_VERSION
+ 
+-/* prefix */
+-#undef PREFIX
+-
+ /* Define to necessary symbol if this constant uses a non-standard name on
+    your system. */
+ #undef PTHREAD_CREATE_JOINABLE
+diff --git a/configure b/configure
+index 91fbd5a..640c98d 100755
+--- a/configure
++++ b/configure
+@@ -637,8 +637,6 @@ ac_subst_vars='am__EXEEXT_FALSE
+ am__EXEEXT_TRUE
+ LTLIBOBJS
+ subdirs
+-DOC_DIR
+-DATA_DIR
+ SI_COUNTEDREF_AUTOLOAD
+ SI_BUILTIN_ORDER_FALSE
+ SI_BUILTIN_ORDER_TRUE
+@@ -22234,293 +22232,6 @@ fi
+ 
+ 
+ 
+-cat >>confdefs.h <<_ACEOF
+-#define CC "$CC"
+-_ACEOF
+-
+-
+-cat >>confdefs.h <<_ACEOF
+-#define CXX "$CXX"
+-_ACEOF
+-
+-
+-cat >>confdefs.h <<_ACEOF
+-#define CFLAGS "$CFLAGS"
+-_ACEOF
+-
+-
+-cat >>confdefs.h <<_ACEOF
+-#define CXXFLAGS "$CXXFLAGS"
+-_ACEOF
+-
+-
+-cat >>confdefs.h <<_ACEOF
+-#define DEFS "$DEFS"
+-_ACEOF
+-
+-
+-cat >>confdefs.h <<_ACEOF
+-#define CPPFLAGS "$CPPFLAGS"
+-_ACEOF
+-
+-
+-cat >>confdefs.h <<_ACEOF
+-#define LDFLAGS "$LDFLAGS"
+-_ACEOF
+-
+-
+-cat >>confdefs.h <<_ACEOF
+-#define LIBS "$LIBS"
+-_ACEOF
+-
+-
+-cat >>confdefs.h <<_ACEOF
+-#define AC_CONFIGURE_ARGS "$ac_configure_args"
+-_ACEOF
+-
+-# AC_DEFINE_UNQUOTED([AC_CT_CC], "$ac_ct_CC",[ac_ct_CC])
+-
+-
+-cat >>confdefs.h <<_ACEOF
+-#define NTL_CFLAGS "$NTL_CFLAGS"
+-_ACEOF
+-
+-
+-cat >>confdefs.h <<_ACEOF
+-#define NTL_LIBS "$NTL_LIBS"
+-_ACEOF
+-
+-
+-
+-cat >>confdefs.h <<_ACEOF
+-#define GMP_CFLAGS "$GMP_CFLAGS"
+-_ACEOF
+-
+-
+-cat >>confdefs.h <<_ACEOF
+-#define GMP_LIBS "$GMP_LIBS"
+-_ACEOF
+-
+-
+-
+-cat >>confdefs.h <<_ACEOF
+-#define FLINT_CFLAGS "$FLINT_CFLAGS"
+-_ACEOF
+-
+-
+-cat >>confdefs.h <<_ACEOF
+-#define FLINT_LIBS "$FLINT_LIBS"
+-_ACEOF
+-
+-
+-##### SEE http://www.gnu.org/prep/standards/html_node/Directory-Variables.html
+-
+-_lcl_receval="$prefix"
+-config_prefix=`(test "x$prefix" = xNONE && prefix="$ac_default_prefix"
+-     test "x$exec_prefix" = xNONE && exec_prefix="${prefix}"
+-     _lcl_receval_old=''
+-     while test "$_lcl_receval_old" != "$_lcl_receval"; do
+-       _lcl_receval_old="$_lcl_receval"
+-       eval _lcl_receval="\"$_lcl_receval\""
+-     done
+-     echo "$_lcl_receval")`
+-case ":$config_prefix:" in
+-# change empty paths to '.'
+-  ::) config_prefix='.' ;;
+-# strip trailing slashes
+-  :*[\\/]:) config_prefix=`echo "$config_prefix" | sed 's,[\\/]*$,,'` ;;
+-  :*:) ;;
+-esac
+-# squeze repeated slashes
+-case '/' in
+-# if the path contains any backslashes, turn slashes into backslashes
+- *\\*) config_prefix=`echo "$config_prefix" | sed 's,\(.\)[\\/][\\/]*,\1\\\\,g'` ;;
+-# if the path contains slashes, also turn backslashes into slashes
+- *) config_prefix=`echo "$config_prefix" | sed 's,\(.\)[\\/][\\/]*,\1/,g'` ;;
+-esac
+-
+-cat >>confdefs.h <<_ACEOF
+-#define PREFIX "$config_prefix"
+-_ACEOF
+-
+-
+-_lcl_receval="$exec_prefix"
+-config_exec_prefix=`(test "x$prefix" = xNONE && prefix="$ac_default_prefix"
+-     test "x$exec_prefix" = xNONE && exec_prefix="${prefix}"
+-     _lcl_receval_old=''
+-     while test "$_lcl_receval_old" != "$_lcl_receval"; do
+-       _lcl_receval_old="$_lcl_receval"
+-       eval _lcl_receval="\"$_lcl_receval\""
+-     done
+-     echo "$_lcl_receval")`
+-case ":$config_exec_prefix:" in
+-# change empty paths to '.'
+-  ::) config_exec_prefix='.' ;;
+-# strip trailing slashes
+-  :*[\\/]:) config_exec_prefix=`echo "$config_exec_prefix" | sed 's,[\\/]*$,,'` ;;
+-  :*:) ;;
+-esac
+-# squeze repeated slashes
+-case '/' in
+-# if the path contains any backslashes, turn slashes into backslashes
+- *\\*) config_exec_prefix=`echo "$config_exec_prefix" | sed 's,\(.\)[\\/][\\/]*,\1\\\\,g'` ;;
+-# if the path contains slashes, also turn backslashes into slashes
+- *) config_exec_prefix=`echo "$config_exec_prefix" | sed 's,\(.\)[\\/][\\/]*,\1/,g'` ;;
+-esac
+-
+-cat >>confdefs.h <<_ACEOF
+-#define EXEC_PREFIX "$config_exec_prefix"
+-_ACEOF
+-
+-
+-_lcl_receval="$libexecdir"
+-config_libexecdir=`(test "x$prefix" = xNONE && prefix="$ac_default_prefix"
+-     test "x$exec_prefix" = xNONE && exec_prefix="${prefix}"
+-     _lcl_receval_old=''
+-     while test "$_lcl_receval_old" != "$_lcl_receval"; do
+-       _lcl_receval_old="$_lcl_receval"
+-       eval _lcl_receval="\"$_lcl_receval\""
+-     done
+-     echo "$_lcl_receval")`
+-case ":$config_libexecdir:" in
+-# change empty paths to '.'
+-  ::) config_libexecdir='.' ;;
+-# strip trailing slashes
+-  :*[\\/]:) config_libexecdir=`echo "$config_libexecdir" | sed 's,[\\/]*$,,'` ;;
+-  :*:) ;;
+-esac
+-# squeze repeated slashes
+-case '/' in
+-# if the path contains any backslashes, turn slashes into backslashes
+- *\\*) config_libexecdir=`echo "$config_libexecdir" | sed 's,\(.\)[\\/][\\/]*,\1\\\\,g'` ;;
+-# if the path contains slashes, also turn backslashes into slashes
+- *) config_libexecdir=`echo "$config_libexecdir" | sed 's,\(.\)[\\/][\\/]*,\1/,g'` ;;
+-esac
+-
+-cat >>confdefs.h <<_ACEOF
+-#define LIBEXEC_DIR "$config_libexecdir"
+-_ACEOF
+-
+-
+-_lcl_receval="$libdir"
+-config_libdir=`(test "x$prefix" = xNONE && prefix="$ac_default_prefix"
+-     test "x$exec_prefix" = xNONE && exec_prefix="${prefix}"
+-     _lcl_receval_old=''
+-     while test "$_lcl_receval_old" != "$_lcl_receval"; do
+-       _lcl_receval_old="$_lcl_receval"
+-       eval _lcl_receval="\"$_lcl_receval\""
+-     done
+-     echo "$_lcl_receval")`
+-case ":$config_libdir:" in
+-# change empty paths to '.'
+-  ::) config_libdir='.' ;;
+-# strip trailing slashes
+-  :*[\\/]:) config_libdir=`echo "$config_libdir" | sed 's,[\\/]*$,,'` ;;
+-  :*:) ;;
+-esac
+-# squeze repeated slashes
+-case '/' in
+-# if the path contains any backslashes, turn slashes into backslashes
+- *\\*) config_libdir=`echo "$config_libdir" | sed 's,\(.\)[\\/][\\/]*,\1\\\\,g'` ;;
+-# if the path contains slashes, also turn backslashes into slashes
+- *) config_libdir=`echo "$config_libdir" | sed 's,\(.\)[\\/][\\/]*,\1/,g'` ;;
+-esac
+-
+-cat >>confdefs.h <<_ACEOF
+-#define LIB_DIR "$config_libdir"
+-_ACEOF
+-
+-
+-_lcl_receval="$bindir"
+-config_bindir=`(test "x$prefix" = xNONE && prefix="$ac_default_prefix"
+-     test "x$exec_prefix" = xNONE && exec_prefix="${prefix}"
+-     _lcl_receval_old=''
+-     while test "$_lcl_receval_old" != "$_lcl_receval"; do
+-       _lcl_receval_old="$_lcl_receval"
+-       eval _lcl_receval="\"$_lcl_receval\""
+-     done
+-     echo "$_lcl_receval")`
+-case ":$config_bindir:" in
+-# change empty paths to '.'
+-  ::) config_bindir='.' ;;
+-# strip trailing slashes
+-  :*[\\/]:) config_bindir=`echo "$config_bindir" | sed 's,[\\/]*$,,'` ;;
+-  :*:) ;;
+-esac
+-# squeze repeated slashes
+-case '/' in
+-# if the path contains any backslashes, turn slashes into backslashes
+- *\\*) config_bindir=`echo "$config_bindir" | sed 's,\(.\)[\\/][\\/]*,\1\\\\,g'` ;;
+-# if the path contains slashes, also turn backslashes into slashes
+- *) config_bindir=`echo "$config_bindir" | sed 's,\(.\)[\\/][\\/]*,\1/,g'` ;;
+-esac
+-
+-cat >>confdefs.h <<_ACEOF
+-#define BIN_DIR "$config_bindir"
+-_ACEOF
+-
+-
+-_lcl_receval="$datadir"
+-config_datadir=`(test "x$prefix" = xNONE && prefix="$ac_default_prefix"
+-     test "x$exec_prefix" = xNONE && exec_prefix="${prefix}"
+-     _lcl_receval_old=''
+-     while test "$_lcl_receval_old" != "$_lcl_receval"; do
+-       _lcl_receval_old="$_lcl_receval"
+-       eval _lcl_receval="\"$_lcl_receval\""
+-     done
+-     echo "$_lcl_receval")`
+-case ":$config_datadir:" in
+-# change empty paths to '.'
+-  ::) config_datadir='.' ;;
+-# strip trailing slashes
+-  :*[\\/]:) config_datadir=`echo "$config_datadir" | sed 's,[\\/]*$,,'` ;;
+-  :*:) ;;
+-esac
+-# squeze repeated slashes
+-case '/' in
+-# if the path contains any backslashes, turn slashes into backslashes
+- *\\*) config_datadir=`echo "$config_datadir" | sed 's,\(.\)[\\/][\\/]*,\1\\\\,g'` ;;
+-# if the path contains slashes, also turn backslashes into slashes
+- *) config_datadir=`echo "$config_datadir" | sed 's,\(.\)[\\/][\\/]*,\1/,g'` ;;
+-esac
+-
+-cat >>confdefs.h <<_ACEOF
+-#define DATA_DIR "$config_datadir"
+-_ACEOF
+-
+-
+-
+-_lcl_receval="$docdir"
+-config_docdir=`(test "x$prefix" = xNONE && prefix="$ac_default_prefix"
+-     test "x$exec_prefix" = xNONE && exec_prefix="${prefix}"
+-     _lcl_receval_old=''
+-     while test "$_lcl_receval_old" != "$_lcl_receval"; do
+-       _lcl_receval_old="$_lcl_receval"
+-       eval _lcl_receval="\"$_lcl_receval\""
+-     done
+-     echo "$_lcl_receval")`
+-case ":$config_docdir:" in
+-# change empty paths to '.'
+-  ::) config_docdir='.' ;;
+-# strip trailing slashes
+-  :*[\\/]:) config_docdir=`echo "$config_docdir" | sed 's,[\\/]*$,,'` ;;
+-  :*:) ;;
+-esac
+-# squeze repeated slashes
+-case '/' in
+-# if the path contains any backslashes, turn slashes into backslashes
+- *\\*) config_docdir=`echo "$config_docdir" | sed 's,\(.\)[\\/][\\/]*,\1\\\\,g'` ;;
+-# if the path contains slashes, also turn backslashes into slashes
+- *) config_docdir=`echo "$config_docdir" | sed 's,\(.\)[\\/][\\/]*,\1/,g'` ;;
+-esac
+-
+-cat >>confdefs.h <<_ACEOF
+-#define DOC_DIR "$config_docdir"
+-_ACEOF
+-
+-
+-
+-
+ 
+ echo "/* --------------- Compiler/linker flags:  --------------- */";
+ 
+diff --git a/configure.ac b/configure.ac
+index b5064fd..66097f0 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -161,58 +161,6 @@ fi[]dnl
+ ])])
+ 
+ 
+-AC_DEFINE_UNQUOTED([CC],"$CC",[CC])
+-AC_DEFINE_UNQUOTED([CXX],"$CXX",[CXX])
+-AC_DEFINE_UNQUOTED([CFLAGS],"$CFLAGS",[CFLAGS])
+-AC_DEFINE_UNQUOTED([CXXFLAGS],"$CXXFLAGS",[CXXFLAGS])
+-AC_DEFINE_UNQUOTED([DEFS],"$DEFS",[DEFS])
+-AC_DEFINE_UNQUOTED([CPPFLAGS],"$CPPFLAGS",[CPPFLAGS])
+-AC_DEFINE_UNQUOTED([LDFLAGS],"$LDFLAGS",[LDFLAGS])
+-AC_DEFINE_UNQUOTED([LIBS],"$LIBS",[LIBS])
+-AC_DEFINE_UNQUOTED([AC_CONFIGURE_ARGS],"$ac_configure_args",[ac_configure_args])
+-# AC_DEFINE_UNQUOTED([AC_CT_CC], "$ac_ct_CC",[ac_ct_CC])
+-
+-AC_DEFINE_UNQUOTED([NTL_CFLAGS],"$NTL_CFLAGS",[NTL_CFLAGS])
+-AC_DEFINE_UNQUOTED([NTL_LIBS],"$NTL_LIBS",[NTL_LIBS])
+-
+-AC_DEFINE_UNQUOTED([GMP_CFLAGS],"$GMP_CFLAGS",[GMP_CFLAGS])
+-AC_DEFINE_UNQUOTED([GMP_LIBS],"$GMP_LIBS",[GMP_LIBS])
+-
+-AC_DEFINE_UNQUOTED([FLINT_CFLAGS],"$FLINT_CFLAGS",[FLINT_CFLAGS])
+-AC_DEFINE_UNQUOTED([FLINT_LIBS],"$FLINT_LIBS",[FLINT_LIBS])
+-
+-##### SEE http://www.gnu.org/prep/standards/html_node/Directory-Variables.html
+-
+-AX_RECURSIVE_EVAL([[$]prefix], [config_prefix])
+-AX_NORMALIZE_PATH([config_prefix],['/'])
+-AC_DEFINE_UNQUOTED([PREFIX],"$config_prefix",[prefix])
+-
+-AX_RECURSIVE_EVAL([[$]exec_prefix], [config_exec_prefix])
+-AX_NORMALIZE_PATH([config_exec_prefix],['/'])
+-AC_DEFINE_UNQUOTED([EXEC_PREFIX],"$config_exec_prefix",[exec_prefix])
+-
+-AX_RECURSIVE_EVAL([[$]libexecdir], [config_libexecdir])
+-AX_NORMALIZE_PATH([config_libexecdir],['/'])
+-AC_DEFINE_UNQUOTED([LIBEXEC_DIR],"$config_libexecdir",[libexecdir])
+-
+-AX_RECURSIVE_EVAL([[$]libdir], [config_libdir])
+-AX_NORMALIZE_PATH([config_libdir],['/'])
+-AC_DEFINE_UNQUOTED([LIB_DIR],"$config_libdir",[libdir])
+-
+-AX_RECURSIVE_EVAL([[$]bindir], [config_bindir])
+-AX_NORMALIZE_PATH([config_bindir],['/'])
+-AC_DEFINE_UNQUOTED([BIN_DIR],"$config_bindir",[bindir])
+-
+-AX_RECURSIVE_EVAL([[$]datadir], [config_datadir])
+-AX_NORMALIZE_PATH([config_datadir],['/'])
+-AC_DEFINE_UNQUOTED([DATA_DIR],"$config_datadir",[datadir])
+-AC_SUBST(DATA_DIR)
+-
+-AX_RECURSIVE_EVAL([[$]docdir], [config_docdir])
+-AX_NORMALIZE_PATH([config_docdir],['/'])
+-AC_DEFINE_UNQUOTED([DOC_DIR],"$config_docdir",[docdir])
+-AC_SUBST(DOC_DIR)
+-
+ SING_SHOW_FLAGS([Compiler/linker flags: ])
+ 
+ 
+diff --git a/factory/configure b/factory/configure
+index 9260c90..a51c340 100755
+--- a/factory/configure
++++ b/factory/configure
+@@ -21525,7 +21525,7 @@ fi
+ #AC_SUBST(uninstalltargets)
+ 
+ factory_version="4.0.1"
+-factory_configuration="'$ac_configure_args' in `pwd`"
++factory_configuration=""
+ 
+ 
+ 
+diff --git a/factory/configure.ac b/factory/configure.ac
+index bb62b84..cbed6e1 100644
+--- a/factory/configure.ac
++++ b/factory/configure.ac
+@@ -384,7 +384,7 @@ AC_SUBST(MAKEHEADERFLAGS)
+ #AC_SUBST(uninstalltargets)
+ 
+ factory_version="4.0.1"
+-factory_configuration="'$ac_configure_args' in `pwd`"
++factory_configuration=""
+ AC_SUBST(factory_version)
+ 
+ AH_TEMPLATE([FACTORYVERSION], [factory version])
+diff --git a/libpolys/_config.h.in b/libpolys/_config.h.in
+index 2ce5362..e9b8c40 100644
+--- a/libpolys/_config.h.in
++++ b/libpolys/_config.h.in
+@@ -6,12 +6,6 @@
+ /* integrate python */
+ #undef EMBED_PYTHON
+ 
+-/* GMP_CFLAGS */
+-#undef GMP_CFLAGS
+-
+-/* GMP_LIBS */
+-#undef GMP_LIBS
+-
+ /* Define if GMP is version 3.xxx */
+ #undef GMP_VERSION_3
+ 
+@@ -163,12 +157,6 @@
+ /* Define to 1 if your C compiler doesn't accept -c and -o together. */
+ #undef NO_MINUS_C_MINUS_O
+ 
+-/* NTL_CFLAGS */
+-#undef NTL_CFLAGS
+-
+-/* NTL_LIBS */
+-#undef NTL_LIBS
+-
+ /* "Disable OM Debug" */
+ #undef OM_NDEBUG
+ 
+diff --git a/libpolys/configure b/libpolys/configure
+index 8ea20a7..60e9f79 100755
+--- a/libpolys/configure
++++ b/libpolys/configure
+@@ -21553,28 +21553,6 @@ fi
+ 
+ 
+ 
+-
+-cat >>confdefs.h <<_ACEOF
+-#define NTL_CFLAGS "$NTL_CFLAGS"
+-_ACEOF
+-
+-
+-cat >>confdefs.h <<_ACEOF
+-#define NTL_LIBS "$NTL_LIBS"
+-_ACEOF
+-
+-
+-
+-cat >>confdefs.h <<_ACEOF
+-#define GMP_CFLAGS "$GMP_CFLAGS"
+-_ACEOF
+-
+-
+-cat >>confdefs.h <<_ACEOF
+-#define GMP_LIBS "$GMP_LIBS"
+-_ACEOF
+-
+-
+ # AC_DEFINE_UNQUOTED([FLINT_CFLAGS],"$FLINT_CFLAGS",[FLINT_CFLAGS])
+ # AC_DEFINE_UNQUOTED([FLINT_LIBS],"$FLINT_LIBS",[FLINT_LIBS])
+ 
+diff --git a/libpolys/configure.ac b/libpolys/configure.ac
+index 74de8b7..fb34df2 100644
+--- a/libpolys/configure.ac
++++ b/libpolys/configure.ac
+@@ -129,12 +129,6 @@ AC_DEFINE([NOSTREAMIO],[1],[DISABLE_GMP_CPP])
+ AX_PYTHON_DEFAULT()
+ AX_PYTHON_WITH_VERSION([2.4])
+ 
+-AC_DEFINE_UNQUOTED([NTL_CFLAGS],"$NTL_CFLAGS",[NTL_CFLAGS])
+-AC_DEFINE_UNQUOTED([NTL_LIBS],"$NTL_LIBS",[NTL_LIBS])
+-
+-AC_DEFINE_UNQUOTED([GMP_CFLAGS],"$GMP_CFLAGS",[GMP_CFLAGS])
+-AC_DEFINE_UNQUOTED([GMP_LIBS],"$GMP_LIBS",[GMP_LIBS])
+-
+ # AC_DEFINE_UNQUOTED([FLINT_CFLAGS],"$FLINT_CFLAGS",[FLINT_CFLAGS])
+ # AC_DEFINE_UNQUOTED([FLINT_LIBS],"$FLINT_LIBS",[FLINT_LIBS])
+ 
+diff --git a/libpolys/libpolys-config.in b/libpolys/libpolys-config.in
+index aeebd4d..85797d0 100755
+--- a/libpolys/libpolys-config.in
++++ b/libpolys/libpolys-config.in
+@@ -24,16 +24,10 @@
+ 
+ # NOTE: if you moved this config please either use the above or
+ # make sure the following variables are up to date
+-#prefix="$C"
+-#exec_prefix=${prefix}
+-#includedir=${prefix}/include
+-#libdir=${exec_prefix}/lib
+-
+-prefix=@prefix@ 
+-exec_prefix=@exec_prefix@
+-
+-includedir=@includedir@
+-libdir=@libdir@
++prefix="$( cd "$( dirname "$( dirname "$0" )" )" && pwd )"
++exec_prefix=${prefix}
++includedir=${prefix}/include
++libdir=${exec_prefix}/lib
+ 
+ ECHO="echo"
+ ECHOn="printf"
+diff --git a/libsingular-config.in b/libsingular-config.in
+index 67f602d..ba6f81e 100755
+--- a/libsingular-config.in
++++ b/libsingular-config.in
+@@ -24,16 +24,10 @@
+ 
+ # NOTE: if you moved this config please either use the above or
+ # make sure the following variables are up to date
+-#prefix="$C"
+-#exec_prefix=${prefix}
+-#includedir=${prefix}/include
+-#libdir=${exec_prefix}/lib
+-
+-prefix=@prefix@ 
+-exec_prefix=@exec_prefix@
+-
+-includedir=@includedir@
+-libdir=@libdir@
++prefix="$( cd "$( dirname "$( dirname "$0" )" )" && pwd )"
++exec_prefix=${prefix}
++includedir=${prefix}/include
++libdir=${exec_prefix}/lib
+ 
+ ECHO="echo"
+ ECHOn="printf"
+diff --git a/resources/_config.h.in b/resources/_config.h.in
+index 27c0db0..78c870b 100644
+--- a/resources/_config.h.in
++++ b/resources/_config.h.in
+@@ -1,14 +1,5 @@
+ /* _config.h.in.  Generated from configure.ac by autoheader.  */
+ 
+-/* bindir */
+-#undef BIN_DIR
+-
+-/* datadir */
+-#undef DATA_DIR
+-
+-/* exec_prefix */
+-#undef EXEC_PREFIX
+-
+ /* Define to 1 if you have the <dlfcn.h> header file. */
+ #undef HAVE_DLFCN_H
+ 
+@@ -73,12 +64,6 @@
+ /* Define to 1 if the system has the type `_Bool'. */
+ #undef HAVE__BOOL
+ 
+-/* libexecdir */
+-#undef LIBEXEC_DIR
+-
+-/* libdir */
+-#undef LIB_DIR
+-
+ /* Define to the sub-directory in which libtool stores uninstalled libraries.
+    */
+ #undef LT_OBJDIR
+@@ -110,9 +95,6 @@
+ /* Define to the version of this package. */
+ #undef PACKAGE_VERSION
+ 
+-/* prefix */
+-#undef PREFIX
+-
+ /* SINGULAR_CFLAGS */
+ #undef SINGULAR_CFLAGS
+ 
+diff --git a/resources/configure b/resources/configure
+index 06a2392..8837ea0 100755
+--- a/resources/configure
++++ b/resources/configure
+@@ -18222,180 +18222,6 @@ ac_compiler_gnu=$ac_cv_c_compiler_gnu
+ 
+ ##### SEE http://www.gnu.org/prep/standards/html_node/Directory-Variables.html
+ 
+-_lcl_receval="$prefix"
+-config_prefix=`(test "x$prefix" = xNONE && prefix="$ac_default_prefix"
+-     test "x$exec_prefix" = xNONE && exec_prefix="${prefix}"
+-     _lcl_receval_old=''
+-     while test "$_lcl_receval_old" != "$_lcl_receval"; do
+-       _lcl_receval_old="$_lcl_receval"
+-       eval _lcl_receval="\"$_lcl_receval\""
+-     done
+-     echo "$_lcl_receval")`
+-case ":$config_prefix:" in
+-# change empty paths to '.'
+-  ::) config_prefix='.' ;;
+-# strip trailing slashes
+-  :*[\\/]:) config_prefix=`echo "$config_prefix" | sed 's,[\\/]*$,,'` ;;
+-  :*:) ;;
+-esac
+-# squeze repeated slashes
+-case '/' in
+-# if the path contains any backslashes, turn slashes into backslashes
+- *\\*) config_prefix=`echo "$config_prefix" | sed 's,\(.\)[\\/][\\/]*,\1\\\\,g'` ;;
+-# if the path contains slashes, also turn backslashes into slashes
+- *) config_prefix=`echo "$config_prefix" | sed 's,\(.\)[\\/][\\/]*,\1/,g'` ;;
+-esac
+-
+-cat >>confdefs.h <<_ACEOF
+-#define PREFIX "$config_prefix"
+-_ACEOF
+-
+-
+-_lcl_receval="$exec_prefix"
+-config_exec_prefix=`(test "x$prefix" = xNONE && prefix="$ac_default_prefix"
+-     test "x$exec_prefix" = xNONE && exec_prefix="${prefix}"
+-     _lcl_receval_old=''
+-     while test "$_lcl_receval_old" != "$_lcl_receval"; do
+-       _lcl_receval_old="$_lcl_receval"
+-       eval _lcl_receval="\"$_lcl_receval\""
+-     done
+-     echo "$_lcl_receval")`
+-case ":$config_exec_prefix:" in
+-# change empty paths to '.'
+-  ::) config_exec_prefix='.' ;;
+-# strip trailing slashes
+-  :*[\\/]:) config_exec_prefix=`echo "$config_exec_prefix" | sed 's,[\\/]*$,,'` ;;
+-  :*:) ;;
+-esac
+-# squeze repeated slashes
+-case '/' in
+-# if the path contains any backslashes, turn slashes into backslashes
+- *\\*) config_exec_prefix=`echo "$config_exec_prefix" | sed 's,\(.\)[\\/][\\/]*,\1\\\\,g'` ;;
+-# if the path contains slashes, also turn backslashes into slashes
+- *) config_exec_prefix=`echo "$config_exec_prefix" | sed 's,\(.\)[\\/][\\/]*,\1/,g'` ;;
+-esac
+-
+-cat >>confdefs.h <<_ACEOF
+-#define EXEC_PREFIX "$config_exec_prefix"
+-_ACEOF
+-
+-
+-_lcl_receval="$libexecdir"
+-config_libexecdir=`(test "x$prefix" = xNONE && prefix="$ac_default_prefix"
+-     test "x$exec_prefix" = xNONE && exec_prefix="${prefix}"
+-     _lcl_receval_old=''
+-     while test "$_lcl_receval_old" != "$_lcl_receval"; do
+-       _lcl_receval_old="$_lcl_receval"
+-       eval _lcl_receval="\"$_lcl_receval\""
+-     done
+-     echo "$_lcl_receval")`
+-case ":$config_libexecdir:" in
+-# change empty paths to '.'
+-  ::) config_libexecdir='.' ;;
+-# strip trailing slashes
+-  :*[\\/]:) config_libexecdir=`echo "$config_libexecdir" | sed 's,[\\/]*$,,'` ;;
+-  :*:) ;;
+-esac
+-# squeze repeated slashes
+-case '/' in
+-# if the path contains any backslashes, turn slashes into backslashes
+- *\\*) config_libexecdir=`echo "$config_libexecdir" | sed 's,\(.\)[\\/][\\/]*,\1\\\\,g'` ;;
+-# if the path contains slashes, also turn backslashes into slashes
+- *) config_libexecdir=`echo "$config_libexecdir" | sed 's,\(.\)[\\/][\\/]*,\1/,g'` ;;
+-esac
+-
+-cat >>confdefs.h <<_ACEOF
+-#define LIBEXEC_DIR "$config_libexecdir"
+-_ACEOF
+-
+-
+-_lcl_receval="$libdir"
+-config_libdir=`(test "x$prefix" = xNONE && prefix="$ac_default_prefix"
+-     test "x$exec_prefix" = xNONE && exec_prefix="${prefix}"
+-     _lcl_receval_old=''
+-     while test "$_lcl_receval_old" != "$_lcl_receval"; do
+-       _lcl_receval_old="$_lcl_receval"
+-       eval _lcl_receval="\"$_lcl_receval\""
+-     done
+-     echo "$_lcl_receval")`
+-case ":$config_libdir:" in
+-# change empty paths to '.'
+-  ::) config_libdir='.' ;;
+-# strip trailing slashes
+-  :*[\\/]:) config_libdir=`echo "$config_libdir" | sed 's,[\\/]*$,,'` ;;
+-  :*:) ;;
+-esac
+-# squeze repeated slashes
+-case '/' in
+-# if the path contains any backslashes, turn slashes into backslashes
+- *\\*) config_libdir=`echo "$config_libdir" | sed 's,\(.\)[\\/][\\/]*,\1\\\\,g'` ;;
+-# if the path contains slashes, also turn backslashes into slashes
+- *) config_libdir=`echo "$config_libdir" | sed 's,\(.\)[\\/][\\/]*,\1/,g'` ;;
+-esac
+-
+-cat >>confdefs.h <<_ACEOF
+-#define LIB_DIR "$config_libdir"
+-_ACEOF
+-
+-
+-_lcl_receval="$bindir"
+-config_bindir=`(test "x$prefix" = xNONE && prefix="$ac_default_prefix"
+-     test "x$exec_prefix" = xNONE && exec_prefix="${prefix}"
+-     _lcl_receval_old=''
+-     while test "$_lcl_receval_old" != "$_lcl_receval"; do
+-       _lcl_receval_old="$_lcl_receval"
+-       eval _lcl_receval="\"$_lcl_receval\""
+-     done
+-     echo "$_lcl_receval")`
+-case ":$config_bindir:" in
+-# change empty paths to '.'
+-  ::) config_bindir='.' ;;
+-# strip trailing slashes
+-  :*[\\/]:) config_bindir=`echo "$config_bindir" | sed 's,[\\/]*$,,'` ;;
+-  :*:) ;;
+-esac
+-# squeze repeated slashes
+-case '/' in
+-# if the path contains any backslashes, turn slashes into backslashes
+- *\\*) config_bindir=`echo "$config_bindir" | sed 's,\(.\)[\\/][\\/]*,\1\\\\,g'` ;;
+-# if the path contains slashes, also turn backslashes into slashes
+- *) config_bindir=`echo "$config_bindir" | sed 's,\(.\)[\\/][\\/]*,\1/,g'` ;;
+-esac
+-
+-cat >>confdefs.h <<_ACEOF
+-#define BIN_DIR "$config_bindir"
+-_ACEOF
+-
+-
+-_lcl_receval="$datadir"
+-config_datadir=`(test "x$prefix" = xNONE && prefix="$ac_default_prefix"
+-     test "x$exec_prefix" = xNONE && exec_prefix="${prefix}"
+-     _lcl_receval_old=''
+-     while test "$_lcl_receval_old" != "$_lcl_receval"; do
+-       _lcl_receval_old="$_lcl_receval"
+-       eval _lcl_receval="\"$_lcl_receval\""
+-     done
+-     echo "$_lcl_receval")`
+-case ":$config_datadir:" in
+-# change empty paths to '.'
+-  ::) config_datadir='.' ;;
+-# strip trailing slashes
+-  :*[\\/]:) config_datadir=`echo "$config_datadir" | sed 's,[\\/]*$,,'` ;;
+-  :*:) ;;
+-esac
+-# squeze repeated slashes
+-case '/' in
+-# if the path contains any backslashes, turn slashes into backslashes
+- *\\*) config_datadir=`echo "$config_datadir" | sed 's,\(.\)[\\/][\\/]*,\1\\\\,g'` ;;
+-# if the path contains slashes, also turn backslashes into slashes
+- *) config_datadir=`echo "$config_datadir" | sed 's,\(.\)[\\/][\\/]*,\1/,g'` ;;
+-esac
+-
+-cat >>confdefs.h <<_ACEOF
+-#define DATA_DIR "$config_datadir"
+-_ACEOF
+-
+-
+ ac_config_files="$ac_config_files resources.pc Makefile"
+ 
+ cat >confcache <<\_ACEOF
+diff --git a/resources/configure.ac b/resources/configure.ac
+index 14c6d1f..9015daf 100644
+--- a/resources/configure.ac
++++ b/resources/configure.ac
+@@ -46,29 +46,5 @@ LT_INIT
+ 
+ ##### SEE http://www.gnu.org/prep/standards/html_node/Directory-Variables.html
+ 
+-AX_RECURSIVE_EVAL([[$]prefix], [config_prefix])
+-AX_NORMALIZE_PATH([config_prefix],['/'])
+-AC_DEFINE_UNQUOTED([PREFIX],"$config_prefix",[prefix])
+-
+-AX_RECURSIVE_EVAL([[$]exec_prefix], [config_exec_prefix])
+-AX_NORMALIZE_PATH([config_exec_prefix],['/'])
+-AC_DEFINE_UNQUOTED([EXEC_PREFIX],"$config_exec_prefix",[exec_prefix])
+-
+-AX_RECURSIVE_EVAL([[$]libexecdir], [config_libexecdir])
+-AX_NORMALIZE_PATH([config_libexecdir],['/'])
+-AC_DEFINE_UNQUOTED([LIBEXEC_DIR],"$config_libexecdir",[libexecdir])
+-
+-AX_RECURSIVE_EVAL([[$]libdir], [config_libdir])
+-AX_NORMALIZE_PATH([config_libdir],['/'])
+-AC_DEFINE_UNQUOTED([LIB_DIR],"$config_libdir",[libdir])
+-
+-AX_RECURSIVE_EVAL([[$]bindir], [config_bindir])
+-AX_NORMALIZE_PATH([config_bindir],['/'])
+-AC_DEFINE_UNQUOTED([BIN_DIR],"$config_bindir",[bindir])
+-
+-AX_RECURSIVE_EVAL([[$]datadir], [config_datadir])
+-AX_NORMALIZE_PATH([config_datadir],['/'])
+-AC_DEFINE_UNQUOTED([DATA_DIR],"$config_datadir",[datadir])
+-
+ AC_CONFIG_FILES([resources.pc Makefile])
+ AC_OUTPUT
+diff --git a/resources/feResource.cc b/resources/feResource.cc
+index 9ae40c4..31caee8 100644
+--- a/resources/feResource.cc
++++ b/resources/feResource.cc
+@@ -37,7 +37,7 @@ extern "C" int setenv(const char *name, const char *value, int overwrite);
+ // define RESOURCE_DEBUG for chattering about resource management
+ // #define RESOURCE_DEBUG
+ 
+-#define SINGULAR_DEFAULT_DIR PREFIX
++#define SINGULAR_DEFAULT_DIR "/FOOBAR/QUX"
+ 
+ /*****************************************************************
+  *
+@@ -67,8 +67,8 @@ feResourceConfig_s feResourceConfigs[] =
+    "%b/MOD;"
+    "%r/lib/singular/MOD;"
+    "%r/libexec/singular/MOD;"
+-   LIB_DIR "/singular/MOD;"
+-   LIBEXEC_DIR "/singular/MOD;"
++   //LIB_DIR "/singular/MOD;"
++   //LIBEXEC_DIR "/singular/MOD;"
+    "%b",
+    (char *)""},
+   {"Singular",  'S',    feResBinary,"SINGULAR_EXECUTABLE",  "%d/Singular",          (char *)""},
+@@ -78,8 +78,9 @@ feResourceConfig_s feResourceConfigs[] =
+      "%b/MOD;"
+      "%r/lib/singular/MOD;"
+      "%r/libexec/singular/MOD;"
+-     LIB_DIR "/singular/MOD;"   /*debian: -> /usr/lib/singular/MOD */
+-     LIBEXEC_DIR "/singular/MOD" ,                  (char *)""},
++     //LIB_DIR "/singular/MOD;"   /*debian: -> /usr/lib/singular/MOD */
++     //LIBEXEC_DIR "/singular/MOD"
++     ,                  (char *)""},
+   {"RootDir",   'r',    feResDir,   "SINGULAR_ROOT_DIR",    "%b/..",                (char *)""},
+   {"DataDir",   'D',    feResDir,   "SINGULAR_DATA_DIR",    "%b/../share/",          (char *)""},
+   {"DefaultDir",'d',    feResDir,   "SINGULAR_DEFAULT_DIR",  SINGULAR_DEFAULT_DIR,  (char *)""},
