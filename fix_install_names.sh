@@ -60,6 +60,8 @@ for BINARY ; do
     install_name_tool -rpath $PREFIX $NEW_RPATH $PREFIX/$BINARY ||
         install_name_tool -add_rpath $NEW_RPATH $PREFIX/$BINARY ||
         echo "WARNING: unable to set rpath $NEW_RPATH"
+    install_name_tool -delete_rpath $PREFIX $PREFIX/$BINARY 2>/dev/null || :
+    install_name_tool -delete_rpath $PREFIX/lib $PREFIX/$BINARY 2>/dev/null || :
 
     # Finally, update the locations of dependant libraries
     libs=`otool -L $PREFIX/$BINARY | sed -e 1d | fgrep $PREFIX | sed -E -e 's/[[:space:]]+(.+dylib) .+/\1/'`
