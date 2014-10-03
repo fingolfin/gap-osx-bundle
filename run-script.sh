@@ -18,6 +18,7 @@ env -i \
     SRCDIR=$SRCDIR \
     BUILDDIR=$BUILDDIR \
     HOME=$BASEDIR \
+    CMAKE="`which cmake`" \
     PATH="$PREFIX/bin:/usr/bin:/bin:/usr/sbin:/sbin" \
     LDFLAGS="-L$PREFIX/lib -Wl,-rpath,$PREFIX" \
     CPPFLAGS="-isystem $PREFIX/include" \

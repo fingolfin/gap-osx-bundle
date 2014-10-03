@@ -1,8 +1,10 @@
 #!/bin/sh -ev
 
+if [ "x$CMAKE" = x ] ; then
+    echo "ERROR: cmake not found, please read the README"
+    exit 1
+fi
+
 cd source
-# HACK: invoke cmake installed by fink.
-# Strictly speaking, we should probably provide cmake, too...
-# but this seems to much effort for no visible gain.
-GMP_DIR="$PREFIX" /sw/bin/cmake -DCMAKE_INSTALL_PREFIX:PATH="$PREFIX"
+GMP_DIR="$PREFIX" $CMAKE -DCMAKE_INSTALL_PREFIX:PATH="$PREFIX"
 make
