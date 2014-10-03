@@ -4,3 +4,4 @@
     --with-gmp=$PREFIX \
     --with-mpfr=$PREFIX
 make -j8
+#make check

@@ -12,4 +12,4 @@
     --enable-cxx \
     --with-pic
 make -j8
-make check
+#make check
