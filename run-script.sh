@@ -1,13 +1,14 @@
 #!/bin/sh -ex
+#
+# Run a script in a clean environment Expects the "PREFIX" and "BASEDIR"
+# environment variables to be set.
 
-# Run a script in a clean environment
-# Expects the "PREFIX" env variable to be set.
-if [ x$PREFIX = x ] ; then
+if [ "x$PREFIX" = x ] ; then
     echo "ERROR: PREFIX not set"
     exit 1
 fi
 
-if [ x$BASEDIR = x ] ; then
+if [ "x$BASEDIR" = x ] ; then
     echo "ERROR: BASEDIR not set"
     exit 1
 fi
