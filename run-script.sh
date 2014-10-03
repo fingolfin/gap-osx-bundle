@@ -19,6 +19,6 @@ env -i \
     BUILDDIR=$BUILDDIR \
     HOME=$BASEDIR \
     PATH="$PREFIX/bin:/usr/bin:/bin:/usr/sbin:/sbin" \
-    LDFLAGS="-L$PREFIX/lib -Wl,-rpath,$PREFIX/lib" \
+    LDFLAGS="-L$PREFIX/lib -Wl,-rpath,$PREFIX" \
     CPPFLAGS="-isystem $PREFIX/include" \
     $*

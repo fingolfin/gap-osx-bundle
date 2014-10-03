@@ -1,8 +1,6 @@
 #!/bin/sh -ev
 
 cd source
-
 make install
 
-install_name_tool -rpath $PREFIX/lib "../Resources/lib" $PREFIX/lib/libnormaliz.dylib
-install_name_tool -rpath $PREFIX/lib "../Resources/lib" $PREFIX/bin/normaliz
+$BASEDIR/fix_install_names.sh $PREFIX bin/normaliz lib/libnormaliz.dylib 

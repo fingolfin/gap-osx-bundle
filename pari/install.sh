@@ -2,22 +2,12 @@
 
 make install
 
-for name in libpari-gmp.dylib ; do
-    install_name_tool -id @rpath/$name $PREFIX/lib/$name
-    #install_name_tool -rpath $PREFIX/lib "../Resources/lib" $PREFIX/lib/$name
-done
+# install_name_tool -add_rpath "../Resources/lib" $PREFIX/lib/libpari-gmp.dylib
 
-install_name_tool -add_rpath "../Resources/lib" $PREFIX/lib/libpari-gmp.dylib
+$BASEDIR/fix_install_names.sh $PREFIX bin/gp-2.7 lib/libpari-gmp.dylib
 
-for name in gp-2.7 ; do
-    install_name_tool -change \
-        $PREFIX/lib/libpari-gmp.dylib \
-        @rpath/libpari-gmp.dylib \
-        $PREFIX/bin/$name
-    install_name_tool -rpath $PREFIX/lib "../Resources/lib" $PREFIX/bin/$name
-done
-
-# TODO: the BUILD path is also referenced in the following files:
+# TODO: the BUNDLE path is still being referenced in the following files:
+# bin/gp-2.7
 # bin/gphelp
 # include/pari/paricfg.h
 # lib/pari/pari.cfg
