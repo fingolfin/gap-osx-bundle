@@ -20,7 +20,7 @@ BUILDPACKAGES = $(PACKAGES:%=build-%)
 INSTALLPACKAGES = $(PACKAGES:%=install-%)
 CLEANPACKAGES = $(PACKAGES:%=clean-%)
 
-$(PACKAGES):
+$(PACKAGES): bundle
 	$(MAKE) -C $@
 
 fetch: $(FETCHPACKAGES)
