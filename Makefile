@@ -49,6 +49,9 @@ check:
 	@echo "Checking for files containing '$(BUNDLE)'"
 	@( cd $(PREFIX) && fgrep -rl $(BUNDLE) . )
 	@echo
+	@echo "Checking for files containing '$(PWD)/build'"
+	@( cd $(PREFIX) && fgrep -rl $(PWD)/build . )
+	@echo
 	@echo "Checking for files containing '/sw/'"
 	@( cd $(PREFIX) && fgrep -rl /sw/ . )
 
