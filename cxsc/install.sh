@@ -13,7 +13,11 @@ for name in allzeros example inewton lexample io linewton trace rungekutta; do
         @rpath/libcxsc.2.dylib \
         $PREFIX/examples/$name
     install_name_tool -rpath $PREFIX/lib "../Resources/lib" $PREFIX/examples/$name
+
+    strip -S $PREFIX/$name
+    $BASEDIR/fix_install_names.sh $PREFIX/lib @rpath $PREFIX/$name
 done
+
 
 mkdir -p $PREFIX/share/cxsc
 rm -rf $PREFIX/share/cxsc/examples
