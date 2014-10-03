@@ -11,7 +11,7 @@ bundle:
 	cp Info.plist $(BUNDLE)/Contents/
 
 clean:
-	rm $(BUNDLE)/Contents/MacOS/*
+	rm -f $(BUNDLE)/Contents/MacOS/*
 
 
 .PHONY: all bundle clean
