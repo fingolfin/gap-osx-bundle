@@ -43,6 +43,13 @@ distclean:
 	echo TODO
 	echo rm -rf src build dst
 
+check:
+	@echo "Checking for files containing '$(BUNDLE)'"
+	@( cd $(PREFIX) && fgrep -rl $(BUNDLE) . )
+	@echo
+	@echo "Checking for files containing '/sw/'"
+	@( cd $(PREFIX) && fgrep -rl /sw/ . )
+
 
 .PHONY: subdirs $(PACKAGES)
 .PHONY: subdirs $(FETCHPACKAGES)
@@ -51,3 +58,4 @@ distclean:
 .PHONY: subdirs $(CLEANPACKAGES)
 .PHONY: subdirs $(DISTCLEANPACKAGES)
 .PHONY: all fetch build install clean distclean
+.PHONY: check
