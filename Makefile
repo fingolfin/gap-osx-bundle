@@ -39,9 +39,11 @@ clean: $(CLEANPACKAGES)
 $(CLEANPACKAGES): 
 	$(MAKE) -C $(@:clean-%=%) clean
 
-distclean:
-	echo TODO
-	echo rm -rf src build dst
+clean:
+	rm -rf $(BUNDLE)
+
+distclean: clean
+	rm -rf src build
 
 check:
 	@echo "Checking for files containing '$(BUNDLE)'"
