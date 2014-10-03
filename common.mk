@@ -12,7 +12,7 @@ export SRCDIR   := "$(BASEDIR)/src"
 export BUILDDIR := "$(BASEDIR)/build"
 
 RUN:="$(BASEDIR)/run-script.sh"
-FETCH:="$(BASEDIR)/download"
+FETCH:="$(BASEDIR)/download.sh"
 
 all: INSTALLED
 
