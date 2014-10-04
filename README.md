@@ -33,17 +33,45 @@ order to create the bundle:
 * cmake
 * GNU autoools: automake, autoconf, libtool
 
+Xcode can be installed via the App store. You then still need to install
+the command line tools. On Mac OS X 10.9 and with Xcode 5.1, simply run
+
+    xcode-select --install
+
+from the command line.  If that fails, the following instructions may help:
+* https://guide.macports.org/chunked/installing.html#installing.xcode
+* http://stackoverflow.com/questions/9329243
+
+The other stuff can be installed via [Fink](http://finkproject.org/),
+[MacPorts](https://www.macports.org/) or [Homebrew](http://brew.sh/).
+
+If you are using Fink, use this command:
+
+    fink install cmake autoconf2.6 automake1.14 libtool2
+
+If you are using MacPorts, use this command:
+
+    port install cmake autoconf automake libtool
+
+If you are using Homebrew, use this command:
+
+    brew install cmake autoconf automake libtool
+
 
 Building the bundle
 ===================
 Clone this repository, go into the directory, and enter
-```
-make gap
-```
+
+    make gap
+
 Then wait... this can take quite some time. It will download the
 required source code (almost 400 MB), and then compile a lot of stuff.
 The result is an .app bundle `GAP.app` which you can move around and
 double click to start GAP.
+
+To create a disk image for distribution to end users, enter
+
+    make dmg
 
 
 How it works
@@ -66,6 +94,12 @@ Related work
 ============
 The Polymake project also has a similar effort, the
 [polybundle](https://github.com/polymake/polybundle).
+
+Max Neunhöffer's [Bob](https://github.com/gap-system/bob)
+is a project that in a sense works dual to what we do:
+Instead of precompiling things, it downloads source code
+on the user's computer and attempts to compile everything
+there.
 
 
 Bug reports and feature requests
