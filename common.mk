@@ -6,7 +6,8 @@
 
 .PHONY: all
 
-export BASEDIR  := $(abspath $(CURDIR)/..)
+
+export BASEDIR  := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
 export PREFIX   := $(BASEDIR)/GAP.app/Contents/Resources
 export SRCDIR   := "$(BASEDIR)/src"
 export BUILDDIR := "$(BASEDIR)/build"
