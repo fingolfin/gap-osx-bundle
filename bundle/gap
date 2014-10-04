@@ -1,9 +1,13 @@
-#!/bin/sh
+#!/bin/sh -e
 
-dirtmp=$(cd "$(dirname "$0")"; pwd)
-dir=`echo $dirtmp | awk '{ print $1 }'`
+# Determine the location of this script
+dir="$(cd "$(dirname "$0")" && pwd)"
 
-# TODO: allow user to choose iTerm2
+# Launch the actual start script in a terminal
+TERMINAL_APP="Terminal"
+#TERMINAL_APP="iTerm"
+open -a $TERMINAL_APP "$dir/gap.start"
 
-open -a Terminal $dir/gap.start
 exit 0
+
+# TODO: allow user to choose between Terminal.app and iTerm

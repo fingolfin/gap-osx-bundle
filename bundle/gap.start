@@ -1,12 +1,40 @@
-#!/bin/bash
+#!/bin/bash -e
 
+# Clear ugly artifacts from Terminal
+reset
+
+# Set terminal window title
 echo -ne "\033]0;gap\007"
-dir=$(cd "$(dirname "$0")"; pwd)
-ResourcesDir="$dir/../Resources/"
 
-# start GAP
-$ResourcesDir/bin/gap
+# Determine the location of this script
+dir="$(cd "$(dirname "$0")" && pwd)"
 
-# TODO: perhaps just start a shell, with PATH adjusted,
-# and print a helpful message to the user indicating that
-# they can use "gap", "Singular", "gp" (for Pari), ...
+# Reconstruct the PREFIX dir in which everything
+# has been installed.
+PREFIX="$dir/../Resources/"
+
+# Setup environment for user's convenience
+export PATH="$PREFIX/bin:$PATH"
+# TODO: also set CPPFLAGS, LDFLAGS, etc.?
+
+# Greet the user
+echo "__      __   _"
+echo "\ \    / /__| |__ ___ _ __  ___"
+echo " \ \/\/ / -_) / _/ _ \ '  \/ -_)"
+echo "  \_/\_/\___|_\__\___/_|_|_\___|"
+echo ""
+echo "Welcome to GAP.app!"
+echo ""
+# echo "To start GAP, type 'gap'."
+# echo "To start Singular, type 'Singular'."
+# echo "To start Pari, type 'gp'."
+# echo "To start Normaliz, type 'normaliz'."
+# echo ""
+
+# Start a shell
+#bash --norc --noprofile
+
+# Start GAP
+"$PREFIX/bin/gap"
+
+exit 0
