@@ -57,8 +57,8 @@ for BINARY ; do
     # binaries (a bug?).
     tmp=`dirname $BINARY`
     NEW_RPATH="@loader_path/`relpath $PREFIX $PREFIX/$tmp`"
-    install_name_tool -rpath $PREFIX $NEW_RPATH $PREFIX/$BINARY ||
-        install_name_tool -add_rpath $NEW_RPATH $PREFIX/$BINARY ||
+    install_name_tool -rpath $PREFIX $NEW_RPATH $PREFIX/$BINARY 2>/dev/null ||
+        install_name_tool -add_rpath $NEW_RPATH $PREFIX/$BINARY 2>/dev/null ||
         echo "WARNING: unable to set rpath $NEW_RPATH"
     install_name_tool -delete_rpath $PREFIX $PREFIX/$BINARY 2>/dev/null || :
     install_name_tool -delete_rpath $PREFIX/lib $PREFIX/$BINARY 2>/dev/null || :
