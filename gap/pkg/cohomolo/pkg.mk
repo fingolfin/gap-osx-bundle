@@ -1,1 +1,1 @@
-#GAP_PACKAGES += cohomolo
+GAP_PACKAGES += cohomolo

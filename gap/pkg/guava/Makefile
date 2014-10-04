@@ -1,4 +1,5 @@
 PACKAGE := guava
-DIRNAME := "$(PACKAGE)"
+VERSION := 3.12
+DIRNAME := "$(PACKAGE)-$(VERSION)"
 
 include ../common.mk

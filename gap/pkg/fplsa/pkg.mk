@@ -1,1 +1,1 @@
-#GAP_PACKAGES += fplsa
+GAP_PACKAGES += fplsa

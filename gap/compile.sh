@@ -28,3 +28,6 @@ rm -f config.log config.status bin/*/config.log
 # gap/bin/x86_64-apple-darwin10.0.0-gcc-default64/sysinfo.gap
 
 rm -f bin/*/*.o
+
+# Clean some leftovers in packages
+rm -f pkg/*/doc/*.log
