@@ -1,16 +1,10 @@
-.PHONY: fetch fetch-default fetch-extra
-.PHONY: extract extract-default extract-extra
-.PHONY: build build-default build-extra
-.PHONY: install install-default install-extra
-.PHONY: clean clean-default clean-extra
-
-.PHONY: all
-
+# Global rules for packages that contain common logic for fetching sources,
+# running compile.sh and install.sh scripts and cleanup.
 
 export BASEDIR  := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
 export PREFIX   := $(BASEDIR)/GAP.app/Contents/Resources
-export SRCDIR   := "$(BASEDIR)/src"
-export BUILDDIR := "$(BASEDIR)/build"
+export SRCDIR   := $(BASEDIR)/src
+export BUILDDIR := $(BASEDIR)/build
 
 RUN:="$(BASEDIR)/run-script.sh"
 FETCH:="$(BASEDIR)/download.sh"
@@ -82,3 +76,10 @@ install-extra:
 
 install: install-default install-extra
 	touch INSTALLED
+
+.PHONY: all
+.PHONY: fetch fetch-default fetch-extra
+.PHONY: extract extract-default extract-extra
+.PHONY: build build-default build-extra
+.PHONY: install install-default install-extra
+.PHONY: clean clean-default clean-extra
