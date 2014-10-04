@@ -2,7 +2,8 @@ INSTALL = /usr/bin/install
 INSTALL_PROGRAM = $(INSTALL)
 INSTALL_DATA = $(INSTALL) -m 644
 
-export BUNDLE=$(CURDIR)/GAP.app
+BUNDLE_NAME=GAP.app
+export BUNDLE=$(CURDIR)/$(BUNDLE_NAME)
 export PREFIX=$(BUNDLE)/Contents/Resources
 
 all:
@@ -47,13 +48,13 @@ distclean: clean
 
 check:
 	@echo "Checking for files containing '$(BUNDLE)'"
-	@( cd $(PREFIX) && fgrep -rl $(BUNDLE) . )
+	@fgrep -rl $(BUNDLE) $(BUNDLE_NAME) || :
 	@echo
 	@echo "Checking for files containing '$(PWD)/build'"
-	@( cd $(PREFIX) && fgrep -rl $(PWD)/build . )
+	@fgrep -rl $(PWD)/build $(BUNDLE_NAME) || :
 	@echo
 	@echo "Checking for files containing '/sw/'"
-	@( cd $(PREFIX) && fgrep -rl /sw/ . )
+	@fgrep -rl /sw/ $(BUNDLE_NAME) || :
 
 
 .PHONY: subdirs $(PACKAGES)
