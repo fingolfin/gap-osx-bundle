@@ -13,6 +13,10 @@ if [ "x$BASEDIR" = x ] ; then
     exit 1
 fi
 
+relpath() {
+    python -c "import os.path; print os.path.relpath('$1','${2:-$PWD}')" ;
+}
+
 env -i \
     BASEDIR=$BASEDIR \
     PREFIX=$PREFIX \
@@ -20,6 +24,7 @@ env -i \
     BUILDDIR=$BUILDDIR \
     HOME=$BASEDIR \
     CMAKE="`which cmake`" \
+    REL_PWD="`relpath $PWD $PREFIX`" \
     PATH="$PREFIX/bin:/usr/bin:/bin:/usr/sbin:/sbin" \
     LDFLAGS="-L$PREFIX/lib -Wl,-rpath,$PREFIX" \
     CPPFLAGS="-isystem $PREFIX/include" \

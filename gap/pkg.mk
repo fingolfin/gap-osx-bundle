@@ -2,18 +2,16 @@ PACKAGES += gap
 
 gap: gmp readline
 
-# GAP package float
-gap: cxsc fplll mpc mpfi mpfr
+# Include build rules for GAP packages
+GAP_PACKAGES :=
+include gap/pkg/*/pkg.mk
 
-# GAP package Browse
-#gap: ncurses
+# Transform packages names
+GAP_PACKAGES := $(addprefix gap/pkg/, $(GAP_PACKAGES))
 
-# GAP packages Singular, SingularInterface
-gap: singular
+# All GAP packages also are also packages depending on GAP
+PACKAGES += $(GAP_PACKAGES)
+$(GAP_PACKAGES): gap
 
-# GAP package NormalizInterface
-gap: normaliz
-
-# GAP package Alnuth
-gap: pari
-
+# Target for building all packages at once:
+gap-allpkgs: $(GAP_PACKAGES)
