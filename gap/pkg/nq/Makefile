@@ -5,4 +5,4 @@ DIRNAME := "$(PACKAGE)-$(VERSION)"
 include ../common.mk
 
 build-extra:
-	rm -rf nq src/*.o
+	cd $(BUILDDIR) && rm -rf nq src/*.o

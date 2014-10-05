@@ -5,4 +5,4 @@ DIRNAME := "$(PACKAGE)-$(VERSION)"
 include ../common.mk
 
 build-extra:
-	rm -rf src/float.la src/.libs */Makefile
+	cd $(BUILDDIR) && rm -rf src/float.la src/.libs */Makefile
