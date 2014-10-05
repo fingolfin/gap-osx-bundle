@@ -6,12 +6,9 @@ reset
 # Set terminal window title
 echo -ne "\033]0;gap\007"
 
-# Determine the location of this script
-dir="$(cd "$(dirname "$0")" && pwd)"
-
 # Reconstruct the PREFIX dir in which everything
 # has been installed.
-PREFIX="$dir/../Resources/"
+PREFIX="$(cd "$(dirname "$0")"/../Resources/ && pwd)"
 
 # Setup environment for user's convenience
 export PATH="$PREFIX/bin:$PATH"
