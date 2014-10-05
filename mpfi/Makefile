@@ -5,4 +5,7 @@ DIRNAME := "$(PACKAGE)-$(VERSION)"
 URL     := "https://gforge.inria.fr/frs/download.php/30129/$(ARCHIVE)"
 MD5     := "ce788b73b62eca1945db2ef453ee1364"
 
+CONFIGURE_PARAMS := --disable-static
+FILES_TO_FIX := lib/libmpfi.0.dylib
+
 include ../common.mk

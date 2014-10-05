@@ -7,6 +7,8 @@ MD5     := "33c8fb279e981274f485fd91da77e94a"
 
 PATCH_URL     := "http://ftp.gnu.org/gnu/readline/readline-6.3-patches/readline63-"
 
+CONFIGURE_PARAMS := --disable-static
+
 include ../common.mk
 
 fetch-extra: 

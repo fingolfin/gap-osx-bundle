@@ -14,11 +14,19 @@ FETCH := "$(BASEDIR)/download.sh"
 
 all: INSTALLED
 
-BUILT: compile.sh Makefile
+BUILT: #Makefile
 	$(MAKE) fetch build
 
-INSTALLED: BUILT install.sh Makefile
+INSTALLED: BUILT Makefile
 	$(MAKE) install
+
+ifneq ($(wildcard compile.sh),) 
+BUILT: compile.sh
+endif
+
+ifneq ($(wildcard install.sh),) 
+INSTALLED: install.sh
+endif
 
 clean:
 	rm -rf $(BUILDDIR)/$(DIRNAME)
@@ -62,7 +70,13 @@ build-default: extract
 	@echo "================================================="
 	@echo "Building $(PACKAGE)-$(VERSION)"
 	@echo "================================================="
-	@cd $(BUILDDIR)/$(DIRNAME) && $(RUN) $(CURDIR)/compile.sh
+	if [ -f $(CURDIR)/compile.sh ] ; then \
+	     cd $(BUILDDIR)/$(DIRNAME) && $(RUN) $(CURDIR)/compile.sh ; \
+	 else \
+	     cd $(BUILDDIR)/$(DIRNAME) && \
+	     $(RUN) ./configure --prefix=$(PREFIX) $(CONFIGURE_PARAMS) && \
+	     $(RUN) make -j8 ; \
+	 fi
 
 build-extra:
 
@@ -73,7 +87,15 @@ install-default:
 	@echo "================================================="
 	@echo "Installing $(PACKAGE)-$(VERSION)"
 	@echo "================================================="
-	@cd $(BUILDDIR)/$(DIRNAME) && $(RUN) $(CURDIR)/install.sh
+	if [ -f $(CURDIR)/install.sh ] ; then \
+	     cd $(BUILDDIR)/$(DIRNAME) && $(RUN) $(CURDIR)/install.sh ; \
+	 else \
+	     cd $(BUILDDIR)/$(DIRNAME) && $(RUN) make install ; \
+	 fi
+	rm -f $(PREFIX)/lib/*.la
+ifdef FILES_TO_FIX
+	cd $(PREFIX) && $(BASEDIR)/fix_install_names.sh $(PREFIX) $(FILES_TO_FIX)
+endif
 
 install-extra:
 
