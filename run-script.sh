@@ -23,6 +23,8 @@ env -i \
     SRCDIR=$SRCDIR \
     BUILDDIR=$BUILDDIR \
     HOME=$BASEDIR \
+    CC="clang" \
+    CXX="clang++ -stdlib=libc++" \
     CMAKE="`which cmake`" \
     REL_PWD="`relpath $PWD $PREFIX`" \
     PATH="$PREFIX/bin:/usr/bin:/bin:/usr/sbin:/sbin" \
