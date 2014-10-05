@@ -1,7 +1,7 @@
 #!/bin/sh -ex
 
 # HACK: float 0.5.18 is missing autotools stuff, so regenerate it
-PATH="$TOOLSDIR/bin:$PATH" $BASEDIR/build-tools/bin/autoreconf -vif
+autoreconf -vif
 
 ./configure
 make
