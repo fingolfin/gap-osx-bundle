@@ -1,6 +1,6 @@
 #!/bin/sh -ex
 
-make clean
+make clean || :
 ./configure
 make COPTS="-O2 -g"
 
