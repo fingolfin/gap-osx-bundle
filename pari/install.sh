@@ -2,8 +2,7 @@
 
 make install
 
-# install_name_tool -add_rpath "../Resources/lib" $PREFIX/lib/libpari-gmp.dylib
-
+cd $PREFIX
 $BASEDIR/fix_install_names.sh $PREFIX bin/gp-2.7 lib/libpari-gmp.dylib
 
 # TODO: libpari-gmp.dylib references the path

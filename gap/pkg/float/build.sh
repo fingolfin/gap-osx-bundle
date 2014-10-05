@@ -6,7 +6,7 @@ PATH="$TOOLSDIR/bin:$PATH" $BASEDIR/build-tools/bin/autoreconf -vif
 ./configure
 make
 
-( cd $PREFIX && $BASEDIR/fix_install_names.sh $PREFIX $REL_PWD/bin/*/* )
+$BASEDIR/fix_install_names.sh $PREFIX bin/*/*
 
 # Cleanup leftovers which may contain the PREFIX path (and thus would
 # trigger the code which detects hardcoded paths).

@@ -3,6 +3,7 @@
 cd source
 make install
 
+cd $PREFIX
 $BASEDIR/fix_install_names.sh $PREFIX bin/normaliz lib/libnormaliz.dylib 
 
 # For some strange reason, normaliz ends up using @rpath/libnormaliz.0.dylib

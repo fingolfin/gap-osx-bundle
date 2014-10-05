@@ -11,7 +11,7 @@ cd $GAPROOT
 ./configure --target=x86_64-apple-darwin10.0.0 --with-gmp=system
 make -j8
 
-( cd $PREFIX && $BASEDIR/fix_install_names.sh $PREFIX lib/gap/bin/*/gap )
+$BASEDIR/fix_install_names.sh $PREFIX lib/gap/bin/*/gap
 
 # build documentation
 make manuals

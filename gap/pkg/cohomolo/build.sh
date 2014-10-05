@@ -3,7 +3,7 @@
 ./configure
 make CC="gcc -fno-builtin "
 
-( cd $PREFIX && $BASEDIR/fix_install_names.sh $PREFIX $REL_PWD/bin/*/* )
+$BASEDIR/fix_install_names.sh $PREFIX bin/*/*
 
 # Cleanup leftovers which may contain the PREFIX path (and thus would
 # trigger the code which detects hardcoded paths).

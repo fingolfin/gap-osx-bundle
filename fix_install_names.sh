@@ -29,17 +29,17 @@ relpath() {
 # Iterate over all arguments
 for BINARY ; do
 
-    if [ ! -f $PREFIX/$BINARY ] ; then
+    if [ ! -f $BINARY ] ; then
         usage 1
     fi
     
     # Strip debug symbols. This makes it easier to find instances
     # of hardcoded paths.
-    strip -S $PREFIX/$BINARY
+    strip -S $BINARY
 
     # If it is a shared library, update its id
     if [[ $BINARY =~ \.dylib$ ]] ; then
-        install_name_tool -id @rpath/$BINARY $PREFIX/$BINARY
+        install_name_tool -id @rpath/`relpath $BINARY $PREFIX` $BINARY
     fi
 
     # Change the default LC_RPATH value to use @loader_path, in order to
@@ -56,18 +56,18 @@ for BINARY ; do
     # work in practice, as install_name_tool ends up garbling certain
     # binaries (a bug?).
     tmp=`dirname $BINARY`
-    NEW_RPATH="@loader_path/`relpath $PREFIX $PREFIX/$tmp`"
-    install_name_tool -rpath $PREFIX $NEW_RPATH $PREFIX/$BINARY 2>/dev/null ||
-        install_name_tool -add_rpath $NEW_RPATH $PREFIX/$BINARY 2>/dev/null ||
+    NEW_RPATH="@loader_path/`relpath $PREFIX $tmp`"
+    install_name_tool -rpath $PREFIX $NEW_RPATH $BINARY 2>/dev/null ||
+        install_name_tool -add_rpath $NEW_RPATH $BINARY 2>/dev/null ||
         echo "WARNING: unable to set rpath $NEW_RPATH"
-    install_name_tool -delete_rpath $PREFIX $PREFIX/$BINARY 2>/dev/null || :
-    install_name_tool -delete_rpath $PREFIX/lib $PREFIX/$BINARY 2>/dev/null || :
+    install_name_tool -delete_rpath $PREFIX $BINARY 2>/dev/null || :
+    install_name_tool -delete_rpath $PREFIX/lib $BINARY 2>/dev/null || :
 
     # Finally, update the locations of dependant libraries
-    libs=`otool -L $PREFIX/$BINARY | sed -e 1d | fgrep $PREFIX | sed -E -e 's/[[:space:]]+(.+dylib) .+/\1/'`
+    libs=`otool -L $BINARY | sed -e 1d | fgrep $PREFIX | sed -E -e 's/[[:space:]]+(.+dylib) .+/\1/'`
     for lib in $libs ; do
         newlib=`echo $lib | sed -e "s,$PREFIX,@rpath,"`
-        install_name_tool -change $lib $newlib $PREFIX/$BINARY
+        install_name_tool -change $lib $newlib $BINARY
     done
 
 done

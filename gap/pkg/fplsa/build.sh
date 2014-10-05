@@ -4,7 +4,7 @@ sed -i '' 's/malloc.h/string.h/' src/fplsa4.c
 ./configure
 make CC="gcc -O2 "
 
-( cd $PREFIX && $BASEDIR/fix_install_names.sh $PREFIX $REL_PWD/bin/*/* )
+$BASEDIR/fix_install_names.sh $PREFIX bin/*/*
 
 # Cleanup leftovers which may contain the PREFIX path (and thus would
 # trigger the code which detects hardcoded paths).

@@ -3,7 +3,7 @@
 ./configure
 make
 
-( cd $PREFIX && $BASEDIR/fix_install_names.sh $PREFIX $REL_PWD/bin/*/* )
+$BASEDIR/fix_install_names.sh $PREFIX bin/*/*
 
 rm -f nauty22/config.log nauty22/config.status
 
