@@ -1,6 +1,6 @@
 PACKAGES += gap
 
-gap: gmp readline
+gap: gmp readline realpath
 
 # Include build rules for GAP packages
 GAP_PACKAGES :=

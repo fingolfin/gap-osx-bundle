@@ -10,7 +10,7 @@
  ##
  if [ "x$GAP_DIR" = "x" ];  then
 -GAP_DIR="@gapdir@"
-+GAP_DIR="$(cd "$(dirname "$0")"/.. && pwd)"
++GAP_DIR="$(cd "$(dirname "$(realpath "$0")")"/.. && pwd)"
  fi
  
  
@@ -21,8 +21,8 @@
  ##  files to link.
  ##
 -gap_bin=@gapbin@
-+gap_bin="$(cd "$(dirname "$0")" && pwd)"
-+prefix="$(cd "$(dirname "$0")"/../../../.. && pwd)"
++gap_bin="$(cd "$(dirname "$(realpath "$0")")" && pwd)"
++prefix="$(cd "$(dirname "$(realpath "$0")")"/../../../.. && pwd)"
  
  if [ "X${gap_bin}" = "X$0" ];  then
      gap_dir="../../";
@@ -51,8 +51,8 @@
  #Y  Copyright (C)  2011,  University of St Andrews, Scotland
  ##
 -gap_bin=@gapbin@
-+gap_bin="$(cd "$(dirname "$0")" && pwd)"
-+prefix="$(cd "$(dirname "$0")"/../../../.. && pwd)"
++gap_bin="$(cd "$(dirname "$(realpath "$0")")" && pwd)"
++prefix="$(cd "$(dirname "$(realpath "$0")")"/../../../.. && pwd)"
  
  if [ "X${gap_bin}" = "X$0" ];  then
      gap_dir="../../";

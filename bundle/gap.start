@@ -7,7 +7,7 @@ reset
 echo -ne "\033]0;gap\007"
 
 # Determine the location of this script
-dir="$(cd "$(dirname "$0")" && pwd)"
+dir="$(cd "$(dirname "$(realpath "$0")")" && pwd)"
 
 # Reconstruct the PREFIX dir in which everything
 # has been installed.

@@ -612,7 +612,7 @@ index aeebd4d..00c08ea 100755
 -
 -includedir=@includedir@
 -libdir=@libdir@
-+prefix="$( cd "$( dirname "$( dirname "$0" )" )" && pwd )"
++prefix="$( cd "$( dirname "$( dirname "$( realpath "$0" )" )" )" && pwd )"
 +exec_prefix=${prefix}
 +includedir=${prefix}/include
 +libdir=${exec_prefix}/lib
@@ -647,7 +647,7 @@ index 67f602d..4125407 100755
 -
 -includedir=@includedir@
 -libdir=@libdir@
-+prefix="$( cd "$( dirname "$( dirname "$0" )" )" && pwd )"
++prefix="$( cd "$( dirname "$( dirname "$( realpath "$0" )" )" )" && pwd )"
 +exec_prefix=${prefix}
 +includedir=${prefix}/include
 +libdir=${exec_prefix}/lib
