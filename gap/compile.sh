@@ -11,6 +11,8 @@ cd $GAPROOT
 ./configure --target=x86_64-apple-darwin10.0.0 --with-gmp=system
 make -j8
 
+( cd $PREFIX && $BASEDIR/fix_install_names.sh $PREFIX lib/gap/bin/*/gap )
+
 # build documentation
 make manuals
 
@@ -20,14 +22,12 @@ rm -f config.log config.status bin/*/config.log
 # setup bin symlink
 (cd $PREFIX/bin && ln -s ../lib/gap/bin/gap.sh gap)
 
-# TODO: fixup bin/gap-default64.sh to auto-determine path,
-# like we do for libsingular-config
-
-# TODO:
-# - gap/bin/x86_64-apple-darwin10.0.0-gcc-default64/gac
-# gap/bin/x86_64-apple-darwin10.0.0-gcc-default64/sysinfo.gap
-
+# remove various files containing hard coded paths
 rm -f bin/*/*.o
+rm -f Makefile-default64
+rm -f bin/*/Makefile
+rm -f bin/*/config.status
+rm -f bin/*/extern/Makefile
 
 # Clean some leftovers in packages
 rm -f pkg/*/doc/*.log

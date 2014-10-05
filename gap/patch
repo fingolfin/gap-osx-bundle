@@ -1,3 +1,83 @@
+--- a/gap.shi	2014-10-05 13:09:49.000000000 +0200
++++ b/gap.shi	2014-10-05 13:10:46.000000000 +0200
+@@ -16,11 +16,11 @@
+ ##
+ ##  Set 'GAP_DIR' to the name of the directory where you have installed  GAP,
+ ##  i.e., the directory with the subdirectories  'lib',  'grp',  'doc',  etc.
+-##  The default is '@gapdir@', which is where you installed GAP.
++##  The default is the directory where you installed GAP.
+ ##  You won't have to change this unless you move the installation.
+ ##
+ if [ "x$GAP_DIR" = "x" ];  then
+-GAP_DIR="@gapdir@"
++GAP_DIR="$(cd "$(dirname "$0")"/.. && pwd)"
+ fi
+ 
+ 
+--- a/cnf/gac.in	2014-05-24 22:02:53.000000000 +0200
++++ b/cnf/gac.in	2014-10-05 14:42:51.000000000 +0200
+@@ -55,7 +55,8 @@
+ ##  option is appended at the end of the link command after the .o
+ ##  files to link.
+ ##
+-gap_bin=@gapbin@
++gap_bin="$(cd "$(dirname "$0")" && pwd)"
++prefix="$(cd "$(dirname "$0")"/../../../.. && pwd)"
+ 
+ if [ "X${gap_bin}" = "X$0" ];  then
+     gap_dir="../../";
+@@ -72,13 +73,13 @@
+ 
+ # These three should be filled in by the standard autoconf procedures 
+ c_compiler="@CC@"
+-c_options="@CPPFLAGS@ @CFLAGS@ @GMP_CFLAGS@"
++c_options="-isystem $prefix/include -Wall -g -O2"
+ c_linker="@CC@"
+-c_link_options="@LDFLAGS@"
+-c_libs="@LIBS@ @GMP_LIBS@"
++c_link_options="-L$prefix/lib -Wl,-rpath,$prefix -g -Wl,-no_pie -export-dynamic"
++c_libs="-lreadline -lgmp"
+ 
+ # These will need special care
+-c_dyn_options="@CPPFLAGS@ @CDYNOPTIONS@ @GMP_CFLAGS@"
++c_dyn_options="-isystem $prefix/include -fPIC -Wall"
+ c_dyn_linker="@CDYNLINKER@"
+ c_dyn_linking="@CDYNLINKING@"
+ c_dynlibs="@C_DYNLIBS@"
+--- a/cnf/sysinfo.in	2014-05-24 22:02:53.000000000 +0200
++++ b/cnf/sysinfo.in	2014-10-05 14:43:40.000000000 +0200
+@@ -6,7 +6,8 @@
+ ##
+ #Y  Copyright (C)  2011,  University of St Andrews, Scotland
+ ##
+-gap_bin=@gapbin@
++gap_bin="$(cd "$(dirname "$0")" && pwd)"
++prefix="$(cd "$(dirname "$0")"/../../../.. && pwd)"
+ 
+ if [ "X${gap_bin}" = "X$0" ];  then
+     gap_dir="../../";
+@@ -20,17 +21,15 @@
+ gap_options=""
+ gap_include="${gap_dir}/src"
+ 
+-gap_config_options="@gp_configure_options@"
+-
+ # These three should be filled in by the standard autoconf procedures 
+ c_compiler="@CC@"
+-c_options="@CPPFLAGS@ @CFLAGS@ @GMP_CFLAGS@"
++c_options="-isystem $prefix/include -Wall -g -O2"
+ c_linker="@CC@"
+-c_link_options="@LDFLAGS@"
+-c_libs="@LIBS@ @GMP_LIBS@"
++c_link_options="-L$prefix/lib -Wl,-rpath,$prefix -g -Wl,-no_pie -export-dynamic"
++c_libs="-lreadline -lgmp"
+ 
+ # These will need special care
+-c_dyn_options="@CPPFLAGS@ @CDYNOPTIONS@ @GMP_CFLAGS@"
++c_dyn_options="-isystem $prefix/include -fPIC -Wall"
+ c_dyn_linker="@CDYNLINKER@"
+ c_dyn_linking="@CDYNLINKING@"
+ c_dynlibs="@C_DYNLIBS@"
 diff --git a/pkg/kbmag/standalone/lib/defs.h b/pkg/kbmag/standalone/lib/defs.h
 index 5748d50..b44c318 100644
 --- a/pkg/kbmag/standalone/lib/defs.h
