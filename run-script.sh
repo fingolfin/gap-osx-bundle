@@ -22,6 +22,7 @@ env -i \
     PREFIX=$PREFIX \
     SRCDIR=$SRCDIR \
     BUILDDIR=$BUILDDIR \
+    TOOLSDIR=$TOOLSDIR \
     HOME=$BASEDIR \
     CC="clang" \
     CXX="clang++ -stdlib=libc++" \

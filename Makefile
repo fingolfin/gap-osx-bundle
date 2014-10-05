@@ -8,6 +8,7 @@ export BUNDLE   := $(BASEDIR)/$(BUNDLE_NAME)
 export PREFIX   := $(BUNDLE)/Contents/Resources
 export SRCDIR   := $(BASEDIR)/src
 export BUILDDIR := $(BASEDIR)/build
+export TOOLSDIR := $(BASEDIR)/build-tools
 
 all:
 	@echo Use 'make pkg', where pkg is one of
@@ -45,6 +46,7 @@ $(CLEANPACKAGES):
 
 clean:
 	rm -rf $(BUNDLE)
+	rm -rf $(TOOLSDIR)
 
 distclean: clean
 	rm -rf src build

@@ -7,6 +7,7 @@ export BUNDLE   := $(BASEDIR)/$(BUNDLE_NAME)
 export PREFIX   := $(BUNDLE)/Contents/Resources
 export SRCDIR   := $(BASEDIR)/src
 export BUILDDIR := $(BASEDIR)/build
+export TOOLSDIR := $(BASEDIR)/build-tools
 
 RUN   := "$(BASEDIR)/run-script.sh"
 FETCH := "$(BASEDIR)/download.sh"
