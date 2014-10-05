@@ -7,7 +7,7 @@ make
 
 # Cleanup leftovers which may contain the PREFIX path (and thus would
 # trigger the code which detects hardcoded paths).
-rm -rf src/.deps
+rm -rf *.la .libs src/.deps
 rm -f config.log config.status Makefile
 rm -rf autom4te.cache/
 rm -rf doc/*.log
