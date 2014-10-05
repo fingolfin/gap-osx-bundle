@@ -2,9 +2,12 @@ INSTALL = /usr/bin/install
 INSTALL_PROGRAM = $(INSTALL)
 INSTALL_DATA = $(INSTALL) -m 644
 
-BUNDLE_NAME=GAP.app
-export BUNDLE=$(CURDIR)/$(BUNDLE_NAME)
-export PREFIX=$(BUNDLE)/Contents/Resources
+export BUNDLE_NAME := GAP.app
+export BASEDIR  := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
+export BUNDLE   := $(BASEDIR)/$(BUNDLE_NAME)
+export PREFIX   := $(BUNDLE)/Contents/Resources
+export SRCDIR   := $(BASEDIR)/src
+export BUILDDIR := $(BASEDIR)/build
 
 all:
 	@echo Use 'make pkg', where pkg is one of

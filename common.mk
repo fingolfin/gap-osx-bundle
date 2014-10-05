@@ -1,13 +1,15 @@
 # Global rules for packages that contain common logic for fetching sources,
 # running compile.sh and install.sh scripts and cleanup.
 
+export BUNDLE_NAME := GAP.app
 export BASEDIR  := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
-export PREFIX   := $(BASEDIR)/GAP.app/Contents/Resources
+export BUNDLE   := $(BASEDIR)/$(BUNDLE_NAME)
+export PREFIX   := $(BUNDLE)/Contents/Resources
 export SRCDIR   := $(BASEDIR)/src
 export BUILDDIR := $(BASEDIR)/build
 
-RUN:="$(BASEDIR)/run-script.sh"
-FETCH:="$(BASEDIR)/download.sh"
+RUN   := "$(BASEDIR)/run-script.sh"
+FETCH := "$(BASEDIR)/download.sh"
 
 all: INSTALLED
 
