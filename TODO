@@ -1,36 +1,7 @@
 * make sure to disable CPU specific optimization, e.g. in GMP
 
-* perhaps delete all *.la file (in the install.sh files)?
-  they have the build PATH baked in, which is bad for a reloctable
-  system.
-  When doing that, make sure nothing breaks
-
-* GAP: after running its outer (and inner?) configure script,
-  overwrite the GAParch value with something that works across OS X
-  versions
-
-* look at Max' N.s "bob" and see if we can learn from it
-  https://github.com/neunhoef/bob
-  https://github.com/neunhoef/bob/blob/master/bob.cc
-  https://github.com/neunhoef/bob/blob/master/gap.cc
-
-* look at "polybundle" by Silke and Andreas:
-  https://github.com/polymake/polybundle
-
-* make all libraries relocatable using 
-
-* prepare scripts that create a GAP.app bundle; perhaps also look at the
-  polybundle for that
-
-* prepare scripts that create a disk image from that, using
-    https://github.com/fingolfin/make-dmg
-
 * create a virtual machine with Mac OS X 10.6 or so, and create the
   disk image there. Then test it on various machines
-
-* right now, GAP packages are all built as part of "GAP". It might be better
-  if each GAP package that requires compilation is covered by its
-  own "package".
 
 * add SingularInterface
 
@@ -38,3 +9,14 @@
 
 * bug in GAP: if HOME or PATH env vars are not setup, GAP crashes
   during startup with strange errors. THere should be a proper error check
+
+* The following gap files still hardcode the PREFIX path:
+
+    lib/gap/bin/gap-default64.sh
+    lib/gap/bin/x86_64-apple-darwin10.0.0-gcc-default64/config.status
+    lib/gap/bin/x86_64-apple-darwin10.0.0-gcc-default64/extern/Makefile
+    lib/gap/bin/x86_64-apple-darwin10.0.0-gcc-default64/gac
+    lib/gap/bin/x86_64-apple-darwin10.0.0-gcc-default64/gap
+    lib/gap/bin/x86_64-apple-darwin10.0.0-gcc-default64/Makefile
+    lib/gap/bin/x86_64-apple-darwin10.0.0-gcc-default64/sysinfo.gap
+    lib/gap/Makefile-default64
