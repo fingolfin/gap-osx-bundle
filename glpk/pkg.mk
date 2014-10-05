@@ -1,0 +1,3 @@
+PACKAGES += glpk
+
+glpk: gmp
