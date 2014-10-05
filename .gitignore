@@ -1,6 +1,7 @@
-/GAP.app
-/dst
+/GAP.app/
+/dst/
 /build
-/src
+/build-tools/
+/src/
 INSTALLED
 BUILT

@@ -1,9 +1,8 @@
 #!/bin/sh -ex
 
-# HACK: float 0.5.18 is missing autotools stuff
-# FIXME: do not hardcode /sw/bin for autotools. Instead,
-# use our own autotools version, or make this user customizable
-PATH="/sw/bin:$PATH" /sw/bin/autoreconf -vif
+# HACK: float 0.5.18 is missing autotools stuff, so regenerate it
+#PATH="/sw/bin:$PATH" /sw/bin/autoreconf -vif
+PATH="$BASEDIR/build-tools/bin:$PATH" $BASEDIR/build-tools/bin/autoreconf -vif
 
 ./configure
 make

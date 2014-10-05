@@ -31,7 +31,6 @@ At least the following software must be installed on your system in
 order to create the bundle:
 * Xcode command line tools (i.e. the C/C++ compilers and assorted tools)
 * cmake
-* GNU autoools: automake, autoconf, libtool
 
 Xcode can be installed via the App store. You then still need to install
 the command line tools. On Mac OS X 10.9 and with Xcode 5.1, simply run
@@ -47,15 +46,15 @@ The other stuff can be installed via [Fink](http://finkproject.org/),
 
 If you are using Fink, use this command:
 
-    fink install cmake autoconf2.6 automake1.14 libtool2
+    fink install cmake
 
 If you are using MacPorts, use this command:
 
-    port install cmake autoconf automake libtool
+    port install cmake
 
 If you are using Homebrew, use this command:
 
-    brew install cmake autoconf automake libtool
+    brew install cmake
 
 
 Building the bundle

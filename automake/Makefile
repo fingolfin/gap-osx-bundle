@@ -6,3 +6,7 @@ URL     := "http://ftp.gnu.org/gnu/$(PACKAGE)/$(ARCHIVE)"
 MD5     := "a3c0d9298c6112f5f2c26c639ccaaed7"
 
 include ../common.mk
+
+# Use a custom prefix -- we do not want to ship this package to the
+# user, but rather only use it as a build tool.
+export PREFIX   := $(BASEDIR)/build-tools
