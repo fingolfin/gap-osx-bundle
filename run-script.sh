@@ -28,7 +28,7 @@ env -i \
     CXX="clang++ -stdlib=libc++" \
     CMAKE="`which cmake`" \
     REL_PWD="`relpath $PWD $PREFIX`" \
-    PATH="$PREFIX/bin:/usr/bin:/bin:/usr/sbin:/sbin" \
+    PATH="$PREFIX/bin:$TOOLSDIR/bin:/usr/bin:/bin:/usr/sbin:/sbin" \
     LDFLAGS="-L$PREFIX/lib -Wl,-rpath,$PREFIX" \
     CPPFLAGS="-isystem $PREFIX/include" \
     $*
