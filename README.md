@@ -62,10 +62,10 @@ Building the bundle
 ===================
 Clone this repository, go into the directory, and enter
 
-    make gap
+    make all
 
 Then wait... this can take quite some time. It will download the
-required source code (almost 400 MB), and then compile a lot of stuff.
+required source code (almost 300 MB), and then compile a lot of stuff.
 The result is an .app bundle `GAP.app` which you can move around and
 double click to start GAP.
 
