@@ -10,7 +10,7 @@ export SRCDIR   := $(BASEDIR)/src
 export BUILDDIR := $(BASEDIR)/build
 export TOOLSDIR := $(BASEDIR)/build-tools
 
-all:
+default:
 	@echo Use 'make pkg', where pkg is one of
 	@for pkg in $(PACKAGES) ; do echo "  $$pkg" ; done
 
@@ -25,7 +25,9 @@ BUILDPACKAGES = $(PACKAGES:%=build-%)
 INSTALLPACKAGES = $(PACKAGES:%=install-%)
 CLEANPACKAGES = $(PACKAGES:%=clean-%)
 
-$(PACKAGES): bundle
+all: bundle $(PACKAGES)
+
+$(PACKAGES):
 	$(MAKE) -C $@
 
 fetch: $(FETCHPACKAGES)
