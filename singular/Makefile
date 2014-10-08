@@ -12,6 +12,9 @@ CONFIGURE_PARAMS := \
     --with-gmp=$(PREFIX) \
     --with-flint=$(PREFIX) \
     --with-readline=$(PREFIX) \
-    --without-ntl
+    --with-ntl=$(PREFIX)
 
 include ../common.mk
+
+shell:
+	cd $(BUILDDIR)/$(DIRNAME) && $(RUN) /sw/bin/bash --norc --noprofile
