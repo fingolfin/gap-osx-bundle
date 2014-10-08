@@ -961,3 +961,23 @@ index 9ae40c4..31caee8 100644
    {"RootDir",   'r',    feResDir,   "SINGULAR_ROOT_DIR",    "%b/..",                (char *)""},
    {"DataDir",   'D',    feResDir,   "SINGULAR_DATA_DIR",    "%b/../share/",          (char *)""},
    {"DefaultDir",'d',    feResDir,   "SINGULAR_DEFAULT_DIR",  SINGULAR_DEFAULT_DIR,  (char *)""},
+diff --git a/Singular/extra.cc b/Singular/extra.cc
+index 84bf5cb..94b16bd 100755
+--- a/Singular/extra.cc
++++ b/Singular/extra.cc
+@@ -1071,6 +1071,7 @@ BOOLEAN jjSYSTEM(leftv res, leftv args)
+     }
+     else
+   /*================= absBiFact ======================*/
++  #ifdef HAVE_NTL
+     if (strcmp(sys_cmd, "absFact") == 0)
+     {
+       if (h!=NULL)
+@@ -1103,7 +1104,6 @@ BOOLEAN jjSYSTEM(leftv res, leftv args)
+     }
+     else
+   /* =================== LLL via NTL ==============================*/    
+-  #ifdef HAVE_NTL
+     if (strcmp(sys_cmd, "LLL") == 0)
+     {
+       if (h!=NULL)
