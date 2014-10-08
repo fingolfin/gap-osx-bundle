@@ -1,3 +1,3 @@
 PACKAGES += normaliz
 
-normaliz: gmp
+normaliz: gmp cmake boost

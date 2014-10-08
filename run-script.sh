@@ -26,7 +26,6 @@ env -i \
     HOME=$BASEDIR \
     CC="clang" \
     CXX="clang++ -stdlib=libc++" \
-    CMAKE="`which cmake`" \
     REL_PWD="`relpath $PWD $PREFIX`" \
     PATH="$PREFIX/bin:$TOOLSDIR/bin:/usr/bin:/bin:/usr/sbin:/sbin" \
     LDFLAGS="-L$PREFIX/lib -Wl,-rpath,$PREFIX" \

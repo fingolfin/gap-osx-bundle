@@ -1,2 +1,4 @@
 PACKAGES += cxsc
 
+cxsc: cmake
+

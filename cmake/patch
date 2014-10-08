@@ -1,0 +1,32 @@
+diff --git a/Modules/FindBoost.cmake b/Modules/FindBoost.cmake
+index a57e12c..f5c5db6 100644
+--- a/Modules/FindBoost.cmake
++++ b/Modules/FindBoost.cmake
+@@ -616,7 +616,6 @@ if(NOT Boost_INCLUDE_DIR)
+     list(APPEND _boost_INCLUDE_SEARCH_DIRS PATHS
+       C:/boost/include
+       C:/boost
+-      /sw/local/include
+       )
+   endif()
+ 
+@@ -879,7 +878,6 @@ else()
+     list(APPEND _boost_LIBRARY_SEARCH_DIRS PATHS
+       C:/boost/lib
+       C:/boost
+-      /sw/local/lib
+       )
+   endif()
+ endif()
+diff --git a/Modules/Platform/Darwin.cmake b/Modules/Platform/Darwin.cmake
+index fc3f87e..7e90890 100644
+--- a/Modules/Platform/Darwin.cmake
++++ b/Modules/Platform/Darwin.cmake
+@@ -355,7 +355,3 @@ if(_CMAKE_OSX_SYSROOT_PATH AND EXISTS ${_CMAKE_OSX_SYSROOT_PATH}/usr/include)
+     list(APPEND CMAKE_${lang}_IMPLICIT_INCLUDE_DIRECTORIES ${_CMAKE_OSX_SYSROOT_PATH}/usr/include)
+   endforeach()
+ endif()
+-list(APPEND CMAKE_SYSTEM_PREFIX_PATH
+-  /sw        # Fink
+-  /opt/local # MacPorts
+-  )
