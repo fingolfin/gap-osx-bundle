@@ -8,7 +8,7 @@ export BUNDLE   := $(BASEDIR)/$(BUNDLE_NAME)
 export PREFIX   := $(BUNDLE)/Contents/Resources
 export SRCDIR   := $(BASEDIR)/src
 export BUILDDIR := $(BASEDIR)/build
-export TOOLSDIR := $(BASEDIR)/build-tools
+export TOOLSDIR := $(BASEDIR)/tools
 
 default:
 	@echo Use 'make pkg', where pkg is one of
