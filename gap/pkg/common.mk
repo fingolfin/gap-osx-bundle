@@ -19,9 +19,8 @@ BUILT: build.sh
 endif
 
 fetch:
-	@echo "Nothing to fetch"
 
-build-default:
+build-default: fetch
 	@echo "================================================="
 	@echo "Building $(PACKAGE)"
 	@echo "================================================="
