@@ -1,11 +1,14 @@
 #!/bin/sh -ev
 
-./bootstrap.sh --prefix=$PREFIX --without-libraries=python,mpi -without-icu
+# Note: we do not build all boost libraries to save time (and space).
+# Indeed, for now we only need dynamic_bitset for Normaliz.
+# If new packages require more boost functionality, we can
+# selectively enable it here.
 
-#./b2 -d2 --toolset=darwin --without-python --prefix=$PREFIX
+./bootstrap.sh --prefix=$PREFIX \
+    --without-icu \
+    --with-libraries=atomic
 
-./b2 -d2
+#    --without-libraries=python,mpi 
 
-
-#    --compatibility_version=1.%type_pkg[boost].0 --current_version=1.%type_pkg[boost].0 \
-#    --build-type=complete --layout=tagged variant=release threading=single,multi link=shared
+./b2 -d2 link=shared
