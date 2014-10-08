@@ -12,6 +12,3 @@ include ../common.mk
 
 install-extra:
 	rm -f $(PREFIX)/lib/libflint.a
-
-# TODO: libflint.dylib references the file
-#    $PREFIX/share/flint/CPimport.txt

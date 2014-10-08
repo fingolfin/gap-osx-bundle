@@ -1,6 +1,5 @@
 #PACKAGES += dmg
 
-# TODO: depend on "gap" ?
 dmg: realpath
 
 dmg: bundle

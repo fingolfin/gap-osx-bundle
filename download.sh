@@ -39,8 +39,6 @@ while : ; do
        *)  echo "   invalid MD5 checksum, expected $MD5 but got $COMPUTED_MD5"
            echo "     retrying in 5 seconds..."
            sleep 5
-           # TODO: instead, prompt the user what to do, with
-           # a longer timeout, say 30 seconds?
            rm -f $FILE
            ;;
     esac
