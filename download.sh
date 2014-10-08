@@ -28,7 +28,7 @@ fi
 while : ; do
     if [ ! -e $FILE ] ; then
         echo "   downloading from $URL"
-        curl -O $URL
+        curl -L -O $URL
     fi;
     COMPUTED_MD5=`/usr/bin/openssl md5 $FILE | /usr/bin/cut -d' ' -f2`
     case $COMPUTED_MD5 in
