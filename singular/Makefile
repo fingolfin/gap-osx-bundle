@@ -15,6 +15,3 @@ CONFIGURE_PARAMS := \
     --with-ntl=$(PREFIX)
 
 include ../common.mk
-
-shell:
-	cd $(BUILDDIR)/$(DIRNAME) && $(RUN) /sw/bin/bash --norc --noprofile
