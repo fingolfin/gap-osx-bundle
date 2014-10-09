@@ -10,7 +10,9 @@ all: install
 
 build: realpath
 
-install: realpath
+install: $(PREFIX)/bin/realpath
+
+$(PREFIX)/bin/realpath: realpath
 	install -m 755 -d $(PREFIX)/bin/
 	install -m 755 realpath $(PREFIX)/bin/
 
@@ -20,4 +22,4 @@ realpath: realpath.c
 clean:
 	rm -f realpath
 
-.PHONY: all realpath clean
+.PHONY: all build clean install
