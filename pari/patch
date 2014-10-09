@@ -1,0 +1,76 @@
+diff --git a/config/paricfg.h.SH b/config/paricfg.h.SH
+index 9389814..0bca8d2 100644
+--- a/config/paricfg.h.SH
++++ b/config/paricfg.h.SH
+@@ -29,8 +29,6 @@ EOT
+ 
+ cat >> $file << EOT
+ #define UNIX
+-#define GPHELP "$gphelp"
+-#define GPDATADIR "$datadir"
+ #define SHELL_Q '\\$shell_q'
+ 
+ #define PARIVERSION "GP/PARI CALCULATOR Version ${version}.${patch} (${status})"
+diff --git a/doc/gphelp.in b/doc/gphelp.in
+index 79d3d11..9604960 100755
+--- a/doc/gphelp.in
++++ b/doc/gphelp.in
+@@ -43,7 +43,8 @@
+ #  GPXDVI: which 'xdvi' program to call (xdvi by default)
+ #
++use Cwd qw(abs_path);
+ $version= "@version@";
+-$datadir= "@datadir@";
++$datadir= abs_path(__FILE__ . "/../../share/pari");
+ # no expanded material (@key@) below
+ $wwwsite= "http://pari.math.u-bordeaux.fr/";
+ 
+diff --git a/src/language/init.c b/src/language/init.c
+index 4aaa79b..7992abc 100644
+--- a/src/language/init.c
++++ b/src/language/init.c
+@@ -26,6 +26,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. */
+ #    include <process.h>
+ #  endif
+ #endif
++#include <sys/param.h>
++#include <mach-o/dyld.h>
+ 
+ const double LOG2    = 0.6931471805599453; /* log(2) */
+ const double LOG10_2 = 0.3010299956639812; /* log_10(2) */
+@@ -547,12 +549,22 @@ pari_init_defaults(void)
+   pari_datadir = os_getenv("GP_DATA_DIR");
+   if (!pari_datadir)
+   {
++#if 1
++    char buf[PATH_MAX];
++    uint32_t bufsize = PATH_MAX;
++    if (_NSGetExecutablePath(buf, &bufsize) == 0) {
++        strlcat(buf, "/../../share/pari", PATH_MAX);
++        pari_datadir = realpath(buf, 0);
++    }
++#else
++
+ #if defined(_WIN32) || defined(__CYGWIN32__)
+     if (paricfg_datadir[0]=='@' && paricfg_datadir[1]==0)
+       pari_datadir = win32_datadir();
+     else
+ #endif
+       pari_datadir = pari_strdup(paricfg_datadir);
++#endif
+   }
+   else pari_datadir= pari_strdup(pari_datadir);
+   for (i=0; i<c_LAST; i++) gp_colors[i] = c_NONE;
+diff --git a/src/language/paricfg.c b/src/language/paricfg.c
+index 8c58180..ca33bc9 100644
+--- a/src/language/paricfg.c
++++ b/src/language/paricfg.c
+@@ -12,7 +12,7 @@ with the package; see the file 'COPYING'. If not, write to the Free Software
+ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. */
+ #include "pari.h"
+ 
+-const char *paricfg_datadir = GPDATADIR;
++const char *paricfg_datadir = "/";
+ const char *paricfg_version = PARIVERSION;
+ const char *paricfg_buildinfo = PARIINFO;
+ const long  paricfg_version_code = PARI_VERSION_CODE;
