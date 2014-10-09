@@ -6,7 +6,7 @@ export BASEDIR  := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
 export BUNDLE   := $(BASEDIR)/$(BUNDLE_NAME)
 export PREFIX   := $(BUNDLE)/Contents/Resources
 export SRCDIR   := $(BASEDIR)/src
-export BUILDDIR := $(BASEDIR)/build
+export BUILDDIR := $(BASEDIR)/build/$(DIRNAME)
 export TOOLSDIR := $(BASEDIR)/tools
 
 RUN   := "$(BASEDIR)/run-script.sh"
@@ -29,7 +29,7 @@ INSTALLED: install.sh
 endif
 
 clean:
-	rm -rf $(BUILDDIR)/$(DIRNAME)
+	rm -rf $(BUILDDIR)
 	rm -f BUILT INSTALLED
 
 clean-extra:
@@ -51,15 +51,15 @@ extract-default: fetch
 	@echo "Extracting $(PACKAGE)-$(VERSION)"
 	@echo "================================================="
 	@mkdir -p $(PREFIX)
-	@mkdir -p $(BUILDDIR)
-	@rm -rf $(BUILDDIR)/$(DIRNAME)
+	@mkdir -p $(dir $(BUILDDIR))
+	@rm -rf $(BUILDDIR)
 	@if [[ $(ARCHIVE) =~ \.zip$$ ]] ; then \
-	     unzip $(SRCDIR)/$(ARCHIVE) -d $(BUILDDIR) ; \
+	     unzip $(SRCDIR)/$(ARCHIVE) -d $(dir $(BUILDDIR)) ; \
 	 else \
-	     tar xvf $(SRCDIR)/$(ARCHIVE) -C $(BUILDDIR) ; \
+	     tar xvf $(SRCDIR)/$(ARCHIVE) -C $(dir $(BUILDDIR)) ; \
 	 fi
 	@if [ -f $(CURDIR)/patch ] ; then \
-		 cd $(BUILDDIR)/$(DIRNAME) && patch -p1 < $(CURDIR)/patch ; \
+		 cd $(BUILDDIR) && patch -p1 < $(CURDIR)/patch ; \
 	 fi
 
 extract-extra:
@@ -71,9 +71,9 @@ build-default: extract
 	@echo "Building $(PACKAGE)-$(VERSION)"
 	@echo "================================================="
 	if [ -f $(CURDIR)/compile.sh ] ; then \
-	     cd $(BUILDDIR)/$(DIRNAME) && $(RUN) $(CURDIR)/compile.sh ; \
+	     cd $(BUILDDIR) && $(RUN) $(CURDIR)/compile.sh ; \
 	 else \
-	     cd $(BUILDDIR)/$(DIRNAME) && \
+	     cd $(BUILDDIR) && \
 	     $(RUN) ./configure --prefix=$(PREFIX) $(CONFIGURE_PARAMS) && \
 	     $(RUN) make -j8 ; \
 	 fi
@@ -88,9 +88,9 @@ install-default:
 	@echo "Installing $(PACKAGE)-$(VERSION)"
 	@echo "================================================="
 	if [ -f $(CURDIR)/install.sh ] ; then \
-	     cd $(BUILDDIR)/$(DIRNAME) && $(RUN) $(CURDIR)/install.sh ; \
+	     cd $(BUILDDIR) && $(RUN) $(CURDIR)/install.sh ; \
 	 else \
-	     cd $(BUILDDIR)/$(DIRNAME) && $(RUN) make install ; \
+	     cd $(BUILDDIR) && $(RUN) make install ; \
 	 fi
 	rm -f $(PREFIX)/lib/*.la
 ifdef FILES_TO_FIX

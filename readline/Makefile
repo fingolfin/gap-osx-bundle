@@ -23,7 +23,7 @@ fetch-extra:
 	    ../download.sh $(PATCH_URL)008 ee1c04072154826870848d8b218d7b04
 
 extract-extra:
-	cd $(BUILDDIR)/$(DIRNAME) && \
-	    for i in `seq -w 001 008` ; do \
-	        patch -p0 < $(SRCDIR)/readline63-$$i ; \
+	cd $(BUILDDIR) && \
+	    for file in $(SRCDIR)/readline63-* ; do \
+	        patch -p0 < $$file ; \
 	    done

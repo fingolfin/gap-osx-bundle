@@ -3,7 +3,7 @@ export BASEDIR  := $(abspath $(dir $(lastword $(MAKEFILE_LIST)))/..)
 export BUNDLE   := $(BASEDIR)/$(BUNDLE_NAME)
 export PREFIX   := $(BUNDLE)/Contents/Resources
 export SRCDIR   := $(BASEDIR)/src
-export BUILDDIR := $(BASEDIR)/build
+export BUILDDIR := $(BASEDIR)/build/$(DIRNAME)
 export TOOLSDIR := $(BASEDIR)/build-tools
 
 all: install
