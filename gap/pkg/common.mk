@@ -32,7 +32,7 @@ build-default: fetch
 	$(BASEDIR)/fix_install_names.sh $(PREFIX) $(BUILDDIR)/bin/*/*
 	cd $(BUILDDIR) && rm -rf *.la .libs src/.deps config.log config.status Makefile autom4te.cache/ doc/*.log
 	touch BUILT
-	@mkdir -p $(PREFIX)/pkgs/gap
+	@mkdir -p $(PREFIX)/pkgs/gap-pkgs
 	@echo $(PACKAGE)-$(VERSION) > $(PREFIX)/pkgs/gap-pkgs/$(PACKAGE)
 
 build-extra:
