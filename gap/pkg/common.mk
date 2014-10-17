@@ -32,6 +32,8 @@ build-default: fetch
 	$(BASEDIR)/fix_install_names.sh $(PREFIX) $(BUILDDIR)/bin/*/*
 	cd $(BUILDDIR) && rm -rf *.la .libs src/.deps config.log config.status Makefile autom4te.cache/ doc/*.log
 	touch BUILT
+	@mkdir -p $(PREFIX)/pkgs/gap
+	@echo $(PACKAGE)-$(VERSION) > $(PREFIX)/pkgs/gap-pkgs/$(PACKAGE)
 
 build-extra:
 
@@ -43,6 +45,7 @@ install:
 
 clean:
 	rm -f BUILT
+	rm -f $(PREFIX)/pkgs/gap-pkgs/$(PACKAGE)
 	@echo "TODO: implement clean?!?"
 
 .PHONY: all fetch build build-default build-extra install clean

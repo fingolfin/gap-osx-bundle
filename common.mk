@@ -30,6 +30,7 @@ endif
 
 clean:
 	rm -rf $(BUILDDIR)
+	rm -f $(PREFIX)/pkgs/$(PACKAGE)
 	rm -f BUILT INSTALLED
 
 clean-extra:
@@ -96,6 +97,8 @@ install-default:
 ifdef FILES_TO_FIX
 	cd $(PREFIX) && $(BASEDIR)/fix_install_names.sh $(PREFIX) $(FILES_TO_FIX)
 endif
+	@mkdir -p $(PREFIX)/pkgs
+	@echo $(PACKAGE)-$(VERSION) > $(PREFIX)/pkgs/$(PACKAGE)
 
 install-extra:
 
