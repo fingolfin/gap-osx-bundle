@@ -22,4 +22,6 @@ realpath: realpath.c
 clean:
 	rm -f realpath
 
-.PHONY: all build clean install
+fetch:
+
+.PHONY: all build clean install fetch
