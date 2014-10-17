@@ -7,7 +7,7 @@ DMG="$VOLUME.dmg"
 
 # Create fresh empty dmg
 rm -f "$TMP_DMG"
-hdiutil create -size 1500m -fs HFS+ -volname "$VOLUME" "$TMP_DMG"
+hdiutil create -size 1800m -fs HFS+ -volname "$VOLUME" "$TMP_DMG"
 
 
 # Mount it, and parse the output for the mount path
