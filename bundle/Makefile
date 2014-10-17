@@ -1,6 +1,13 @@
+BUNDLE_VERSION=0.2
+GAP_VERSION=4.7.5
+
+
 all: bundle
 
-bundle:
+Info.plist: Info.plist.in
+	sed -e "s/@BUNDLE_VERSION@/$(BUNDLE_VERSION)/" -e "s/@GAP_VERSION@/$(GAP_VERSION)/" < $< > $@
+
+bundle: Info.plist
 	@mkdir -p $(BUNDLE)/Contents
 	@install -m 644 Info.plist $(BUNDLE)/Contents/
 
