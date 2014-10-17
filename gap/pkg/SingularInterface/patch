@@ -1,0 +1,37 @@
+diff --git a/src/libsing.cc b/src/libsing.cc
+index 7f215b5..bb22e6a 100644
+--- a/src/libsing.cc
++++ b/src/libsing.cc
+@@ -24,6 +24,10 @@
+ #include "matrix.h"
+ #include "poly.h"
+ 
++#include <libgen.h>
++#include <sys/param.h>
++#include <mach-o/dyld.h>
++
+ /******************** The interface to GAP ***************/
+ 
+ static Obj Func_SI_debug(Obj self, Obj obj)
+@@ -222,8 +226,19 @@ static Int InitLibrary(StructInitInfo* module)
+ 
+     // Init Singular. Note that siInit() expects the path to
+     // "the" Singular binary.
+-    char path[] = LIBSINGULAR_HOME "/bin/Singular";
+-    siInit(path);
++    //char path[] = "../../../../bin/Singular";
++    char *path = 0;
++    char buf[PATH_MAX];
++    uint32_t bufsize = PATH_MAX;
++    if (_NSGetExecutablePath(buf, &bufsize) == 0) {
++        strlcpy(buf, dirname(buf), PATH_MAX);
++        strlcat(buf, "/../../../../bin/Singular", PATH_MAX);
++        path = realpath(buf, 0);
++    }
++
++    siInit(path);
++    free(path);
++
+     currentVoice = feInitStdin(NULL);
+     WerrorS_callback = _SI_ErrorCallback;
+ 
