@@ -22,6 +22,15 @@ echo "  \_/\_/\___|_\__\___/_|_|_\___|"
 echo ""
 echo "Welcome to GAP.app!"
 echo ""
+echo -n "This bundle includes "
+for i in "$PREFIX/pkgs/"* ; do
+    if [ -f $i ] ; then
+        echo -n `cat $i`", "
+    fi
+done
+echo -n "and most GAP packages."
+echo ""
+echo ""
 # echo "To start GAP, type 'gap'."
 # echo "To start Singular, type 'Singular'."
 # echo "To start Pari, type 'gp'."
