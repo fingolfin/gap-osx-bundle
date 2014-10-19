@@ -14,7 +14,7 @@ FETCH := "$(BASEDIR)/download.sh"
 
 all: INSTALLED
 
-BUILT: #Makefile
+BUILT: Makefile
 	$(MAKE) fetch build
 
 INSTALLED: BUILT Makefile
