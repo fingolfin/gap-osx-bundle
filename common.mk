@@ -98,7 +98,7 @@ ifdef FILES_TO_FIX
 	cd $(PREFIX) && $(BASEDIR)/fix_install_names.sh $(PREFIX) $(FILES_TO_FIX)
 endif
 	@mkdir -p $(PREFIX)/pkgs
-	@echo $(PACKAGE)-$(VERSION) > $(PREFIX)/pkgs/$(PACKAGE)
+	echo $(PACKAGE)-$(VERSION) > $(PREFIX)/pkgs/$(PACKAGE)
 
 install-extra:
 
