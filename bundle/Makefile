@@ -7,7 +7,10 @@ all: bundle
 Info.plist: Info.plist.in
 	sed -e "s/@BUNDLE_VERSION@/$(BUNDLE_VERSION)/" -e "s/@GAP_VERSION@/$(GAP_VERSION)/" < $< > $@
 
-bundle: Info.plist
+gap.start: gap.start.in
+	sed -e "s/@BUNDLE_VERSION@/$(BUNDLE_VERSION)/" -e "s/@GAP_VERSION@/$(GAP_VERSION)/" < $< > $@
+
+bundle: Info.plist gap.start
 	@mkdir -p $(BUNDLE)/Contents
 	@install -m 644 Info.plist $(BUNDLE)/Contents/
 
