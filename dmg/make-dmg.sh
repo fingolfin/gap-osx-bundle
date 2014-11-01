@@ -13,7 +13,7 @@ hdiutil create -size 1800m -fs HFS+ -volname "$VOLUME" "$TMP_DMG"
 # Mount it, and parse the output for the mount path
 mount_point=`hdiutil attach -plist "$TMP_DMG" \
   | tr -d "\n\r" \
-  | sed 's|.*<key>mount-point</key>\s*<string>\([^<]*\)</string>.*|\1|'`
+  | /usr/bin/sed -E 's|.*<key>mount-point</key>[[:space:]]*<string>([^<]*)</string>.*|\1|'`
 
 echo "Mount point: $mount_point"
 VOLUME=`basename "$mount_point"`
