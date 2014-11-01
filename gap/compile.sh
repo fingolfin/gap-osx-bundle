@@ -24,6 +24,7 @@ rm -f config.log config.status bin/*/config.log
 
 # remove various files containing hard coded paths
 rm -f bin/*/*.o
+rm -f Makefile
 rm -f Makefile-default64
 rm -f bin/*/Makefile
 rm -f bin/*/config.status
