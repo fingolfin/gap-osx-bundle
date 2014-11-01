@@ -28,7 +28,7 @@ SetFile -a C "$mount_point"
 
 # Copy files
 
-cp -r ../GAP.app "$mount_point"
+cp -R ../GAP.app "$mount_point"
 cp meta/README "$mount_point"
 cp meta/LICENSE "$mount_point"
 
