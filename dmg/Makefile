@@ -1,7 +1,7 @@
 all: dmg
 
 dmg:
-	./make-dmg.sh
+	../run-script.sh ./make-dmg.sh
 
 clean:
 	rm -f *.dmg
