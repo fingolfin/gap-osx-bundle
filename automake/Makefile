@@ -1,8 +1,8 @@
 PACKAGE := automake
-VERSION := 1.14
+VERSION := 1.15
 ARCHIVE := "$(PACKAGE)-$(VERSION).tar.gz"
 DIRNAME := "$(PACKAGE)-$(VERSION)"
 URL     := "http://ftp.gnu.org/gnu/$(PACKAGE)/$(ARCHIVE)"
-MD5     := "a3c0d9298c6112f5f2c26c639ccaaed7"
+MD5     := "716946a105ca228ab545fc37a70df3a3"
 
 include ../common.mk
