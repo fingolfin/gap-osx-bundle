@@ -1,8 +1,8 @@
 diff --git a/Singular/dyn_modules/syzextra/syzextra.cc b/Singular/dyn_modules/syzextra/syzextra.cc
-index b07819c..dd56981 100644
+index 9d574d8..2ca16e5 100644
 --- a/Singular/dyn_modules/syzextra/syzextra.cc
 +++ b/Singular/dyn_modules/syzextra/syzextra.cc
-@@ -2404,12 +2404,12 @@ bool CLCM::Check(const poly m) const
+@@ -3087,12 +3087,12 @@ bool CLCM::Check(const poly m) const
  CCacheCompare::CCacheCompare(): m_ring(currRing) {}
  
  
@@ -19,33 +19,13 @@ index b07819c..dd56981 100644
 +// template class std::map<TCacheKey, TCacheValue, struct CCacheCompare>;
 +// template class std::map<int, TP2PCache>;
  
+ template class std::stack <sBucket_pt>;
  
- 
-diff --git a/Singular/extra.cc b/Singular/extra.cc
-index 84bf5cb..94b16bd 100755
---- a/Singular/extra.cc
-+++ b/Singular/extra.cc
-@@ -1071,6 +1071,7 @@ BOOLEAN jjSYSTEM(leftv res, leftv args)
-     }
-     else
-   /*================= absBiFact ======================*/
-+  #ifdef HAVE_NTL
-     if (strcmp(sys_cmd, "absFact") == 0)
-     {
-       if (h!=NULL)
-@@ -1103,7 +1104,6 @@ BOOLEAN jjSYSTEM(leftv res, leftv args)
-     }
-     else
-   /* =================== LLL via NTL ==============================*/    
--  #ifdef HAVE_NTL
-     if (strcmp(sys_cmd, "LLL") == 0)
-     {
-       if (h!=NULL)
 diff --git a/Singular/misc_ip.cc b/Singular/misc_ip.cc
-index d5bdf36..5f699ee 100644
+index 0663294..63f9b72 100644
 --- a/Singular/misc_ip.cc
 +++ b/Singular/misc_ip.cc
-@@ -894,6 +894,7 @@ char * versionString(/*const bool bShowDetails = false*/ )
+@@ -893,6 +893,7 @@ char * versionString(/*const bool bShowDetails = false*/ )
                StringAppendS("}\n");
  #undef SI_SHOW_BUILTIN_MODULE
  
@@ -53,7 +33,7 @@ index d5bdf36..5f699ee 100644
                StringAppend("AC_CONFIGURE_ARGS = %s,\n"
                             "CC = %s,FLAGS : %s,\n"
                             "CXX = %s,FLAGS : %s,\n"
-@@ -903,6 +904,7 @@ char * versionString(/*const bool bShowDetails = false*/ )
+@@ -902,6 +903,7 @@ char * versionString(/*const bool bShowDetails = false*/ )
                "(ver: " __VERSION__ ")"
  #endif
                "\n",AC_CONFIGURE_ARGS, CC,CFLAGS, CXX,CXXFLAGS,  DEFS,CPPFLAGS,  LDFLAGS,LIBS);
@@ -162,7 +142,7 @@ index d0cafc2..eed6b4a 100644
     your system. */
  #undef PTHREAD_CREATE_JOINABLE
 diff --git a/configure b/configure
-index 6d84e4c..471cd71 100755
+index 2a6f429..e3149dc 100755
 --- a/configure
 +++ b/configure
 @@ -637,8 +637,6 @@ ac_subst_vars='am__EXEEXT_FALSE
@@ -174,7 +154,7 @@ index 6d84e4c..471cd71 100755
  SI_COUNTEDREF_AUTOLOAD
  SI_BUILTIN_ORDER_FALSE
  SI_BUILTIN_ORDER_TRUE
-@@ -22240,293 +22238,6 @@ fi
+@@ -22285,293 +22283,6 @@ fi
  
  
  
@@ -469,7 +449,7 @@ index 6d84e4c..471cd71 100755
  echo "/* --------------- Compiler/linker flags:  --------------- */";
  
 diff --git a/configure.ac b/configure.ac
-index b5064fd..66097f0 100644
+index 7a3b7aa..c31c863 100644
 --- a/configure.ac
 +++ b/configure.ac
 @@ -161,58 +161,6 @@ fi[]dnl
@@ -532,10 +512,10 @@ index b5064fd..66097f0 100644
  
  
 diff --git a/factory/configure b/factory/configure
-index 9260c90..a51c340 100755
+index 1294675..468ed38 100755
 --- a/factory/configure
 +++ b/factory/configure
-@@ -21525,7 +21525,7 @@ fi
+@@ -21545,7 +21545,7 @@ fi
  #AC_SUBST(uninstalltargets)
  
  factory_version="4.0.1"
@@ -545,10 +525,10 @@ index 9260c90..a51c340 100755
  
  
 diff --git a/factory/configure.ac b/factory/configure.ac
-index bb62b84..cbed6e1 100644
+index efc17d7..d02d2f6 100644
 --- a/factory/configure.ac
 +++ b/factory/configure.ac
-@@ -384,7 +384,7 @@ AC_SUBST(MAKEHEADERFLAGS)
+@@ -389,7 +389,7 @@ AC_SUBST(MAKEHEADERFLAGS)
  #AC_SUBST(uninstalltargets)
  
  factory_version="4.0.1"
@@ -558,12 +538,12 @@ index bb62b84..cbed6e1 100644
  
  AH_TEMPLATE([FACTORYVERSION], [factory version])
 diff --git a/libpolys/_config.h.in b/libpolys/_config.h.in
-index 2ce5362..e9b8c40 100644
+index 692c963..d12ea5d 100644
 --- a/libpolys/_config.h.in
 +++ b/libpolys/_config.h.in
-@@ -6,12 +6,6 @@
- /* integrate python */
- #undef EMBED_PYTHON
+@@ -3,12 +3,6 @@
+ /* DISABLE_GMP_CPP */
+ #undef DISABLE_GMP_CPP
  
 -/* GMP_CFLAGS */
 -#undef GMP_CFLAGS
@@ -574,7 +554,7 @@ index 2ce5362..e9b8c40 100644
  /* Define if GMP is version 3.xxx */
  #undef GMP_VERSION_3
  
-@@ -163,12 +157,6 @@
+@@ -160,12 +154,6 @@
  /* Define to 1 if your C compiler doesn't accept -c and -o together. */
  #undef NO_MINUS_C_MINUS_O
  
@@ -588,14 +568,13 @@ index 2ce5362..e9b8c40 100644
  #undef OM_NDEBUG
  
 diff --git a/libpolys/configure b/libpolys/configure
-index 8ea20a7..60e9f79 100755
+index 2200504..f989cc4 100755
 --- a/libpolys/configure
 +++ b/libpolys/configure
-@@ -21553,28 +21553,6 @@ fi
+@@ -21299,27 +21299,6 @@ $as_echo "#define NOSTREAMIO 1" >>confdefs.h
+ # AX_PYTHON_WITH_VERSION([2.4])
  
  
- 
--
 -cat >>confdefs.h <<_ACEOF
 -#define NTL_CFLAGS "$NTL_CFLAGS"
 -_ACEOF
@@ -621,12 +600,12 @@ index 8ea20a7..60e9f79 100755
  # AC_DEFINE_UNQUOTED([FLINT_LIBS],"$FLINT_LIBS",[FLINT_LIBS])
  
 diff --git a/libpolys/configure.ac b/libpolys/configure.ac
-index 74de8b7..fb34df2 100644
+index 4614241..c2176b0 100644
 --- a/libpolys/configure.ac
 +++ b/libpolys/configure.ac
 @@ -129,12 +129,6 @@ AC_DEFINE([NOSTREAMIO],[1],[DISABLE_GMP_CPP])
- AX_PYTHON_DEFAULT()
- AX_PYTHON_WITH_VERSION([2.4])
+ # AX_PYTHON_DEFAULT()
+ # AX_PYTHON_WITH_VERSION([2.4])
  
 -AC_DEFINE_UNQUOTED([NTL_CFLAGS],"$NTL_CFLAGS",[NTL_CFLAGS])
 -AC_DEFINE_UNQUOTED([NTL_LIBS],"$NTL_LIBS",[NTL_LIBS])
@@ -638,7 +617,7 @@ index 74de8b7..fb34df2 100644
  # AC_DEFINE_UNQUOTED([FLINT_LIBS],"$FLINT_LIBS",[FLINT_LIBS])
  
 diff --git a/libpolys/libpolys-config.in b/libpolys/libpolys-config.in
-index aeebd4d..4e4c371 100755
+index 7e3d26e..72c6e5b 100755
 --- a/libpolys/libpolys-config.in
 +++ b/libpolys/libpolys-config.in
 @@ -24,16 +24,10 @@
@@ -650,7 +629,7 @@ index aeebd4d..4e4c371 100755
 -#includedir=${prefix}/include
 -#libdir=${exec_prefix}/lib
 -
--prefix=@prefix@ 
+-prefix=@prefix@
 -exec_prefix=@exec_prefix@
 -
 -includedir=@includedir@
@@ -666,14 +645,14 @@ index aeebd4d..4e4c371 100755
  	;;
  
      --cflags)
--    #### @FACTORY_INCLUDES@ 
+-    #### @FACTORY_INCLUDES@
 -	${ECHOn} " -I${includedir} -I${includedir}/singular @SINGULAR_CFLAGS@ @NTL_CFLAGS@ @GMP_CFLAGS@ "
 +	${ECHOn} " -I${includedir} -I${includedir}/singular "
  	;;
  
      --libs)
 diff --git a/libsingular-config.in b/libsingular-config.in
-index 67f602d..36e12e1 100755
+index 11ac23d..a9fd093 100755
 --- a/libsingular-config.in
 +++ b/libsingular-config.in
 @@ -24,16 +24,10 @@
@@ -685,7 +664,7 @@ index 67f602d..36e12e1 100755
 -#includedir=${prefix}/include
 -#libdir=${exec_prefix}/lib
 -
--prefix=@prefix@ 
+-prefix=@prefix@
 -exec_prefix=@exec_prefix@
 -
 -includedir=@includedir@
@@ -701,7 +680,7 @@ index 67f602d..36e12e1 100755
  	;;
  
      --cflags)
--    #### @FACTORY_INCLUDES@ 
+-    #### @FACTORY_INCLUDES@
 -	${ECHOn} " -I${includedir} -I${includedir}/singular @SINGULAR_CFLAGS@ @FLINT_CFLAGS@ @NTL_CFLAGS@ @GMP_CFLAGS@ "
 +	${ECHOn} " -I${includedir} -I${includedir}/singular "
  	;;
@@ -750,10 +729,10 @@ index 27c0db0..78c870b 100644
  #undef SINGULAR_CFLAGS
  
 diff --git a/resources/configure b/resources/configure
-index 06a2392..8837ea0 100755
+index 988750f..4da5282 100755
 --- a/resources/configure
 +++ b/resources/configure
-@@ -18222,180 +18222,6 @@ ac_compiler_gnu=$ac_cv_c_compiler_gnu
+@@ -18231,180 +18231,6 @@ ac_compiler_gnu=$ac_cv_c_compiler_gnu
  
  ##### SEE http://www.gnu.org/prep/standards/html_node/Directory-Variables.html
  
@@ -935,7 +914,7 @@ index 06a2392..8837ea0 100755
  
  cat >confcache <<\_ACEOF
 diff --git a/resources/configure.ac b/resources/configure.ac
-index 14c6d1f..9015daf 100644
+index 3404032..66a739d 100644
 --- a/resources/configure.ac
 +++ b/resources/configure.ac
 @@ -46,29 +46,5 @@ LT_INIT
