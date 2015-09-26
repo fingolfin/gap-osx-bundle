@@ -1,9 +1,9 @@
 PACKAGE := flint
-VERSION := 2.4.4
+VERSION := 2.5.2
 ARCHIVE := "$(PACKAGE)-$(VERSION).tar.gz"
 DIRNAME := "$(PACKAGE)-$(VERSION)"
 URL     := "http://www.flintlib.org/$(ARCHIVE)"
-MD5     := "b527fe3a49fd02a0367227fe8ec9cbe4"
+MD5     := "cda885309362150196aed66a5e0f0383"
 
 CONFIGURE_PARAMS := --with-gmp=$(PREFIX) --with-mpfr=$(PREFIX) \
 	--disable-static 
