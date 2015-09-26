@@ -1,3 +1,5 @@
+GAP_VERSION=`cat $(BASEDIR)/GAP/VERSION`
+
 all: dmg
 
 dmg:

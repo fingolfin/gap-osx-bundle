@@ -1,6 +1,6 @@
 #!/bin/sh -ex
 
-VOLUME="GAP-4.7.5"
+VOLUME="GAP_4.7.6"
 TMP_DMG="TEMP.dmg"
 DMG="$VOLUME.dmg"
 
@@ -16,7 +16,7 @@ mount_point=`hdiutil attach -plist "$TMP_DMG" \
   | /usr/bin/sed -E 's|.*<key>mount-point</key>[[:space:]]*<string>([^<]*)</string>.*|\1|'`
 
 echo "Mount point: $mount_point"
-VOLUME=`basename "$mount_point"`
+VOLUME_DIR=`basename "$mount_point"`
 
 # Setup icon
 cp meta/VolumeIcon.icns "$mount_point/.VolumeIcon.icns"
@@ -35,14 +35,14 @@ cp meta/LICENSE "$mount_point"
 # Set window position, view style, icon positions etc.
 osascript << EOF
 tell application "Finder"
-	tell disk "$VOLUME"
+	tell disk "$VOLUME_DIR"
 		open
 
 		tell container window
-			set bounds to {200, 100, 700, 400}
+			set current view to icon view
 			set toolbar visible to false
 			set statusbar visible to false
-			set current view to icon view
+			set bounds to {200, 100, 700, 400}
 		end tell
 
 		-- Adjust Icon & Text Sizes
