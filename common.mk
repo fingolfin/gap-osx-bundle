@@ -1,5 +1,5 @@
-# Global rules for packages that contain common logic for fetching sources,
-# running compile.sh and install.sh scripts and cleanup.
+# Global rules for packages; provides common logic for fetching sources,
+# running compile.sh and install.sh scripts, and cleanup.
 
 export BUNDLE_NAME := GAP.app
 export BASEDIR  := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
