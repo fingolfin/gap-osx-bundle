@@ -1,8 +1,8 @@
 PACKAGE := libtool
-VERSION := 2.4.2
+VERSION := 2.4.6
 ARCHIVE := "$(PACKAGE)-$(VERSION).tar.gz"
 DIRNAME := "$(PACKAGE)-$(VERSION)"
 URL     := "http://ftp.gnu.org/gnu/$(PACKAGE)/$(ARCHIVE)"
-MD5     := "d2f3b7d4627e69e13514a40e72a24d50"
+MD5     := "addf44b646ddb4e3919805aa88fa7c5e"
 
 include ../common.mk
