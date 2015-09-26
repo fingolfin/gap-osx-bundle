@@ -62,6 +62,12 @@ check:
 	@echo
 	@echo "Checking for files containing '/sw/'"
 	@fgrep -rl /sw/ $(BUNDLE_NAME) || :
+	@echo
+	@echo "Checking for files containing '$(HOME)'"
+	@fgrep -rl $(HOME) $(BUNDLE_NAME) || :
+	@echo
+	@echo "Checking for files containing '$(USER)'"
+	@fgrep -rl $(USER) $(BUNDLE_NAME) || :
 
 
 .PHONY: subdirs $(PACKAGES)
