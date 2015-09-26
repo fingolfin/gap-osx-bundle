@@ -1,6 +1,4 @@
 PACKAGE := NormalizInterface
-VERSION := 0.0
-DIRNAME := "NormalizInterface"
 
 GIT_REPO := "https://github.com/fingolfin/NormalizInterface"
 

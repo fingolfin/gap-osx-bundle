@@ -4,7 +4,7 @@
 export BASEDIR  := $(abspath $(dir $(lastword $(MAKEFILE_LIST)))/../..)
 export PREFIX   := $(BASEDIR)/GAP.app/Contents/Resources
 export SRCDIR   := $(BASEDIR)/src
-export BUILDDIR := $(PREFIX)/lib/gap/pkg/$(DIRNAME)
+export BUILDDIR := $(PREFIX)/lib/gap/pkg/$(PACKAGE)*
 
 RUN:="$(BASEDIR)/run-script.sh"
 FETCH:="$(BASEDIR)/download.sh"
@@ -33,7 +33,7 @@ build-default: fetch
 	cd $(BUILDDIR) && rm -rf *.la .libs src/.deps config.log config.status Makefile autom4te.cache/ doc/*.log
 	touch BUILT
 	@mkdir -p $(PREFIX)/pkgs/gap-pkgs
-	@echo $(PACKAGE)-$(VERSION) > $(PREFIX)/pkgs/gap-pkgs/$(PACKAGE)
+	@echo $(PACKAGE) > $(PREFIX)/pkgs/gap-pkgs/$(PACKAGE)
 
 build-extra:
 

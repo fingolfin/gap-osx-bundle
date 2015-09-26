@@ -1,6 +1,4 @@
 PACKAGE := SingularInterface
-VERSION := 0.0
-DIRNAME := "SingularInterface"
 
 GIT_REPO := "https://github.com/gap-system/SingularInterface"
 

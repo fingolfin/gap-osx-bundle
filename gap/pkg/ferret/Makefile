@@ -1,6 +1,4 @@
 PACKAGE := ferret
-VERSION := 0.0
-DIRNAME := "ferret"
 
 HG_REPO := "https://bitbucket.org/ChrisJefferson/ferret"
 

@@ -1,6 +1,4 @@
 PACKAGE := float
-VERSION := 0.6.2
-DIRNAME := "$(PACKAGE)-$(VERSION)"
 
 include ../common.mk
 
