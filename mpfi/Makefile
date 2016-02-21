@@ -7,6 +7,6 @@ MD5     := "ce788b73b62eca1945db2ef453ee1364"
 # see https://perso.ens-lyon.fr/nathalie.revol/software.html
 
 CONFIGURE_PARAMS := --disable-static
-FILES_TO_FIX := lib/libmpfi.0.dylib
+FILES_TO_FIX := lib/libmpfi.*.dylib
 
 include ../common.mk

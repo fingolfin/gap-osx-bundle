@@ -6,6 +6,6 @@ URL     := "http://www.mpfr.org/$(PACKAGE)-$(VERSION)/$(ARCHIVE)"
 MD5     := "5fdfa3cfa5c86514ee4a241a1affa138"
 
 CONFIGURE_PARAMS := --disable-static
-FILES_TO_FIX := lib/libmpfr.4.dylib
+FILES_TO_FIX := lib/libmpfr.*.dylib
 
 include ../common.mk

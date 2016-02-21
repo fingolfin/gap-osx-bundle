@@ -16,6 +16,6 @@ CONFIGURE_PARAMS := \
     --enable-cxx \
     --with-pic
 
-FILES_TO_FIX := lib/libgmp.10.dylib lib/libgmpxx.4.dylib
+FILES_TO_FIX := lib/libgmp.*.dylib lib/libgmpxx.*.dylib
 
 include ../common.mk
