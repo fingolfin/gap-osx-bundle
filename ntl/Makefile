@@ -5,6 +5,8 @@ DIRNAME := "$(PACKAGE)-$(VERSION)"
 URL     := "http://www.shoup.net/ntl/$(ARCHIVE)"
 MD5     := "00b7e1cab9bf9b0eae2ad9beab4b0fc9"
 
+# TODO: consider switching to 9.6.4
+
 FILES_TO_FIX := lib/libntl.5.dylib
 
 include ../common.mk
