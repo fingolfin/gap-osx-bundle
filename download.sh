@@ -37,8 +37,8 @@ while : ; do
            break
            ;;
        *)  echo "   invalid MD5 checksum, expected $MD5 but got $COMPUTED_MD5"
-           echo "     retrying in 5 seconds..."
-           sleep 5
+           echo "     retrying in 30 seconds..."
+           sleep 30
            rm -f $FILE
            ;;
     esac
