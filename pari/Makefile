@@ -1,9 +1,9 @@
 PACKAGE := pari
-VERSION := 2.7.2
+VERSION := 2.7.5
 ARCHIVE := "$(PACKAGE)-$(VERSION).tar.gz"
 DIRNAME := "$(PACKAGE)-$(VERSION)"
 URL     := "http://pari.math.u-bordeaux.fr/pub/$(PACKAGE)/unix/$(ARCHIVE)"
-MD5     := "5bf3947918a882df5168740b9796e0c5"
+MD5     := "87a0d8a49e0845bc372dadfacb5b889e"
 
 FILES_TO_FIX := bin/gp-2.7-real lib/libpari-gmp.dylib
 

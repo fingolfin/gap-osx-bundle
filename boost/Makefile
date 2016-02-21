@@ -1,9 +1,9 @@
 PACKAGE := boost
-VERSION := 1_56_0
+VERSION := 1_60_0
 ARCHIVE := "$(PACKAGE)_$(VERSION).tar.bz2"
 DIRNAME := "$(PACKAGE)_$(VERSION)"
 URL     := "http://downloads.sourceforge.net/$(PACKAGE)/$(ARCHIVE)"
-MD5     := "a744cf167b05d72335f27c88115f211d"
+MD5     := "65a840e1a0b13a558ff19eeb2c4f0cbe"
 
 FILES_TO_FIX := lib/libboost_atomic.dylib
 
