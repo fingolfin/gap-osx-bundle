@@ -100,6 +100,7 @@ for pkg in $PACKAGES ; do
      simpcomp)
         cp bistellar bin/
         $BASEDIR/fix_install_names.sh $PREFIX bin/bistellar
+        ;;
      *)
         $BASEDIR/fix_install_names.sh $PREFIX bin/*/*
         ;;
