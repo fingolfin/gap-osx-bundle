@@ -634,7 +634,7 @@ index 7e3d26e..72c6e5b 100755
 -
 -includedir=@includedir@
 -libdir=@libdir@
-+prefix="$( cd "$( dirname "$( dirname "$( realpath "$0" )" )" )" && pwd )"
++prefix="$( cd "$( dirname "$( dirname "$(python -c "import os;print os.path.realpath('$0')")" )" )" && pwd )"
 +exec_prefix=${prefix}
 +includedir=${prefix}/include
 +libdir=${exec_prefix}/lib
@@ -669,7 +669,7 @@ index 11ac23d..a9fd093 100755
 -
 -includedir=@includedir@
 -libdir=@libdir@
-+prefix="$( cd "$( dirname "$( dirname "$( realpath "$0" )" )" )" && pwd )"
++prefix="$( cd "$( dirname "$( dirname "$(python -c "import os;print os.path.realpath('$0')")" )" )" && pwd )"
 +exec_prefix=${prefix}
 +includedir=${prefix}/include
 +libdir=${exec_prefix}/lib

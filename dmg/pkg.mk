@@ -1,6 +1,6 @@
 #PACKAGES += dmg
 
-dmg: realpath
+dmg:
 
 dmg: bundle
 	$(MAKE) -C dmg
