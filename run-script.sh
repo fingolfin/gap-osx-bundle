@@ -27,6 +27,7 @@ env -i \
     CC="clang" \
     CXX="clang++ -stdlib=libc++" \
     REL_PWD="`relpath $PWD $PREFIX`" \
+    MACOSX_DEPLOYMENT_TARGET="10.7" \
     PATH="$PREFIX/bin:$TOOLSDIR/bin:/usr/bin:/bin:/usr/sbin:/sbin" \
     LDFLAGS="-L$PREFIX/lib -Wl,-rpath,$PREFIX" \
     CPPFLAGS="-isystem $PREFIX/include" \
