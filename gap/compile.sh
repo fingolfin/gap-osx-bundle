@@ -111,3 +111,9 @@ for pkg in $PACKAGES ; do
 
     popd
 done
+
+# Delete some stuff
+rm -f "$GAPROOT/pkg/"grape*/bin/*/dreadnautB.exe
+rm -f "$GAPROOT/pkg/"nq*/nq
+rm -f "$GAPROOT/pkg/"anupq*/pq
+rm -f "$GAPROOT/pkg/"simpcomp*/bistellar
