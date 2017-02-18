@@ -1,9 +1,9 @@
 PACKAGE := mpfr
-VERSION := 3.1.4
+VERSION := 3.1.5
 ARCHIVE := "$(PACKAGE)-$(VERSION).tar.bz2"
 DIRNAME := "$(PACKAGE)-$(VERSION)"
 URL     := "http://www.mpfr.org/$(PACKAGE)-$(VERSION)/$(ARCHIVE)"
-SHA256  := "d3103a80cdad2407ed581f3618c4bed04e0c92d1cf771a65ead662cc397f7775"
+SHA256  := "ca498c1c7a74dd37a576f353312d1e68d490978de4395fa28f1cbd46a364e658"
 
 CONFIGURE_PARAMS := --disable-static
 FILES_TO_FIX := lib/libmpfr.*.dylib
