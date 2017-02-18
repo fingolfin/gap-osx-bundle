@@ -24,6 +24,8 @@ env -i \
     BUILDDIR=$BUILDDIR \
     TOOLSDIR=$TOOLSDIR \
     HOME=$BASEDIR \
+    PACKAGE=$PACKAGE \
+    VERSION=$VERSION \
     CC="clang" \
     CXX="clang++ -stdlib=libc++" \
     REL_PWD="`relpath $PWD $PREFIX`" \

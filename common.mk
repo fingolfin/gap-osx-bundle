@@ -8,6 +8,8 @@ export PREFIX   := $(BUNDLE)/Contents/Resources
 export SRCDIR   := $(BASEDIR)/src
 export BUILDDIR := $(BASEDIR)/build/$(DIRNAME)
 export TOOLSDIR := $(BASEDIR)/tools
+export VERSION  := $(VERSION)
+export PACKAGE  := $(PACKAGE)
 
 RUN   := "$(BASEDIR)/run-script.sh"
 FETCH := "$(BASEDIR)/download.sh"
