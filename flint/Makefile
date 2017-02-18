@@ -3,7 +3,7 @@ VERSION := 2.5.2
 ARCHIVE := "$(PACKAGE)-$(VERSION).tar.gz"
 DIRNAME := "$(PACKAGE)-$(VERSION)"
 URL     := "http://www.flintlib.org/$(ARCHIVE)"
-MD5     := "cda885309362150196aed66a5e0f0383"
+SHA256  := "cbf1fe0034533c53c5c41761017065f85207a1b770483e98b2392315f6575e87"
 
 CONFIGURE_PARAMS := --with-gmp=$(PREFIX) --with-mpfr=$(PREFIX) \
 	--disable-static 

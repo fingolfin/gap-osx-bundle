@@ -3,7 +3,7 @@ VERSION := 1.6.7
 ARCHIVE := "$(PACKAGE)-$(VERSION).tar.gz"
 DIRNAME := "$(PACKAGE)-$(VERSION)"
 URL     := "http://www.4ti2.de/version_$(VERSION)/$(ARCHIVE)"
-MD5     := "90def0d6b01a0247e439356777467497"
+SHA256  := "d4833a831d8d437f595d2e234a4471d7adbe1523fc63aa46cacea56af3e831bb"
 
 FILES_TO_FIX := \
     bin/4ti2gmp \

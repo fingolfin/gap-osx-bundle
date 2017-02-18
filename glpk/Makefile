@@ -3,7 +3,7 @@ VERSION := 4.58
 ARCHIVE := "$(PACKAGE)-$(VERSION).tar.gz"
 DIRNAME := "$(PACKAGE)-$(VERSION)"
 URL     := "http://ftp.gnu.org/gnu/$(PACKAGE)/$(ARCHIVE)"
-MD5     := "924ff878278d07a52f2e06240f2fe30a"
+SHA256  := "4460fa417a747b1913b4a3b3000c1e6a6296aa8980688c73cf963f4880f2b9ca"
 # https://www.gnu.org/software/glpk/
 
 FILES_TO_FIX := bin/glpsol lib/libglpk.*.dylib

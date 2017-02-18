@@ -41,7 +41,7 @@ fetch-default:
 	@echo "================================================="
 	@echo "Fetching $(PACKAGE)-$(VERSION)"
 	@echo "================================================="
-	@( mkdir -p $(SRCDIR) && cd $(SRCDIR) && $(FETCH) $(URL) $(MD5) $(ARCHIVE) )
+	@( mkdir -p $(SRCDIR) && cd $(SRCDIR) && $(FETCH) $(URL) $(SHA256) $(ARCHIVE) )
 
 fetch-extra:
 

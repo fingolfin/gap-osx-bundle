@@ -3,7 +3,7 @@ VERSION := 6.1.0
 ARCHIVE := "$(PACKAGE)-$(VERSION).tar.bz2"
 DIRNAME := "$(PACKAGE)-$(VERSION)"
 URL     := "http://ftp.gnu.org/gnu/$(PACKAGE)/$(ARCHIVE)"
-MD5     := "86ee6e54ebfc4a90b643a65e402c4048"
+SHA256  := "498449a994efeba527885c10405993427995d3f86b8768d8cdf8d9dd7c6b73e8"
 
 # We override the host type to build a GMP version that works across a
 # wide range of OS X machines, avoiding CPU specific optimizations. Of

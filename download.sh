@@ -2,7 +2,7 @@
 
 usage() {
     cat <<EOF
-Usage: $0 URL MD5 [FILENAME]
+Usage: $0 URL SHA256 [FILENAME]
 EOF
 
     exit $1
@@ -16,7 +16,7 @@ if [ $# -gt 3 ]; then
 fi
 
 URL="$1"
-MD5="$2"
+SHA256="$2"
 if [ $# = 2 ]; then
     FILE=`basename $URL`
 else
@@ -30,13 +30,13 @@ while : ; do
         echo "   downloading from $URL"
         curl -L -O $URL
     fi;
-    COMPUTED_MD5=`/usr/bin/openssl md5 $FILE | /usr/bin/cut -d' ' -f2`
-    case $COMPUTED_MD5 in
-       *$MD5* )
-           echo "   valid MD5 checksum"
+    COMPUTED_SHA256=`shasum -a 256 $FILE | /usr/bin/cut -d' ' -f1`
+    case $COMPUTED_SHA256 in
+       *$SHA256* )
+           echo "   valid SHA256 checksum"
            break
            ;;
-       *)  echo "   invalid MD5 checksum, expected $MD5 but got $COMPUTED_MD5"
+       *)  echo "   invalid SHA256 checksum, expected $SHA256 but got $COMPUTED_SHA256"
            echo "     retrying in 30 seconds..."
            sleep 30
            rm -f $FILE
