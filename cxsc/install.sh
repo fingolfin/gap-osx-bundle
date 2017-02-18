@@ -3,7 +3,7 @@
 make install
 
 cd $PREFIX
-$BASEDIR/fix_install_names.sh $PREFIX lib/libcxsc.2.5.4.dylib
+$BASEDIR/fix_install_names.sh $PREFIX lib/libcxsc.${VERSION//-/.}.dylib
 
 mkdir -p share/cxsc
 rm -rf share/cxsc/examples
