@@ -1,6 +1,0 @@
-#!/bin/sh -ev
-
-cmake -DCMAKE_INSTALL_PREFIX:PATH="$PREFIX" \
-    -DBUILD_SHARED:BOOL=ON \
-    -DCMAKE_MACOSX_RPATH:BOOL=OFF
-make -j8
