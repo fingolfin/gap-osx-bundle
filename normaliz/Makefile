@@ -1,9 +1,13 @@
 PACKAGE := normaliz
-VERSION := 3.2.0
+VERSION := 3.4.0
 DIRNAME := "$(PACKAGE)-$(VERSION)"
-ARCHIVE := "$(DIRNAME)source.zip"
-URL     := "https://www.normaliz.uni-osnabrueck.de/wp-content/uploads/2017/01/$(ARCHIVE)"
-URL     := "https://www.normaliz.uni-osnabrueck.de/wp-content/uploads/2017/01/normaliz-3.2.0source.zip"
-SHA256  := "4c4d881c053e82c016067767bf6afe190834ba357588dcb30c0aa4345b3d328e"
+ARCHIVE := "$(DIRNAME).tar.gz"
+URL     := "https://github.com/Normaliz/Normaliz/releases/download/v$(VERSION)/$(ARCHIVE)"
+SHA256  := "01eae802621beb3bdbde57bae32a1251d40ecc4a01660a50540c1e1f5eeb9c24"
+
+CONFIGURE_PARAMS := \
+    --disable-static
+
+FILES_TO_FIX := lib/libnormaliz.dylib lib/libQnormaliz.dylib bin/normaliz bin/Qnormaliz
 
 include ../common.mk
