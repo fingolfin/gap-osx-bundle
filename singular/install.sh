@@ -7,7 +7,7 @@ rm -f $PREFIX/lib/*.la
 rm -f $PREFIX/libexec/singular/MOD/*.la
 rm -rf $PREFIX/lib/pkgconfig
 
-VER=4.0.2
+VER=$VERSION
 OMVER=0.9.6
 
 cd $PREFIX
