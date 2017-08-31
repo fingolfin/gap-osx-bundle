@@ -1,6 +1,6 @@
 #!/bin/sh -ex
 
-VOLUME="GAP_4.7.6"
+VOLUME="GAP_4.8.8"
 TMP_DMG="TEMP.dmg"
 DMG="$VOLUME.dmg"
 

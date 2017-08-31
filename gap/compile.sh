@@ -44,7 +44,7 @@ PACKAGES="
     cvec
     digraphs
     edim
-    example
+    Example-
     float
     Gauss
     grape
@@ -57,6 +57,7 @@ PACKAGES="
     orb
     profiling
     simpcomp
+    xgap
     "
 # Not currently being built:
 # fplsa, fr, linboxing,pargap, PolymakeInterface, xgap
@@ -77,19 +78,26 @@ for pkg in $PACKAGES ; do
     notice "==== Building $pkg ===="
     pushd pkg/$pkg*
     case $pkg in
-      NormalizInterface)
+      NormalizInterface*)
         ./configure --with-normaliz=$PREFIX
         ;;
-     simpcomp)
+      simpcomp*)
         chmod a+x configure depcomp install-sh missing
         ./configure
         ;;
-     *)
+      float*)
+        ./configure --without-cxsc
+        ;;
+      *)
         ./configure
         ;;
     esac
 
+    # build the package
     make
+
+    # delete junk which might hard code the absolute path
+    [[ $pkg = guava ]] && ( cd src/leon && make clean && rm -f leonconv ctjhai/minimum-weight )
 
     for pattern in autom4te.cache .libs .deps Makefile config.status \
                    "*.log" "*.la" "*.a" "*.o" ; do
@@ -97,11 +105,11 @@ for pkg in $PACKAGES ; do
     done
 
     case $pkg in
-     simpcomp)
+      simpcomp*)
         cp bistellar bin/
         $BASEDIR/fix_install_names.sh $PREFIX bin/bistellar
         ;;
-     *)
+      *)
         $BASEDIR/fix_install_names.sh $PREFIX bin/*/*
         ;;
     esac
