@@ -1,12 +1,12 @@
 PACKAGE := fplll
-VERSION := 4.0.4
-ARCHIVE := "lib$(PACKAGE)-$(VERSION).tar.gz"
-DIRNAME := "lib$(PACKAGE)-$(VERSION)"
-URL     := "http://perso.ens-lyon.fr/damien.stehle/$(PACKAGE)/$(ARCHIVE)"
-SHA256  := "cba8b0ded43f235003a58bcd4b2973105749b3f69732ae09fa44c7e98f5f71b1"
+VERSION := 5.0.3
+ARCHIVE := "$(PACKAGE)-$(VERSION).tar.gz"
+DIRNAME := "$(PACKAGE)-$(VERSION)"
+URL     := "https://github.com/fplll/fplll/releases/download/$(VERSION)/$(ARCHIVE)"
+SHA256  := "d2b11b7dcb26c30ac1aab9ff75aca9b3dd6e0b0b40c382af16017a717dfe05c2"
 # https://github.com/dstehle/fplll
 
 CONFIGURE_PARAMS := --disable-static
-FILES_TO_FIX := lib/libfplll.*.dylib bin/fplll bin/latticegen
+FILES_TO_FIX := lib/libfplll.*.dylib bin/fplll bin/latticegen bin/latsieve
 
 include ../common.mk
