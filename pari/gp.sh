@@ -14,4 +14,4 @@ if [ "x$GP_DATA_DIR" = x ] ; then
     GP_DATA_DIR="$prefix/share/pari"
 fi
 
-"$prefix/bin/gp-2.7-real"
+"$prefix/bin/gp-2.9-real"
