@@ -983,3 +983,25 @@ index c55c027..9048280 100644
    {"RootDir",   'r',    feResDir,   "SINGULAR_ROOT_DIR",    "%b/..",                (char *)""},
    {"DataDir",   'D',    feResDir,   "SINGULAR_DATA_DIR",    "%b/../share/",          (char *)""},
    {"DefaultDir",'d',    feResDir,   "SINGULAR_DEFAULT_DIR",  SINGULAR_DEFAULT_DIR,  (char *)""},
+diff --git a/factory/NTLconvert.cc b/factory/NTLconvert.cc
+index 41ce9b2..7a61d3f 100644
+--- a/factory/NTLconvert.cc
++++ b/factory/NTLconvert.cc
+@@ -501,7 +501,7 @@ convertZZ2CF (const ZZ & a)
+   }
+   else
+   {
+-    long sizeofrep= ((long *) a.rep) [1];
++    long sizeofrep= _ntl_SIZE(a.rep);
+     bool lessZero= false;
+     if (sizeofrep < 0)
+     {
+@@ -519,7 +519,7 @@ convertZZ2CF (const ZZ & a)
+       cf_stringtemp_l= sizeofrep*sizeof(mp_limb_t)*2;
+       cf_stringtemp= (unsigned char*) Alloc (cf_stringtemp_l);
+     }
+-    int cc= mpn_get_str (cf_stringtemp, 16, (mp_limb_t *) (((long *) (a.rep)) + 2), sizeofrep);
++    int cc= mpn_get_str (cf_stringtemp, 16, (mp_limb_t *) (((long *) ((_ntl_gbigint)a.rep)) + 2), sizeofrep);
+ 
+     char* cf_stringtemp2;
+     if (lessZero)
