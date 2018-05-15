@@ -1,9 +1,10 @@
 PACKAGE := ntl
-VERSION := 10.5.0
+VERSION := 11.0.0
 DIRNAME := $(PACKAGE)-$(VERSION)
 ARCHIVE := $(DIRNAME).tar.gz
-URL     := "http://www.shoup.net/ntl/$(ARCHIVE)"
-SHA256  := "b90b36c9dd8954c9bc54410b1d57c00be956ae1db5a062945822bbd7a86ab4d2"
+URL     := http://www.shoup.net/ntl/$(ARCHIVE)
+SHA256  := e34c3a57e3b913dcf59ecc4d2c1927c614f99db55d2cebe3edd65973eb91ddec
+WWW     := http://www.shoup.net/ntl/
 
 FILES_TO_FIX := lib/libntl.dylib
 

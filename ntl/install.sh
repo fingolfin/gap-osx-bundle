@@ -4,4 +4,5 @@ cd src
 make install
 
 rm -f $PREFIX/include/NTL/config_log.h
+rm -f $PREFIX/include/NTL/ConfigLog.h
 rm -f $PREFIX/lib/libntl.a
