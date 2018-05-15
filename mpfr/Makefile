@@ -1,9 +1,10 @@
 PACKAGE := mpfr
-VERSION := 3.1.5
-ARCHIVE := "$(PACKAGE)-$(VERSION).tar.bz2"
-DIRNAME := "$(PACKAGE)-$(VERSION)"
-URL     := "http://www.mpfr.org/$(PACKAGE)-$(VERSION)/$(ARCHIVE)"
-SHA256  := "ca498c1c7a74dd37a576f353312d1e68d490978de4395fa28f1cbd46a364e658"
+VERSION := 4.0.1
+DIRNAME := $(PACKAGE)-$(VERSION)
+ARCHIVE := $(DIRNAME).tar.bz2
+URL     := https://ftp.gnu.org/gnu/$(PACKAGE)/$(ARCHIVE)
+SHA256  := a4d97610ba8579d380b384b225187c250ef88cfe1d5e7226b89519374209b86b
+WWW     := http://www.mpfr.org
 
 CONFIGURE_PARAMS := --disable-static
 FILES_TO_FIX := lib/libmpfr.*.dylib
