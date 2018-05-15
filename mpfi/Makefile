@@ -1,7 +1,7 @@
 PACKAGE := mpfi
 VERSION := 1.5.1
-ARCHIVE := "$(PACKAGE)-$(VERSION).tar.gz"
-DIRNAME := "$(PACKAGE)-$(VERSION)"
+DIRNAME := $(PACKAGE)-$(VERSION)
+ARCHIVE := $(DIRNAME).tar.gz
 URL     := "https://gforge.inria.fr/frs/download.php/30129/$(ARCHIVE)"
 SHA256  := "3fcc6536d117a67fbfbb875ab2d2b3d7fe76cdf0ce85a7e707aae1e89893696e"
 # see https://perso.ens-lyon.fr/nathalie.revol/software.html

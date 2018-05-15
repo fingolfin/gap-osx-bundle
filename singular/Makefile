@@ -1,10 +1,12 @@
 PACKAGE := singular
 VERSION := 4.0.2
-ARCHIVE := "$(PACKAGE)-$(VERSION).tar.gz"
-DIRNAME := "$(PACKAGE)-$(VERSION)"
-BASEURL := "http://www.mathematik.uni-kl.de/ftp/pub/Math/Singular/SOURCES/4-0-2"
-URL     := "$(BASEURL)/$(ARCHIVE)"
-SHA256  := "c105a2c8ace0b3c9189b782ed63660ce235407d0160907c2cafc2128d36d8cb7"
+# TODO: 4.1.1p2 or newer
+DIRNAME := $(PACKAGE)-$(VERSION)
+ARCHIVE := $(DIRNAME).tar.gz
+BASEURL := http://www.mathematik.uni-kl.de/ftp/pub/Math/Singular/SOURCES/4-0-2
+URL     := $(BASEURL)/$(ARCHIVE)
+SHA256  := c105a2c8ace0b3c9189b782ed63660ce235407d0160907c2cafc2128d36d8cb7
+WWW     := https://www.singular.uni-kl.de
 
 CONFIGURE_PARAMS := \
     --disable-maintainer-mode \

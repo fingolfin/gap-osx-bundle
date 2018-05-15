@@ -1,7 +1,7 @@
 PACKAGE := gmp
 VERSION := 6.1.2
-ARCHIVE := "$(PACKAGE)-$(VERSION).tar.bz2"
-DIRNAME := "$(PACKAGE)-$(VERSION)"
+DIRNAME := $(PACKAGE)-$(VERSION)
+ARCHIVE := $(DIRNAME).tar.bz2
 URL     := "http://ftp.gnu.org/gnu/$(PACKAGE)/$(ARCHIVE)"
 SHA256  := "5275bb04f4863a13516b2f39392ac5e272f5e1bb8057b18aec1c9b79d73d8fb2"
 

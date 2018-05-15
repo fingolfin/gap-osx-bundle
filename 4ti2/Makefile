@@ -1,9 +1,9 @@
 PACKAGE := 4ti2
 VERSION := 1.6.7
-ARCHIVE := "$(PACKAGE)-$(VERSION).tar.gz"
-DIRNAME := "$(PACKAGE)-$(VERSION)"
-URL     := "http://www.4ti2.de/version_$(VERSION)/$(ARCHIVE)"
-SHA256  := "d4833a831d8d437f595d2e234a4471d7adbe1523fc63aa46cacea56af3e831bb"
+DIRNAME := $(PACKAGE)-$(VERSION)
+ARCHIVE := $(DIRNAME).tar.gz
+URL     := http://www.4ti2.de/version_$(VERSION)/$(ARCHIVE)
+SHA256  := d4833a831d8d437f595d2e234a4471d7adbe1523fc63aa46cacea56af3e831bb
 
 CONFIGURE_PARAMS := \
     --enable-shared \

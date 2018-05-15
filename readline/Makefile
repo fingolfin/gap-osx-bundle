@@ -1,7 +1,7 @@
 PACKAGE := readline
 VERSION := 7.0
-ARCHIVE := "$(PACKAGE)-$(VERSION).tar.gz"
-DIRNAME := "$(PACKAGE)-$(VERSION)"
+DIRNAME := $(PACKAGE)-$(VERSION)
+ARCHIVE := $(DIRNAME).tar.gz
 URL     := "http://ftp.gnu.org/gnu/$(PACKAGE)/$(ARCHIVE)"
 SHA256  := "750d437185286f40a369e1e4f4764eda932b9459b5ec9a731628393dd3d32334"
 
