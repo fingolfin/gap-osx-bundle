@@ -1,10 +1,10 @@
 PACKAGE := fplll
-VERSION := 5.0.3
-ARCHIVE := "$(PACKAGE)-$(VERSION).tar.gz"
-DIRNAME := "$(PACKAGE)-$(VERSION)"
-URL     := "https://github.com/fplll/fplll/releases/download/$(VERSION)/$(ARCHIVE)"
-SHA256  := "d2b11b7dcb26c30ac1aab9ff75aca9b3dd6e0b0b40c382af16017a717dfe05c2"
-# https://github.com/dstehle/fplll
+VERSION := 5.2.0
+DIRNAME := $(PACKAGE)-$(VERSION)
+ARCHIVE := $(DIRNAME).tar.gz
+URL     := https://github.com/fplll/fplll/releases/download/$(VERSION)/$(ARCHIVE)
+SHA256  := 75e17fcaa4fc5fdddbe6eb42aca5f38c4c169a4b52756e74fbe2d1769737ac9c
+WWW     := https://github.com/fplll/fplll
 
 CONFIGURE_PARAMS := --disable-static
 FILES_TO_FIX := lib/libfplll.*.dylib bin/fplll bin/latticegen bin/latsieve
