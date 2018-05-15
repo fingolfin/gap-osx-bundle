@@ -1,6 +1,7 @@
 #!/bin/sh -ex
 
-VOLUME="GAP_4.8.8"
+GAP_VERSION=`cat $(BASEDIR)/GAP/VERSION`
+VOLUME="GAP_${GAP_VERSION}"
 TMP_DMG="TEMP.dmg"
 DMG="$VOLUME.dmg"
 
