@@ -8,120 +8,74 @@ mv * $GAPROOT   # TODO: shouldn't use * ...
 cd $GAPROOT
 
 # compile GAP; use a custom "target" pretending that this was made on 10.6
-./configure --target=x86_64-apple-darwin10.0.0 --with-gmp=system
+./configure --host=x86_64-apple-darwin10.0.0
 make -j8
 
-$BASEDIR/fix_install_names.sh $PREFIX bin/*/gap
+$BASEDIR/fix_install_names.sh $PREFIX gap
 
 # build documentation
-make manuals
-
-# clean some useless generated files containing the build path
-rm -f config.log config.status bin/*/config.log
+# TODO/FIXME: temporary disable, re-enable after debugging
+# #make doc
 
 # setup bin symlink
 rm -f $PREFIX/bin/gap
 (cd $PREFIX/bin && ln -s ../lib/gap/bin/gap.sh gap)
 
-# remove various files containing hard coded paths
-rm -f bin/*/*.o
-rm -f Makefile
-rm -f Makefile-default64
-rm -f bin/*/Makefile
-rm -f bin/*/config.status
-rm -f bin/*/extern/Makefile
 
-# Clean some leftovers in packages
-rm -f pkg/*/doc/*.log
+# temporarily move away packages we do not support and/or want to
+# build differently
+mkdir -p pkg.off
+mv pkg/linboxing* pkg.off/
+mv pkg/NormalizInterface* pkg.off/
+mv pkg/PolymakeInterface* pkg.off/
 
-
-# Now build various packages
-PACKAGES="
-    ace
-    anupq
-    Browse
-    cohomolo
-    cvec
-    digraphs
-    edim
-    Example-
-    float
-    Gauss
-    grape
-    guava
-    io
-    json
-    kbmag
-    NormalizInterface
-    nq
-    orb
-    profiling
-    simpcomp
-    xgap
-    "
-# Not currently being built:
-# fplsa, fr, linboxing,pargap, PolymakeInterface, xgap
 #
-# Also "qaos" does not really need to be "built"
+# build everything
+#
+cd $GAPROOT/pkg
+../bin/BuildPackages.sh --strict
 
+mv ../pkg.off/NormalizInterface* ./
+cd NormalizInterface*
+./configure --with-normaliz=$PREFIX
+make -j8
+cd ..
 
-# print notices in green
-notice() {
-    printf "\033[32m%s\033[0m\n" "$*"
-}
+# now do some cleanup... must be done before running fix_install_names.sh
+# to avoid problems with invalid inputs for fix_install_names.sh
+( cd guava*/src/leon && make clean && rm -f leonconv ctjhai/minimum-weight )
 
-mkdir -p $PREFIX/pkgs/gap-pkgs
-
-cd $GAPROOT
-for pkg in $PACKAGES ; do
-    echo ""
-    notice "==== Building $pkg ===="
-    pushd pkg/$pkg*
-    case $pkg in
-      NormalizInterface*)
-        ./configure --with-normaliz=$PREFIX
-        ;;
-      simpcomp*)
-        chmod a+x configure depcomp install-sh missing
-        ./configure
-        ;;
-      float*)
-        ./configure --without-cxsc
-        ;;
-      *)
-        ./configure
-        ;;
-    esac
-
-    # build the package
-    make
-
-    # delete junk which might hard code the absolute path
-    [[ $pkg = guava ]] && ( cd src/leon && make clean && rm -f leonconv ctjhai/minimum-weight )
-
-    for pattern in autom4te.cache .libs .deps Makefile config.status \
-                   "*.log" "*.la" "*.a" "*.o" ; do
-        find . -name "$pattern" -print0 | xargs -0 rm -rf
-    done
-
-    case $pkg in
-      simpcomp*)
-        cp bistellar bin/
-        $BASEDIR/fix_install_names.sh $PREFIX bin/bistellar
-        ;;
-      *)
-        $BASEDIR/fix_install_names.sh $PREFIX bin/*/*
-        ;;
-    esac
-
-    touch BUILT
-    echo $pkg > $PREFIX/pkgs/gap-pkgs/$pkg
-
-    popd
+for pattern in autom4te.cache .libs .deps Makefile config.status \
+               "*.log" "*.la" "*.a" "*.o" "*.dSYM" ; do
+    find . -name "$pattern" -print0 | xargs -0 rm -rf
 done
 
-# Delete some stuff
-rm -f "$GAPROOT/pkg/"grape*/bin/*/dreadnautB.exe
-rm -f "$GAPROOT/pkg/"nq*/nq
-rm -f "$GAPROOT/pkg/"anupq*/pq
-rm -f "$GAPROOT/pkg/"simpcomp*/bistellar
+rm -f anupq*/pq
+rm -rf carat*/carat/bin
+rm -f carat*/config.carat
+rm -f grape*/bin/*/dreadnautB.exe
+rm -f guava*/src/leonconv guava*/src/ctjhai/minimum-weight
+rm -f nq*/nq
+rm -f simpcomp*/bistellar
+rm -f semigroups*/bin/lib/libsemigroups.lai
+rm -f xgap*/bin/*/config*
+rm -f */doc/*.log
+rm -f */Makefile-default*
+rm -rf log
+
+#
+rm -f */bin/*/*.la
+$BASEDIR/fix_install_names.sh $PREFIX */bin/bistellar
+$BASEDIR/fix_install_names.sh $PREFIX */bin/*/*
+
+cd ..
+
+rm -f config.log config.status
+rm -rf obj
+rm -f GNUMakefile
+rm -f doc/make_doc
+rm -f cnf/GAP-*FLAGS
+
+echo "-----------------"
+echo "DONE building GAP"
+echo "-----------------"

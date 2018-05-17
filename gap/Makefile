@@ -1,8 +1,8 @@
 PACKAGE := gap
 VERSION := $(shell cat $(BASEDIR)/gap/VERSION)
-ARCHIVE := "gap4r8p8_2017_08_20-15_12.tar.bz2"
-DIRNAME := "gap4r8"
-URL     := "http://www.gap-system.org/pub/gap/gap48/tar.bz2/$(ARCHIVE)"
-SHA256  := "16d2a809f69276ba8ff72f22d512dc7f38e182c81b15986ae78431c420bd2308"
+DIRNAME := $(PACKAGE)-$(VERSION)
+ARCHIVE := $(DIRNAME).tar.bz2
+URL     := https://www.gap-system.org/pub/gap/gap-4.9/tar.bz2/$(ARCHIVE)
+SHA256  := d93abb263e6b9ce9f56bfb820ac263b9a0f349f6bd1584244c7b242931d0dd3a
 
 include ../common.mk

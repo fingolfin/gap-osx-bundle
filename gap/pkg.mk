@@ -1,6 +1,6 @@
 PACKAGES += gap
 
-gap: gmp readline normaliz fplll mpc mpfi mpfr
+gap: gmp readline normaliz fplll mpc mpfi mpfr zeromq
 
 # Include build rules for GAP packages
 GAP_PACKAGES :=

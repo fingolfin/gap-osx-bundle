@@ -1,80 +1,83 @@
---- a/gap.shi	2014-10-05 13:09:49.000000000 +0200
-+++ b/gap.shi	2014-10-05 13:10:46.000000000 +0200
-@@ -16,11 +16,11 @@
- ##
- ##  Set 'GAP_DIR' to the name of the directory where you have installed  GAP,
- ##  i.e., the directory with the subdirectories  'lib',  'grp',  'doc',  etc.
--##  The default is '@gapdir@', which is where you installed GAP.
-+##  The default is the directory where you installed GAP.
- ##  You won't have to change this unless you move the installation.
- ##
- if [ "x$GAP_DIR" = "x" ];  then
--GAP_DIR="@gapdir@"
+diff --git a/cnf/compat/gap.sh.in b/cnf/compat/gap.sh.in
+index 8731e6794..b1f39127e 100755
+--- a/cnf/compat/gap.sh.in
++++ b/cnf/compat/gap.sh.in
+@@ -1,4 +1,4 @@
+ #!/bin/sh
+ 
+-GAPDIR=$(cd "@abs_top_srcdir@" && pwd)
+-exec "@abs_top_builddir@/gap" -l "$GAPDIR" "$@"
 +GAP_DIR="$(cd "$(dirname "$(python -c "import os;print os.path.realpath('$0')")")"/.. && pwd)"
- fi
++exec "$GAP_DIR/gap" -l "$GAP_DIR" "$@"
+diff --git a/cnf/gac.in b/cnf/gac.in
+index f9eae7f69..04d289238 100644
+--- a/cnf/gac.in
++++ b/cnf/gac.in
+@@ -51,10 +51,10 @@
+ SHELL="@SHELL@"
  
+ # absolute path of the directory in which GAP was compiled
+-abs_top_builddir="@abs_top_builddir@"
++abs_top_builddir="$(cd "$(dirname "$(python -c "import os;print os.path.realpath('$0')")")" && pwd)"
  
---- a/cnf/gac.in	2014-05-24 22:02:53.000000000 +0200
-+++ b/cnf/gac.in	2014-10-05 14:42:51.000000000 +0200
-@@ -55,7 +55,8 @@
- ##  option is appended at the end of the link command after the .o
- ##  files to link.
- ##
--gap_bin=@gapbin@
-+gap_bin="$(cd "$(dirname "$(python -c "import os;print os.path.realpath('$0')")")" && pwd)"
-+prefix="$(cd "$(dirname "$(python -c "import os;print os.path.realpath('$0')")")"/../../../.. && pwd)"
+ # path of the directory the GAP sources contained in
+-abs_top_srcdir="@abs_top_srcdir@"
++abs_top_srcdir="${abs_top_builddir}@"
  
- if [ "X${gap_bin}" = "X$0" ];  then
-     gap_dir="../../";
-@@ -72,13 +73,13 @@
+ #
+ libdir="@libdir@"
+diff --git a/bin/BuildPackages.sh b/bin/BuildPackages.sh
+index a9939e687..1aa02adca 100755
+--- a/bin/BuildPackages.sh
++++ b/bin/BuildPackages.sh
+@@ -214,6 +214,10 @@ build_one_package() {
+     ;;
+
+     simpcomp*)
++      chmod a+x configure depcomp install-sh missing && \
++      echo_run ./configure && \
++      echo_run "$MAKE" && \
++      mkdir -p bin && test -x bin/bistellar || mv bistellar bin
+     ;;
+
+     *)
+diff --git a/pkg/carat/Makefile b/pkg/carat/Makefile
+index e6ba03a..8872d3a 100644
+--- a/pkg/carat/Makefile
++++ b/pkg/carat/Makefile
+@@ -46,8 +46,9 @@ qcat6: carat/tables/qcatalog/dim6
  
- # These three should be filled in by the standard autoconf procedures 
- c_compiler="@CC@"
--c_options="@CPPFLAGS@ @CFLAGS@ @GMP_CFLAGS@"
-+c_options="-isystem $prefix/include -Wall -g -O2"
- c_linker="@CC@"
--c_link_options="@LDFLAGS@"
--c_libs="@LIBS@ @GMP_LIBS@"
-+c_link_options="-L$prefix/lib -Wl,-rpath,$prefix -g -Wl,-no_pie -export-dynamic"
-+c_libs="-lreadline -lgmp"
+ # compile and link the CARAT binaries
+ programs: Makefile_CARAT config.carat
+-	sed -i 's/#include <malloc.h>/\/* inclusion of malloc.h removed *\//g' carat/include/typedef.h
+-	cd carat; make -f ../Makefile_CARAT TOPDIR="$(TOPDIR)" CC="$(CC)" CFLAGS="$(FLAGS) $(CFLAGS)"
++	sed 's/#include <malloc.h>/\/* inclusion of malloc.h removed *\//g' < carat/include/typedef.h > typedef.tmp
++	mv typedef.tmp carat/include/typedef.h
++	cd carat; make -f ../Makefile_CARAT TOPDIR="$(TOPDIR)" CC="$(CC)" CFLAGS="$(FLAGS) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS)"
+ 	chmod -R a+rX .
  
- # These will need special care
--c_dyn_options="@CPPFLAGS@ @CDYNOPTIONS@ @GMP_CFLAGS@"
-+c_dyn_options="-isystem $prefix/include -fPIC -Wall"
- c_dyn_linker="@CDYNLINKER@"
- c_dyn_linking="@CDYNLINKING@"
- c_dynlibs="@C_DYNLIBS@"
---- a/cnf/sysinfo.in	2014-05-24 22:02:53.000000000 +0200
-+++ b/cnf/sysinfo.in	2014-10-05 14:43:40.000000000 +0200
-@@ -6,7 +6,8 @@
- ##
- #Y  Copyright (C)  2011,  University of St Andrews, Scotland
- ##
--gap_bin=@gapbin@
-+gap_bin="$(cd "$(dirname "$(python -c "import os;print os.path.realpath('$0')")")" && pwd)"
-+prefix="$(cd "$(dirname "$(python -c "import os;print os.path.realpath('$0')")")"/../../../.. && pwd)"
+ # make a suitable link, so that GAP can find the CARAT binaries
+diff --git a/pkg/carat/configure b/pkg/carat/configure
+index b25fd96..8874c20 100755
+--- a/pkg/carat/configure
++++ b/pkg/carat/configure
+@@ -105,7 +105,7 @@ GET=
+ if test -n "$(which wget)"; then
+     GET=wget
+ elif test -n "$(which curl)"; then
+-    GET=curl -O
++    GET="curl -O"
+ fi  
  
- if [ "X${gap_bin}" = "X$0" ];  then
-     gap_dir="../../";
-@@ -20,17 +21,15 @@
- gap_options=""
- gap_include="${gap_dir}/src"
- 
--gap_config_options="@gp_configure_options@"
--
- # These three should be filled in by the standard autoconf procedures 
- c_compiler="@CC@"
--c_options="@CPPFLAGS@ @CFLAGS@ @GMP_CFLAGS@"
-+c_options="-isystem $prefix/include -Wall -g -O2"
- c_linker="@CC@"
--c_link_options="@LDFLAGS@"
--c_libs="@LIBS@ @GMP_LIBS@"
-+c_link_options="-L$prefix/lib -Wl,-rpath,$prefix -g -Wl,-no_pie -export-dynamic"
-+c_libs="-lreadline -lgmp"
- 
- # These will need special care
--c_dyn_options="@CPPFLAGS@ @CDYNOPTIONS@ @GMP_CFLAGS@"
-+c_dyn_options="-isystem $prefix/include -fPIC -Wall"
- c_dyn_linker="@CDYNLINKER@"
- c_dyn_linking="@CDYNLINKING@"
- c_dynlibs="@C_DYNLIBS@"
+ FLAGS="-O $GMPINC $GMPFLAG $GMPLIB"
+
+diff --git a/pkg/guava-3.13/src/leon/configure.ac b/pkg/guava-3.13/src/leon/configure.ac
+index 8f9b6da..73abc3b 100644
+--- a/pkg/guava-3.13/src/leon/configure.ac
++++ b/pkg/guava-3.13/src/leon/configure.ac
+@@ -1,6 +1,5 @@
+ AC_INIT(leon,1.0)
+ AC_CONFIG_SRCDIR(src/group.h)
+-AM_INIT_AUTOMAKE
+ AC_CONFIG_HEADERS([src/leon_config.h])
+ AC_CHECK_SIZEOF(int)
