@@ -59,7 +59,7 @@ for BINARY ; do
     NEW_RPATH="@loader_path/`relpath $PREFIX $tmp`"
     install_name_tool -rpath $PREFIX $NEW_RPATH $BINARY 2>/dev/null ||
         install_name_tool -add_rpath $NEW_RPATH $BINARY 2>/dev/null ||
-        echo "WARNING: unable to set rpath $NEW_RPATH"
+        echo "WARNING: unable to set rpath $NEW_RPATH for $BINARY"
     install_name_tool -delete_rpath $PREFIX $BINARY 2>/dev/null || :
     install_name_tool -delete_rpath $PREFIX/lib $BINARY 2>/dev/null || :
 
