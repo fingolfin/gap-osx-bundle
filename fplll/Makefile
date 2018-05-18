@@ -10,3 +10,11 @@ CONFIGURE_PARAMS := --disable-static
 FILES_TO_FIX := lib/libfplll.*.dylib bin/fplll bin/latticegen bin/latsieve
 
 include ../common.mk
+
+# HACK: delete pkg-config .pc file, as it hard codes the build path
+install-extra:
+	rm -f $(PREFIX)/lib/pkgconfig/fplll.pc
+
+# FIXME: libflll.dylib hard codes the build path, because it
+#  hardcodes the path to $PREFIX/share/fplll/strategies/default.json
+# via FPLLL_DEFAULT_STRATEGY_PATH and FPLLL_DEFAULT_STRATEGY

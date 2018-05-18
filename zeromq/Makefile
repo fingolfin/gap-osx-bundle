@@ -9,3 +9,7 @@ CONFIGURE_PARAMS := --disable-static
 FILES_TO_FIX := lib/libzmq.*.dylib bin/curve_keygen
 
 include ../common.mk
+
+# HACK: delete pkg-config .pc file, as it hard codes the build path
+install-extra:
+	rm -f $(PREFIX)/lib/pkgconfig/libzmq.pc

@@ -11,3 +11,6 @@ CONFIGURE_PARAMS := --with-gmp=$(PREFIX) --with-mpfr=$(PREFIX) \
 FILES_TO_FIX := lib/libflint.dylib
 
 include ../common.mk
+
+# FIXME: libflint.dylib hard codes the build path, because it
+#  hardcodes the path to a certain file... need to find a way around that

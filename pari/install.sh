@@ -12,3 +12,8 @@ cd "$PREFIX"
 rm lib/pari/pari.cfg
 mv bin/gp-$VER bin/gp-$VER-real
 install -m 755 "$BASEDIR/pari/gp.sh" bin/gp-$VER
+
+# remove more files hard coding build path
+# TODO: can/should we instead adjust them somehow?
+rm -f "$PREFIX"/share/pari/doc/paricfg.tex
+rm -f "$PREFIX"/share/pari/examples/Makefile
